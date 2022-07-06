@@ -16,5 +16,5 @@ public class CustomerDTO {
     private String nic;
     private String license;
     private String address;
-    private String contact;
+    private int contact;
 }
