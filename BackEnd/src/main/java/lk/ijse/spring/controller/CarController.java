@@ -1,7 +1,6 @@
 package lk.ijse.spring.controller;
 
 import lk.ijse.spring.dto.CarDTO;
-import lk.ijse.spring.dto.CustomerDTO;
 import lk.ijse.spring.service.CarService;
 import lk.ijse.spring.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
