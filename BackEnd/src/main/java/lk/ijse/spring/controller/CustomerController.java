@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("8")
+@RequestMapping("crs/customer")
 @RestController
 @CrossOrigin
 public class CustomerController {
