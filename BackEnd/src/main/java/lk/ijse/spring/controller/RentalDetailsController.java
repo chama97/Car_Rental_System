@@ -21,8 +21,8 @@ public class RentalDetailsController {
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateRentalDetails(@RequestBody RentalDetailsDTO rentalDetailsDTO) {
-        rentalDetailService.updateRentalDetails(rentalDetailsDTO);
+    public ResponseUtil purchaseRentalDetails(@RequestBody RentalDetailsDTO rentalDetailsDTO) {
+        rentalDetailService.purchaseRentalDetails(rentalDetailsDTO);
         return new ResponseUtil(200, "Updated", null);
     }
 

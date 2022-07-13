@@ -9,7 +9,7 @@ public interface RentalDetailService {
 
     List<RentalDetailsDTO> getAllRentalDetails();
 
-    void updateRentalDetails(RentalDetailsDTO dto);
+    void purchaseRentalDetails(RentalDetailsDTO dto);
 
     RentalDetailsDTO searchRentalDetails(String rentalId);
 }

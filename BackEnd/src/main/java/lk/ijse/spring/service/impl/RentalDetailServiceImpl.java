@@ -2,8 +2,12 @@ package lk.ijse.spring.service.impl;
 
 import lk.ijse.spring.dto.RentalDetailsDTO;
 import lk.ijse.spring.dto.ReservationDTO;
+import lk.ijse.spring.entity.Car;
 import lk.ijse.spring.entity.RentalDetails;
+import lk.ijse.spring.entity.Reservation;
+import lk.ijse.spring.repo.CarRepo;
 import lk.ijse.spring.repo.RentalDetailsRepo;
+import lk.ijse.spring.repo.ReservationRepo;
 import lk.ijse.spring.service.RentalDetailService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -23,6 +27,12 @@ public class RentalDetailServiceImpl implements RentalDetailService {
     @Autowired
     private ModelMapper mapper;
 
+    @Autowired
+    private CarRepo carRepo;
+
+    @Autowired
+    private ReservationRepo reservationRepo;
+
     @Override
     public List<RentalDetailsDTO> getAllRentalDetails() {
         return mapper.map(repo.findAll(), new TypeToken<List<RentalDetailsDTO>>() {
@@ -30,9 +40,15 @@ public class RentalDetailServiceImpl implements RentalDetailService {
     }
 
     @Override
-    public void updateRentalDetails(RentalDetailsDTO dto) {
+    public void purchaseRentalDetails(RentalDetailsDTO dto) {
         if (repo.existsById(dto.getRentalId())) {
             repo.save(mapper.map(dto, RentalDetails.class));
+
+            Reservation reserve = mapper.map(dto, Reservation.class);
+            Car car = carRepo.findById(reserve.getCar().getRegId()).get();
+            car.setStatus("Available");
+            carRepo.save(car);
+
         } else {
             throw new RuntimeException("No Such RentalId To Update..! Please Check the Id..!");
         }
