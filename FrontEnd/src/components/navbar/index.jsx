@@ -44,7 +44,7 @@ class Navbar extends Component{
                     <Link to="/sign" className={classes.link__cover}>
                         <Tab sx={{ fontSize: 16 }} label="Sign-Up" />
                     </Link>
-                    <Link to="/" className={classes.link__cover}>
+                    <Link to="/dash" className={classes.link__cover}>
                         <Tab sx={{ fontSize: 16 }} label="Contact Us" />
                     </Link>
                 </Tabs>
