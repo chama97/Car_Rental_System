@@ -9,6 +9,7 @@ import Customer from "../pages/customer"
 import Driver from "../pages/driver"
 import Reservation from "../pages/reservation"
 import Rental from "../pages/rental"
+import Schedule from "../pages/schedule"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='driver' element={<Driver/>}/>
           <Route path='reserv' element={<Reservation/>}/>
           <Route path='rental' element={<Rental/>}/>
+          <Route path='schedule' element={<Schedule/>}/>
       </Routes>
   );
 }

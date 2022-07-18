@@ -85,7 +85,7 @@ class Sidebar extends Component{
                                 <span className={classes.span}>Drivers</span>
                             </li>
                         </Link>
-                        <Link to="/dash" style={{ textDecoration: "none" }}>
+                        <Link to="/schedule" style={{ textDecoration: "none" }}>
                             <li className={classes.li}>
                                 <EventAvailableIcon className={classes.icon} />
                                 <span className={classes.span}>Schedule</span>
