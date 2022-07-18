@@ -2,7 +2,6 @@ import { Component, Fragment } from "react";
 import { styleSheet } from "./style";
 import { withStyles } from "@mui/styles";
 import Navbar from "../../components/navbar";
-import TextField from '@mui/material/TextField';
 import Signlogo from "../../assets/img/signup.png";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import InputAdornment from '@mui/material/InputAdornment';

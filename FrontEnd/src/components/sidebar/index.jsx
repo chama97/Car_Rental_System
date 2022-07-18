@@ -14,7 +14,6 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import CycloneIcon from '@mui/icons-material/Cyclone';
 import HomeIcon from '@mui/icons-material/Home';
 
-//import carLogo from "../../assets/img/carr.jpg"
 
 class Sidebar extends Component{
 
@@ -46,7 +45,7 @@ class Sidebar extends Component{
                         </Link>
 
                         <p className={classes.title}>CARS</p>
-                        <Link to="/dash" style={{ textDecoration: "none" }}>
+                        <Link to="/car" style={{ textDecoration: "none" }}>
                             <li className={classes.li}>
                                 <DirectionsCarIcon className={classes.icon} />
                                 <span className={classes.span}>Car</span>
@@ -60,7 +59,7 @@ class Sidebar extends Component{
                         </Link>
 
                         <p className={classes.title}>BOOKINGS</p>
-                        <Link to="/dash" style={{ textDecoration: "none" }}>
+                        <Link to="/customer" style={{ textDecoration: "none" }}>
                             <li className={classes.li}>
                                 <PeopleAltIcon className={classes.icon} />
                                 <span className={classes.span}>Customers</span>
@@ -80,7 +79,7 @@ class Sidebar extends Component{
                         </Link>
 
                         <p className={classes.title}>TRAVEL</p>
-                        <Link to="/dash" style={{ textDecoration: "none" }}>
+                        <Link to="/driver" style={{ textDecoration: "none" }}>
                             <li className={classes.li}>
                                 <ManageAccountsIcon className={classes.icon} />
                                 <span className={classes.span}>Drivers</span>
