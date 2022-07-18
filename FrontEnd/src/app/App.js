@@ -7,6 +7,8 @@ import Sign from "../pages/sign"
 import Car from "../pages/car"
 import Customer from "../pages/customer"
 import Driver from "../pages/driver"
+import Reservation from "../pages/reservation"
+import Rental from "../pages/rental"
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path='car' element={<Car/>}/>
           <Route path='customer' element={<Customer/>}/>
           <Route path='driver' element={<Driver/>}/>
+          <Route path='reserv' element={<Reservation/>}/>
+          <Route path='rental' element={<Rental/>}/>
       </Routes>
   );
 }

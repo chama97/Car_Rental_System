@@ -65,13 +65,13 @@ class Sidebar extends Component{
                                 <span className={classes.span}>Customers</span>
                             </li>
                         </Link>
-                        <Link to="/dash" style={{ textDecoration: "none" }}>
+                        <Link to="/reserv" style={{ textDecoration: "none" }}>
                             <li className={classes.li}>
                                 <ShoppingCartIcon className={classes.icon} />
                                 <span className={classes.span}>Reservation</span>
                             </li>
                         </Link>
-                        <Link to="/dash" style={{ textDecoration: "none" }}>
+                        <Link to="/rental" style={{ textDecoration: "none" }}>
                             <li className={classes.li}>
                                 <CarRentalIcon className={classes.icon} />
                                 <span className={classes.span}>Rental</span>

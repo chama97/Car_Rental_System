@@ -133,7 +133,6 @@ class Car extends Component{
                     <div className={classes.center}>
 
                         <div className={classes.appBar}>
-                            <span> Cars</span>
                             <AdminNavbar />
                         </div>
 
@@ -306,8 +305,10 @@ class Car extends Component{
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} style={{display: 'flex'}} justifyContent="flex-end" >
                                         <Stack spacing={2} direction="row">
-                                            <Button variant="outlined">Cancel</Button>
-                                            <Button variant="contained">Add Car</Button>
+                                            <Button variant="outlined" color="error">Cancel</Button>
+                                            <Button variant="contained" color="error">Delete</Button>
+                                            <Button variant="contained" >Update</Button>
+                                            <Button variant="contained" color="success">Save</Button>
                                         </Stack>
                                     </Grid>   
                                 </Grid>
