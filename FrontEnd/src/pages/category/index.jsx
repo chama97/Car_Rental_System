@@ -12,28 +12,26 @@ import TextField from '@mui/material/TextField';
 
 
 
-class Rental extends Component{
+class Category extends Component{
 
     constructor(props) {
         super(props);
         this.state = {
             formData: {
-                rentalId: '',
-                rentalCharge: '',
-                damageCharge: '',
-                additionalCharge: '',
-                duration: '',
-                totalCharge: '' 
+                regId: '',
+                description: '',
+                frontView: '',
+                backView: '',
+                sideView: '',
+                interiorView: '' 
             },
             alert: false,
             message: '',
             severity: '',
     
             data: [
-                     { id: 1, rentalId: 'R001', rentalCharge: 8000, damageCharge: 3500, additionalCharge: 2000, duration: '2 days', totalCharge: 10000},
-                     { id: 2, rentalId: 'R001', rentalCharge: 8000, damageCharge: 3500, additionalCharge: 2000, duration: '2 days', totalCharge: 10000},
-                     { id: 3, rentalId: 'R001', rentalCharge: 8000, damageCharge: 3500, additionalCharge: 2000, duration: '2 days', totalCharge: 10000},
-                     { id: 4, rentalId: 'R001', rentalCharge: 8000, damageCharge: 3500, additionalCharge: 2000, duration: '2 days', totalCharge: 10000}
+                     { id: 1, regId: 'R001', description: '', frontView: '', backView: '', sideView: '', interiorView: ''},
+                    
                  ],
 
             loaded: true,
@@ -44,34 +42,34 @@ class Rental extends Component{
             columns: [
                 
                 {
-                    field: 'rentalId',
-                    headerName: 'Rental Id',
+                    field: 'regId',
+                    headerName: 'Reg Id',
                     width: 120,
                 },
                 {
-                    field: 'rentalCharge',
-                    headerName: 'Rental Charge',
-                    width: 200
+                    field: 'description',
+                    headerName: 'Description',
+                    width: 300
                 },
                 {
-                    field: 'damageCharge',
-                    headerName: 'Damage Charge',
-                    width: 200,
+                    field: 'frontView',
+                    headerName: 'Front View',
+                    width: 150,
                 },
                 {
-                    field: 'additionalCharge',
-                    headerName: 'Additional Charge',
-                    width: 180
+                    field: 'backView',
+                    headerName: 'Back View',
+                    width: 150
                 },
                 {
-                    field: 'duration',
-                    headerName: 'Duration',
-                    width: 160
+                    field: 'sideView',
+                    headerName: 'Side View',
+                    width: 150
                 },
                 {
-                    field: 'totalCharge',
-                    headerName: 'Total Charge',
-                    width: 200
+                    field: 'interiorView',
+                    headerName: 'Interior View',
+                    width: 150
                 }
             ]
         }
@@ -108,7 +106,7 @@ class Rental extends Component{
 
                         <div className={classes.widgets}>
 
-                            <div className={classes.lblcustomer}><span>Rental Details</span></div> 
+                        <div className={classes.lblcustomer}><span>Car Categories</span></div> 
                             <hr className={classes.hr} /> 
 
                             <ValidatorForm ref="form" onSubmit={this.handleSubmit} onError={errors => console.log(errors)}>
@@ -117,47 +115,52 @@ class Rental extends Component{
                                         <TextValidator
                                             id="outlined-basic"
                                             variant="outlined"
-                                            label="Damage Charge"
+                                            label="Reg Id"
                                             size="small"
-                                            value={this.state.formData.damageCharge}
+                                            value={this.state.formData.regId}
                                             onChange={(e) => {
                                                 let formData = this.state.formData
-                                                formData.damageCharge = e.target.value
+                                                formData.regId = e.target.value
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
                                             validators={['required',]}
                                         />
                                     </Grid>
-                                    <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
-                                        <TextValidator
-                                            id="outlined-basic"
-                                            variant="outlined"
-                                            label="Additional Charge"
-                                            size="small"
-                                            value={this.state.formData.additionalCharge}
-                                            onChange={(e) => {
-                                                let formData = this.state.formData
-                                                formData.additionalCharge = e.target.value
-                                                this.setState({ formData })
-                                            }}
-                                            style={{ width: '100%' }}
-                                            validators={['required',]}
-                                        />
+                                    <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px',display: 'flex', justifyContent:"flex-end"}} >
+                                        <Stack spacing={1} direction="row">
+                                            <Button variant="outlined" component="label">
+                                                Front View
+                                                <input hidden accept="image/*" multiple type="file" />
+                                            </Button>
+                                            <Button variant="outlined" component="label">
+                                                Back View
+                                                <input hidden accept="image/*" multiple type="file" />
+                                            </Button>
+                                            <Button variant="outlined" component="label">
+                                                Side View
+                                                <input hidden accept="image/*" multiple type="file" />
+                                            </Button>
+                                            <Button variant="outlined" component="label">
+                                                Inter View
+                                                <input hidden accept="image/*" multiple type="file" />
+                                            </Button>
+                                        
+                                        </Stack>
                                     </Grid>
                                     <Grid item lg={6} md={6} sm={6} xm={6} >
                                         <TextValidator
                                             id="outlined-basic"
                                             variant="outlined"
-                                            label="Refund"
+                                            label="Description"
                                             size="small"
-                                            value={this.state.formData.refund}
+                                            value={this.state.formData.description}
                                             onChange={(e) => {
                                                 let formData = this.state.formData
-                                                formData.refund = e.target.value
+                                                formData.description = e.target.value
                                                 this.setState({ formData })
                                             }}
-                                            style={{ width: '100%' }}
+                                            style={{ width: '100%',hight: '100px' }}
                                             validators={['required',]}
                                         />
                                     </Grid>
@@ -167,7 +170,7 @@ class Rental extends Component{
                                             <TextField id="filled-search" label="Search field" type="search" size="small" variant="outlined"/>
                                             <Button variant="outlined">Search</Button>
                                             <Button variant="outlined" color="error">Cancel</Button>
-                                            <Button variant="contained">Update</Button>
+                                            <Button variant="contained" color="success">Save</Button>
                                             
                                         </Stack>
                                     </Grid>   
@@ -204,4 +207,4 @@ class Rental extends Component{
     }
 }
 
-export default withStyles(styleSheet)(Rental) 
+export default withStyles(styleSheet)(Category) 

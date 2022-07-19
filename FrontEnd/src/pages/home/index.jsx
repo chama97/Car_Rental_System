@@ -14,20 +14,6 @@ class HomePage extends Component{
     constructor(props) {
         super(props);
 
-        // this.slideImages = [
-        //     {
-        //       url: Car1 ,
-        //       caption: 'Slide 1'
-        //     },
-        //     {
-        //       url: Car2,
-        //       caption: 'Slide 2'
-        //     },
-        //     {
-        //       url: Car3,
-        //       caption: 'Slide 3'
-        //     },
-        //   ]
     }
 
     render(){

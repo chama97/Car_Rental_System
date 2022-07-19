@@ -1,8 +1,8 @@
 import { Component, Fragment } from "react";
 import { styleSheet } from "./style";
 import { withStyles } from "@mui/styles";
-import Sidebar from "../../components/sidebar";
-import AdminNavbar from "../../components/adminNavbar";
+import Sidebar from "../../../components/sidebar";
+import AdminNavbar from "../../../components/adminNavbar";
 
 
 class DashBoard extends Component{

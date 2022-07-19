@@ -51,7 +51,7 @@ class Sidebar extends Component{
                                 <span className={classes.span}>Car</span>
                             </li>
                         </Link>
-                        <Link to="/dash" style={{ textDecoration: "none" }}>
+                        <Link to="/category" style={{ textDecoration: "none" }}>
                             <li className={classes.li}>
                                 <CommuteIcon className={classes.icon} />
                                 <span className={classes.span}>Categories</span>

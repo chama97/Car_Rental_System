@@ -21,8 +21,6 @@ class Navbar extends Component{
         return(
             <div className={classes.container}>
 
-                
-            
                 <Box className={classes.boxbar} >
                 <div className={classes.carRental}>
                     <img src={carLogo} height={60} width={150} />
@@ -35,7 +33,7 @@ class Navbar extends Component{
                     <Link to="/" className={classes.link__cover}>
                         <Tab sx={{ fontSize: 16 }}  label="Home" />
                     </Link>
-                    <Link to="/" className={classes.link__cover}>
+                    <Link to="/custdash" className={classes.link__cover}>
                         <Tab sx={{ fontSize: 16 }} label="Help" />
                     </Link>
                     <Link to="/login" className={classes.link__cover}>
