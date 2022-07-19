@@ -14,13 +14,11 @@ import { CardActionArea } from '@mui/material';
 import SuzukiAlto from '../../../assets/img/General Cars/Suzuki Alto - Premium/suzuki-alto.jpg';
 import Perodua from '../../../assets/img/General Cars/Perodua (Daihatsu) Axia/carlist-perodua-axia1.jpg';
 import SuzukiAltoK10 from '../../../assets/img/General Cars/Suzuki Alto K10 - Auto/maruti-suzuki-alto-k10-car.png';
-import SuzukiCelerio from '../../../assets/img/General Cars/Suzuki Celerio - Auto/Celerio.webp';
-import ToyotaPrius from '../../../assets/img/General Cars/Toyota Prius C Aqua - Auto/2022-toyota.webp';
 import { Link } from "react-router-dom";
 
 
 
-class General extends Component{
+class PremiumCar extends Component{
 
     constructor(props) {
         super(props);
@@ -123,44 +121,23 @@ class General extends Component{
                                 <CardMedia
                                     component="img"
                                     height="210"
-                                    imag src={SuzukiCelerio}
+                                    imag src={SuzukiAltoK10}
                                     alt="green iguana"
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
-                                        Suzuki Celerio
+                                        Suzuki Alto K10
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         <span>Auto | Petrol</span><br/>
                                         <span>Passengers - 4</span><br/>
                                         <span>FreeKm/Day - 100Km | Price/ExtraKm - 30.0</span><br/>
-                                        <span>Daily Rate - Rs:2500 | Monthly Rate - Rs:64,350</span>
+                                        <span>Daily Rate - Rs:3000 | Monthly Rate - Rs:75,350</span>
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
                         </Card>
-
-                        <Card  className={classes.divs}>
-                            <CardActionArea>
-                                <CardMedia
-                                    component="img"
-                                    height="210"
-                                    imag src={ToyotaPrius}
-                                    alt="green iguana"
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        Toyota Prius C/ Aqua
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        <span>Auto | Petrol</span><br/>
-                                        <span>Passengers - 4</span><br/>
-                                        <span>FreeKm/Day - 100Km | Price/ExtraKm - 30.0</span><br/>
-                                        <span>Daily Rate - Rs:3500 | Monthly Rate - Rs:84,350</span>
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
+                        <div className={classes.divs}></div>
                         <div className={classes.divs}></div>
                     </div>
                         
@@ -180,4 +157,4 @@ class General extends Component{
     }
 }
 
-export default withStyles(styleSheet)(General) 
+export default withStyles(styleSheet)(PremiumCar) 

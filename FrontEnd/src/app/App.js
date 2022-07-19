@@ -12,6 +12,9 @@ import Rental from "../pages/rental"
 import Schedule from "../pages/schedule"
 import Category from "../pages/category"
 import CustomDash from "../pages/dashboard/customDash"
+import Generalcar from "../pages/sale/GeneralCars"
+import Luxurycar from "../pages/sale/LuxuryCars"
+import PremiumCar from "../pages/sale/PremiumCars"
 
 function App() {
   return (
@@ -28,6 +31,9 @@ function App() {
           <Route path='schedule' element={<Schedule/>}/>
           <Route path='category' element={<Category/>}/>
           <Route path='custdash' element={<CustomDash/>}/>
+          <Route path='generalcar' element={<Generalcar/>}/>
+          <Route path='luxurycar' element={<Luxurycar/>}/>
+          <Route path='premiumCar' element={<PremiumCar/>}/>
       </Routes>
   );
 }

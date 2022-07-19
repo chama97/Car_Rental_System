@@ -38,7 +38,7 @@ class CustomNavbar extends Component{
                 <Button color="inherit">DashBoard</Button>
               </Link>
 
-              <Link to="/" style={{ color:'white', textDecoration: "none"}}>
+              <Link to="/generalcar" style={{ color:'white', textDecoration: "none"}}>
                 <Button color="inherit">Cars</Button>
               </Link>
 
