@@ -65,7 +65,6 @@ export const styleSheet = {
 
      },
 
-     
      divs:{
         display: 'flex',
         flexWrap: 'wrap',
@@ -75,7 +74,18 @@ export const styleSheet = {
         borderRadius: '5px', 
         boxShadow: '1px 2px 6px gray',
         border: '1px solid rgb(226, 226, 226)',
+        '&:hover': {
+           backgroundColor: '#e1e1ea',
+        },
+     },
 
-     }
+     btns: {
+        color:'white',
+        textDecoration: "none",
+        '&:hover': {
+            backgroundColor: '#e6f3ff',
+        },
+
+    },  
 
 }

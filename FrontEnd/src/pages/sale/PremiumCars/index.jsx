@@ -11,9 +11,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import SuzukiAlto from '../../../assets/img/General Cars/Suzuki Alto - Premium/suzuki-alto.jpg';
-import Perodua from '../../../assets/img/General Cars/Perodua (Daihatsu) Axia/carlist-perodua-axia1.jpg';
-import SuzukiAltoK10 from '../../../assets/img/General Cars/Suzuki Alto K10 - Auto/maruti-suzuki-alto-k10-car.png';
+import ToyotaCorolla from '../../../assets/img/Premium/Toyota Corolla Axio/002_2.jpg';
+import ToyotaAxioNKR165 from '../../../assets/img/Premium/Toyota Axio NKR 165/LK21210300-01-E.webp';
+import ToyotaAllionNZT260 from '../../../assets/img/Premium/Toyota Allion NZT 260/images_toyota_allion_2010_1_b.jpg';
+import PeroduaBezzaPrime from '../../../assets/img/Premium/Perodua Bezza Prime Sedan/Proton-Persona-1.6-A.webp';
 import { Link } from "react-router-dom";
 
 
@@ -35,13 +36,13 @@ class PremiumCar extends Component{
 
                     <div className={classes.profile}>
                         <Stack spacing={2} direction="row">
-                            <Link to="/generalcar" style={{ color:'white', textDecoration: "none"}} >
+                            <Link to="/generalcar" className={classes.btns} >
                                 <Button variant="outlined" >General</Button>
                             </Link>
-                            <Link to="/premiumCar" style={{ color:'white', textDecoration: "none"}} >
+                            <Link to="/premiumCar" className={classes.btns} style={{backgroundColor: '#e6f3ff'}} >
                                 <Button variant="outlined" >Premium</Button>
                             </Link>
-                            <Link to="/luxurycar" style={{ color:'white', textDecoration: "none"}} >
+                            <Link to="/luxurycar" className={classes.btns} >
                                 <Button variant="outlined" >Luxury</Button>
                             </Link>
                         </Stack>
@@ -53,12 +54,12 @@ class PremiumCar extends Component{
                                 <CardMedia
                                     component="img"
                                     height="210"
-                                    imag src={SuzukiAlto}
+                                    imag src={ToyotaCorolla}
                                     alt="green iguana"
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
-                                        Suzuki Alto - Premium
+                                        Toyota Corolla Axio
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         <span>Auto | Petrol</span><br/>
@@ -75,12 +76,12 @@ class PremiumCar extends Component{
                                 <CardMedia
                                     component="img"
                                     height="210"
-                                    imag src={Perodua}
+                                    imag src={ToyotaAxioNKR165}
                                     alt="green iguana"
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
-                                        Perodua (Daihatsu) Axia
+                                        Toyota Axio NKR 165
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         <span>Auto | Petrol</span><br/>
@@ -97,12 +98,12 @@ class PremiumCar extends Component{
                                 <CardMedia
                                     component="img"
                                     height="210"
-                                    imag src={SuzukiAltoK10}
+                                    imag src={ToyotaAllionNZT260}
                                     alt="green iguana"
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
-                                        Suzuki Alto K10
+                                        Toyota Allion NZT 260
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         <span>Auto | Petrol</span><br/>
@@ -121,12 +122,12 @@ class PremiumCar extends Component{
                                 <CardMedia
                                     component="img"
                                     height="210"
-                                    imag src={SuzukiAltoK10}
+                                    imag src={PeroduaBezzaPrime}
                                     alt="green iguana"
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
-                                        Suzuki Alto K10
+                                        Perodua Bezza Prime Sedan
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         <span>Auto | Petrol</span><br/>

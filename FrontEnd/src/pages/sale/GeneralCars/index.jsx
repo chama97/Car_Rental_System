@@ -37,13 +37,13 @@ class General extends Component{
 
                     <div className={classes.profile}>
                         <Stack spacing={2} direction="row">
-                            <Link to="/generalcar" style={{ color:'white', textDecoration: "none"}} >
+                            <Link to="/generalcar" className={classes.btns} style={{backgroundColor: '#e6f3ff'}}>
                                 <Button variant="outlined" >General</Button>
                             </Link>
-                            <Link to="/premiumCar" style={{ color:'white', textDecoration: "none"}} >
+                            <Link to="/premiumCar" className={classes.btns} >
                                 <Button variant="outlined" >Premium</Button>
                             </Link>
-                            <Link to="/luxurycar" style={{ color:'white', textDecoration: "none"}} >
+                            <Link to="/luxurycar" className={classes.btns} >
                                 <Button variant="outlined" >Luxury</Button>
                             </Link>
                         </Stack>

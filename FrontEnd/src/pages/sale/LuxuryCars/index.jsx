@@ -11,9 +11,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import SuzukiAlto from '../../../assets/img/General Cars/Suzuki Alto - Premium/suzuki-alto.jpg';
-import Perodua from '../../../assets/img/General Cars/Perodua (Daihatsu) Axia/carlist-perodua-axia1.jpg';
-import SuzukiAltoK10 from '../../../assets/img/General Cars/Suzuki Alto K10 - Auto/maruti-suzuki-alto-k10-car.png';
+import Mercedes from '../../../assets/img/Luxury/Mercedes/A_Class.jfif';
+import BMW from '../../../assets/img/Luxury/BMW i8/chrome-imag.png';
+import Toyota from '../../../assets/img/Luxury/Toyota Premio/WS_Fr_MJ007.jpg';
 import { Link } from "react-router-dom";
 
 
@@ -21,9 +21,9 @@ import { Link } from "react-router-dom";
 class LuxuryCar extends Component{
 
     constructor(props) {
-        super(props);
-        
+        super(props);  
     }
+
 
     render(){
         let { classes } = this.props
@@ -35,13 +35,13 @@ class LuxuryCar extends Component{
 
                     <div className={classes.profile}>
                         <Stack spacing={2} direction="row">
-                            <Link to="/generalcar" style={{ color:'white', textDecoration: "none"}} >
-                                <Button variant="outlined" >General</Button>
+                            <Link to="/generalcar" className={classes.btns} >
+                                <Button variant="outlined">General</Button>
                             </Link>
-                            <Link to="/premiumCar" style={{ color:'white', textDecoration: "none"}} >
+                            <Link to="/premiumCar" className={classes.btns} >
                                 <Button variant="outlined" >Premium</Button>
                             </Link>
-                            <Link to="/luxurycar" style={{ color:'white', textDecoration: "none"}} >
+                            <Link to="/luxurycar" className={classes.btns} style={{backgroundColor: '#e6f3ff'}} >
                                 <Button variant="outlined" >Luxury</Button>
                             </Link>
                         </Stack>
@@ -53,12 +53,12 @@ class LuxuryCar extends Component{
                                 <CardMedia
                                     component="img"
                                     height="210"
-                                    imag src={SuzukiAlto}
+                                    imag src={Mercedes}
                                     alt="green iguana"
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
-                                        Suzuki Alto - Premium
+                                        Mercedes C-300
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         <span>Auto | Petrol</span><br/>
@@ -75,12 +75,12 @@ class LuxuryCar extends Component{
                                 <CardMedia
                                     component="img"
                                     height="210"
-                                    imag src={Perodua}
+                                    imag src={BMW}
                                     alt="green iguana"
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
-                                        Perodua (Daihatsu) Axia
+                                        BMW i8
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         <span>Auto | Petrol</span><br/>
@@ -97,12 +97,12 @@ class LuxuryCar extends Component{
                                 <CardMedia
                                     component="img"
                                     height="210"
-                                    imag src={SuzukiAltoK10}
+                                    imag src={Toyota}
                                     alt="green iguana"
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
-                                        Suzuki Alto K10
+                                        Toyota Premio 2020
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         <span>Auto | Petrol</span><br/>
