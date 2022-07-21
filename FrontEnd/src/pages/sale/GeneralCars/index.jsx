@@ -51,6 +51,7 @@ class General extends Component{
 
                     <div className={classes.mybook}>
                         <Card  className={classes.divs}>
+                        <Link to="/booking" style={{textDecoration: 'none'}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -70,9 +71,12 @@ class General extends Component{
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
+                        </Link>
                         </Card>
+                       
 
                         <Card  className={classes.divs}>
+                        <Link to="/booking" style={{textDecoration: 'none'}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -92,9 +96,11 @@ class General extends Component{
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
+                        </Link>    
                         </Card>
 
                         <Card  className={classes.divs}>
+                        <Link to="/booking" style={{textDecoration: 'none'}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -114,11 +120,13 @@ class General extends Component{
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
+                        </Link>
                         </Card>
                     </div>
 
                     <div className={classes.mybook}>
                         <Card  className={classes.divs}>
+                        <Link to="/booking" style={{textDecoration: 'none'}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -138,9 +146,11 @@ class General extends Component{
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
+                        </Link>
                         </Card>
 
                         <Card  className={classes.divs}>
+                        <Link to="/booking" style={{textDecoration: 'none'}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -160,10 +170,10 @@ class General extends Component{
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
+                        </Link>
                         </Card>
                         <div className={classes.divs}></div>
-                    </div>
-                        
+                    </div>     
                 </div>
 
                 <div className={classes.containerBottom}>

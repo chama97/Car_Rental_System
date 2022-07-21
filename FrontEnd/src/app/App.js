@@ -15,6 +15,7 @@ import CustomDash from "../pages/dashboard/customDash"
 import Generalcar from "../pages/sale/GeneralCars"
 import Luxurycar from "../pages/sale/LuxuryCars"
 import PremiumCar from "../pages/sale/PremiumCars"
+import Booking from "../pages/booking"
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path='generalcar' element={<Generalcar/>}/>
           <Route path='luxurycar' element={<Luxurycar/>}/>
           <Route path='premiumCar' element={<PremiumCar/>}/>
+          <Route path='booking' element={<Booking/>}/>
       </Routes>
   );
 }

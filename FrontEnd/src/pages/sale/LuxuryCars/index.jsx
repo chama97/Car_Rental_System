@@ -49,6 +49,7 @@ class LuxuryCar extends Component{
 
                     <div className={classes.mybook}>
                         <Card  className={classes.divs}>
+                        <Link to="/booking" style={{textDecoration: 'none'}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -68,9 +69,11 @@ class LuxuryCar extends Component{
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
+                            </Link>
                         </Card>
 
                         <Card  className={classes.divs}>
+                        <Link to="/booking" style={{textDecoration: 'none'}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -90,9 +93,11 @@ class LuxuryCar extends Component{
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
+                            </Link>
                         </Card>
 
                         <Card  className={classes.divs}>
+                        <Link to="/booking" style={{textDecoration: 'none'}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -112,6 +117,7 @@ class LuxuryCar extends Component{
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
+                        </Link>
                         </Card>
                     </div>
 

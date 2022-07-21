@@ -7,6 +7,8 @@ export const styleSheet = {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        position: 'relative',
+        width: '100%'
        
     },
 
@@ -17,21 +19,30 @@ export const styleSheet = {
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        background: "#181b34",
+        background: "#15151e",
         height: '80px',
-        boxShadow: '-2px 6px 9px -4px #fffefe',
-        borderBottom: '3px solid rgb(226, 226, 226)'
+        boxShadow: '-2px 6px 9px -4px #a7a7d7',
+        borderBottom: '3px solid #a7a7d7'
        
     },
 
     link__cover: {
         textDecoration: "none",
         color:'white',
-        //width:110,  
-        fontFamily: 'Noto Sans, sans-serif',
-        //backgroundColor: 'rebeccapurple',
-        margin: "8px",
-        borderRadius: '7px',
+        height: '100%',
+        borderRadius: '5px',
+        fontFamily: 'Tahoma',
+        '&:hover': {
+            backgroundColor: '#34344b',
+            borderBottom: '5px solid #c10b0b',
+         },
+
+    },
+
+    btnList: {
+        color:'white',
+        height: '100%',
+        fontWeight: 'bold'
     },
 
     carRental:{

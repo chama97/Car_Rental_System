@@ -51,7 +51,7 @@ class Car extends Component{
                     headerName: 'reg Id',
                     width: 70,
                     style: {
-                        background: "orange",
+                        background: "green",
                       },
                 },
                 {

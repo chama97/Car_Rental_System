@@ -50,6 +50,7 @@ class PremiumCar extends Component{
 
                     <div className={classes.mybook}>
                         <Card  className={classes.divs}>
+                        <Link to="/booking" style={{textDecoration: 'none'}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -69,9 +70,11 @@ class PremiumCar extends Component{
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
+                        </Link>
                         </Card>
 
                         <Card  className={classes.divs}>
+                        <Link to="/booking" style={{textDecoration: 'none'}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -91,9 +94,11 @@ class PremiumCar extends Component{
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
+                        </Link>
                         </Card>
 
                         <Card  className={classes.divs}>
+                        <Link to="/booking" style={{textDecoration: 'none'}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -113,11 +118,13 @@ class PremiumCar extends Component{
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
+                        </Link>
                         </Card>
                     </div>
 
                     <div className={classes.mybook}>
                         <Card  className={classes.divs}>
+                        <Link to="/booking" style={{textDecoration: 'none'}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -137,6 +144,7 @@ class PremiumCar extends Component{
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
+                        </Link>
                         </Card>
                         <div className={classes.divs}></div>
                         <div className={classes.divs}></div>

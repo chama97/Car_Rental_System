@@ -9,6 +9,9 @@ import Button from '@mui/material/Button';
 import DataTable from "../../components/dataTable";
 import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import EditIcon from '@mui/icons-material/Edit';
 
 class Reservation extends Component{
 
@@ -24,23 +27,24 @@ class Reservation extends Component{
                 returnDate: '',
                 pickUpLocation: '',
                 status: '',
-                note: ''
             },
             alert: false,
             message: '',
             severity: '',
     
             data: [
-                     { id: 1, reserveId: 'R001',customerID: 'C001',carID: 'CR001',driverId: 'R001', pickUpDate: '2022-07-16', returnDate: '2022-07-17', pickUpLocation: 'Colombo', status: 'Confirmed', note: 'Have a good trip' },
-                     { id: 2, reserveId: 'R002',customerID: 'C001',carID: 'CR001',driverId: 'R001', pickUpDate: '2022-07-16', returnDate: '2022-07-17', pickUpLocation: 'Colombo', status: 'Confirmed', note: 'Have a good trip' },
-                     { id: 3, reserveId: 'R003',customerID: 'C001',carID: 'CR001',driverId: 'R001', pickUpDate: '2022-07-16', returnDate: '2022-07-17', pickUpLocation: 'Colombo', status: 'Confirmed', note: 'Have a good trip' },
-                     { id: 4, reserveId: 'R004',customerID: 'C001',carID: 'CR001',driverId: 'R001', pickUpDate: '2022-07-16', returnDate: '2022-07-17', pickUpLocation: 'Colombo', status: 'Confirmed', note: 'Have a good trip' }     
+                     { id: 1, reserveId: 'R001',customerID: 'C001',carID: 'CR001',driverId: 'R001', pickUpDate: '2022-07-16', returnDate: '2022-07-17', pickUpLocation: 'Colombo', status: 'Confirmed',},
+                     { id: 2, reserveId: 'R002',customerID: 'C001',carID: 'CR001',driverId: 'R001', pickUpDate: '2022-07-16', returnDate: '2022-07-17', pickUpLocation: 'Colombo', status: 'Confirmed' },
+                     { id: 3, reserveId: 'R003',customerID: 'C001',carID: 'CR001',driverId: 'R001', pickUpDate: '2022-07-16', returnDate: '2022-07-17', pickUpLocation: 'Colombo', status: 'Confirmed' },
+                     { id: 4, reserveId: 'R004',customerID: 'C001',carID: 'CR001',driverId: 'R001', pickUpDate: '2022-07-16', returnDate: '2022-07-17', pickUpLocation: 'Colombo', status: 'Confirmed' }     
                  ],
 
             loaded: true,
 
             // data: [],
             // loaded: false,
+
+            btn : <Button>delete</Button>,
 
             columns: [
                 
@@ -85,9 +89,9 @@ class Reservation extends Component{
                     width: 120
                 },
                 {
-                    field: 'note',
-                    headerName: 'Note',
-                    width: 230
+                    Action: () => <Button variant="contained" color="error">Delete</Button>,   
+                    headerName: 'Action',
+                    width: 230, 
                 },
             ]
         }
@@ -130,7 +134,7 @@ class Reservation extends Component{
                                         rowsPerPageOptions={5}
                                         pageSize={5}
                                         checkboxSelection={true}
-                                    /> 
+                                        /> 
                                 </Grid>
                             }
                             </div>
