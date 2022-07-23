@@ -7,7 +7,20 @@ import Grid from '@mui/material/Grid';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import DataTable from "../../components/dataTable";
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DriverService from "../../services/DriverService";
+import SnackBar from "../../components/SnackBar";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import SubmitButton from '../../components/Button';
 
 
 class Driver extends Component{
@@ -22,80 +35,147 @@ class Driver extends Component{
                 nic: '',
                 license: '',
                 address: '',
-                contact: '' 
+                contact: ''
             },
             alert: false,
             message: '',
             severity: '',
     
-            data: [
-                     { id: 1, email: 'saman@gmail.com', password: '1234', name: 'Saman', nic: '122345553', license: '2334344323', address: 'Horana', contact: '0332323444'},
-                     { id: 2, email: 'saman@gmail.com', password: '1234', name: 'Saman', nic: '122345553', license: '2334344323', address: 'Horana', contact: '0332323444'},
-                     { id: 3, email: 'saman@gmail.com', password: '1234', name: 'Saman', nic: '122345553', license: '2334344323', address: 'Horana', contact: '0332323444'},
-                     { id: 4, email: 'saman@gmail.com', password: '1234', name: 'Saman', nic: '122345553', license: '2334344323', address: 'Horana', contact: '0332323444'},
-                     
-                 ],
-
-            loaded: true,
-
-            // data: [],
-            // loaded: false,
-
-            columns: [
-                
-                {
-                    field: 'email',
-                    headerName: 'User Name',
-                    width: 180,
-                },
-                {
-                    field: 'password',
-                    headerName: 'Password',
-                    width: 150
-                },
-                {
-                    field: 'name',
-                    headerName: 'Name',
-                    width: 150,
-                },
-                {
-                    field: 'nic',
-                    headerName: 'NIC',
-                    width: 160
-                },
-                {
-                    field: 'license',
-                    headerName: 'License',
-                    width: 160
-                },
-                {
-                    field: 'address',
-                    headerName: 'Address',
-                    width: 150
-                },
-                {
-                    field: 'contact',
-                    headerName: 'Contact',
-                    width: 150
-                }
-            ]
+            data: [],
+            btnLabel: 'save',
+            btnColor: 'success',
         }
     }
 
+    deleteDriver = async (email) => {
+        let params = {
+            email: email
+        }
+         let res = await DriverService.deleteDriver(params);
+
+         if(res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            this.loadData();
+         } else {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'error'
+            });
+         }
+    };
+
+    updateDriver = (data) => {
+         console.log(data)
+
+         this.setState({ 
+            btnLabel: 'update',
+            btnColor: 'primary',
+            formData: {
+                email: data.email,
+                password: data.password,
+                name:data.name,
+                nic:data.nic,
+                license:data.license,
+                address: data.address,
+                contact: data.contact
+            }  
+        });
+    };
+
+    clearFields = () => {
+        this.setState({
+            formData: {
+                email: '',
+                password: '',
+                name: '',
+                nic: '',
+                license: '',
+                address: '',
+                contact: '' 
+            }
+        });
+    };
+
+    // ------- React Map function example -------
+    exampleForMap = () => {
+        this.state.data.map((value, index) => {
+            console.log(value)   // access element one by one
+        })
+    };
+
+    loadData = async () => {
+        let res = await DriverService.fetchDriver();
+
+        if (res.status === 200) {
+            this.setState({
+                data: res.data.data
+            });
+        }
+        console.log(this.state.data)    // print customers array
+
+        this.exampleForMap()
+
+    };
+
+    submitDriver = async () => {
+        let formData = this.state.formData;
+
+        if(this.state.btnLabel === "save") {
+            let res = await DriverService.postDriver(formData);
+
+            console.log(res)    //print the promise
     
+            if (res.status === 201) {
+                this.setState({
+                    alert: true,
+                    message: res.data.message,
+                    severity: 'success'
+                });
+                this.clearFields();
+                this.loadData();
+            } else {
+                this.setState({
+                    alert: true,
+                    message: res.response.data.message,
+                    severity: 'error'
+                });
+            }
+        } else {
+            let res = await DriverService.putDriver(formData);
+            if(res.status === 200) {
+                this.setState({
+                    alert: true,
+                    message: res.data.message,
+                    severity: 'success',
+                    btnLabel: 'save',
+                    btnColor: 'primary'
+                });
+                this.clearFields();
+                this.loadData();
+            } else {
+                this.setState({
+                    alert: true,
+                    message: res.response.data.message,
+                    severity: 'error'
+                });
+            }
+        }
+    };
+
     componentDidMount() {
-        console.log('Post Screen Mounted!');
+        this.loadData();
     }
 
-    handleSubmit = async () => {
-        console.log('save button clicked!!')
-        
-    }
 
     render(){
         let { classes } = this.props
         return(
-            <Fragment className={classes.container}>
+            <Fragment>
 
                 <div className={classes.container}>
 
@@ -112,7 +192,7 @@ class Driver extends Component{
                         <div className={classes.boxes}>
 
                         <div className={classes.widgets}>
-                            <ValidatorForm ref="form" onSubmit={this.handleSubmit} onError={errors => console.log(errors)}>
+                            <ValidatorForm ref="form" onSubmit={this.submitDriver} onError={errors => console.log(errors)}>
                                 <Grid container className={classes.gridss} spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} >
                                     <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
                                         <TextValidator
@@ -216,7 +296,7 @@ class Driver extends Component{
                                             variant="outlined"
                                             label="Contact"
                                             size="small"
-                                            value={this.state.formData.contacat}
+                                            value={this.state.formData.contact}
                                             onChange={(e) => {
                                                 let formData = this.state.formData
                                                 formData.contact = e.target.value
@@ -229,9 +309,8 @@ class Driver extends Component{
                                     <Grid item lg={6} md={6} sm={6} xm={6}  style={{display: 'flex', justifyContent:"flex-end"}}  >
                                         <Stack spacing={2} direction="row">
                                             <Button variant="outlined">Cancel</Button>
-                                            <Button variant="contained" color="error">Delete</Button>
-                                            <Button variant="contained">Update</Button>
-                                            <Button variant="contained" color="success">Save</Button>
+                                            {/* <Button variant="contained" >Update</Button> */}
+                                            <SubmitButton variant="contained" label={this.state.btnLabel} type="submit" color={this.state.btnColor} />
                                         </Stack>
                                     </Grid>   
                                 </Grid>
@@ -241,22 +320,75 @@ class Driver extends Component{
 
                         <div className={classes.table}>
                             <div className={classes.cartable}>          
-                            {this.state.loaded &&
                                 <Grid container style={{ height: '100%', width: '100%', padding: '5px' }}>
-                                    <DataTable
-                                        columns={this.state.columns}
-                                        rows={this.state.data}
-                                        rowsPerPageOptions={5}
-                                        pageSize={5}
-                                        checkboxSelection={true}
-                                    /> 
+                                <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="customer table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="left"> Email</TableCell>
+                                    <TableCell align="left"> Password</TableCell>
+                                    <TableCell align="left"> Name</TableCell>
+                                    <TableCell align="left"> NIC</TableCell>
+                                    <TableCell align="left"> License</TableCell>
+                                    <TableCell align="left"> Address</TableCell>
+                                    <TableCell align="left"> Contact</TableCell>
+                                    <TableCell align="left">Action</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {
+                                    this.state.data.map((row) => (
+                                        <TableRow>
+                                            <TableCell align="left">{row.email}</TableCell>
+                                            <TableCell align="left">{row.password}</TableCell>
+                                            <TableCell align="left">{row.name}</TableCell>
+                                            <TableCell align="left">{row.nic}</TableCell>
+                                            <TableCell align="left">{row.license}</TableCell>
+                                            <TableCell align="left">{row.address}</TableCell>
+                                            <TableCell align="left">{row.contact}</TableCell>
+                                            <TableCell align="left">
+                                                <Tooltip title="Edit">
+                                                    <IconButton 
+                                                        onClick={() => {
+                                                            console.log("edit icon clicked!")
+                                                            this.updateDriver(row);
+                                                        }}
+                                                    >
+                                                        <EditIcon color="primary" />
+                                                    </IconButton>
+                                                </Tooltip>
+                                                <Tooltip title="Delete">
+                                                    <IconButton
+                                                        onClick={() => {
+                                                            this.deleteDriver(row.email)
+                                                        }}
+                                                    >
+                                                        <DeleteIcon color="error" />
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                }
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
                                 </Grid>
-                            }
                             </div>
                         
                         </div>
 
                     </div>
+                    <SnackBar
+                    open={this.state.alert}
+                    onClose={() => {
+                        this.setState({ alert: false })
+                    }}
+                    message={this.state.message}
+                    autoHideDuration={3000}
+                    severity={this.state.severity}
+                    variant="filled"
+                />
                     
                 </div>
              

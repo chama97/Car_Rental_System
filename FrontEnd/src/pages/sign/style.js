@@ -78,7 +78,7 @@ export const styleSheet = {
         width: '80%',
         //alignItems: 'center',
         justifyContent: 'space-around',
-        height: '70%',
+        height: '90%',
     },
     btn__container: {
         display: 'flex',

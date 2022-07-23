@@ -9,7 +9,9 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import DataTable from "../../components/dataTable";
 import TextField from '@mui/material/TextField';
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 
 class Category extends Component{
@@ -70,7 +72,26 @@ class Category extends Component{
                     field: 'interiorView',
                     headerName: 'Interior View',
                     width: 150
-                }
+                },
+                {
+                    field: "action",
+                    headerName: "Action",
+                    width: 250,
+                    renderCell: () => {
+                      return (
+                        <Tooltip title="Delete">
+                            <IconButton
+                                onClick={() => {
+                                    console.log("delete icon clicked!")
+                                    //this.deleteCustomer(row.id)
+                                }}
+                                >
+                                <DeleteIcon color="error" />
+                            </IconButton>
+                        </Tooltip>
+                      );
+                    },
+                },
             ]
         }
     }

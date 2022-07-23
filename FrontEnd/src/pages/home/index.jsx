@@ -9,7 +9,6 @@ import Car3 from "../../assets/img/lamborghini_huracan 8k.jpg";
 import { Carousel } from 'react-responsive-carousel';
 
 
-
 class HomePage extends Component{
 
     constructor(props) {
@@ -25,7 +24,7 @@ class HomePage extends Component{
                 <div><Navbar /></div>
                 <div className={classes.container}>
                     <img src={Car2} height={'700px'} width={'100%'} />
-                
+            
                 </div>
 
                 <div className={classes.containerBottom}>

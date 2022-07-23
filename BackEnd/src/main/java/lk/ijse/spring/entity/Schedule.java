@@ -21,7 +21,7 @@ public class Schedule {
     private LocalDate endDate;
 
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.REFRESH})
-    @JoinColumn(name = "driverNic",referencedColumnName = "nic")
+    @JoinColumn(name = "driverEmail",referencedColumnName = "email")
     private Driver driver;
 
     @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)

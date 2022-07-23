@@ -12,18 +12,71 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import HomeIcon from '@mui/icons-material/Home';
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import CustomerService from "../../services/CustomerService";
+import SnackBar from "../../components/SnackBar";
 
 
 class Sign extends Component{
 
     constructor(props) {
         super(props);
+        this.state = {
+          formData: {
+              email: '',
+              password: '',
+              name: '',
+              nic: '',
+              license: '',
+              address: '',
+              contact: ''
+          },
+          alert: false,
+          message: '',
+          severity: '',
+
+        }
+    }
+
+    clearFields = () => {
+      this.setState({
+          formData: {
+              email: '',
+              password: '',
+              name: '',
+              nic: '',
+              license: '',
+              address: '',
+              contact: ''
+          }
+      });
+    };
+
+    submitCustomer = async () => {
+      let formData = this.state.formData;
+      let res = await CustomerService.postCustomer(formData);
+
+      console.log(res)    //print the promise
+  
+      if (res.status === 201) {
+          this.setState({
+              alert: true,
+              message: 'done',
+              severity: 'success'
+          });
+          this.clearFields();
+      } else {
+          this.setState({
+              alert: true,
+              message: 'error try again',
+              severity: 'error'
+          });
+      }
     }
 
     render(){
         const { classes } = this.props;
         return(
-            <Fragment className={classes.containers}>
+            <Fragment >
                 <div><Navbar /></div>
                 <div className={classes.container}>
 
@@ -38,7 +91,7 @@ class Sign extends Component{
                     </div>
                     <ValidatorForm
                         ref="form"
-                        onSubmit={this.handleSubmit}
+                        onSubmit={this.submitCustomer}
                         onError={errors => console.log(errors)}
                         className={classes.form__container}>
                         <TextValidator
@@ -52,9 +105,11 @@ class Sign extends Component{
                                   </InputAdornment>
                                 ),
                               }}
+                            value={this.state.formData.email}
                             onChange={(e) => {
+                                console.log(e.target.value)
                                 let formData = this.state.formData
-                                formData.user_name = e.target.value
+                                formData.email = e.target.value
                                 this.setState({ formData })
                             }}
                             style={{ width: '100%' }}
@@ -71,7 +126,8 @@ class Sign extends Component{
                                     <LockIcon />
                                   </InputAdornment>
                                 ),
-                              }}
+                            }}
+                            value={this.state.formData.password}
                             onChange={(e) => {
                                 console.log(e.target.value)
                                 let formData = this.state.formData
@@ -92,6 +148,7 @@ class Sign extends Component{
                                   </InputAdornment>
                                 ),
                               }}
+                            value={this.state.formData.name}
                             onChange={(e) => {
                                 console.log(e.target.value)
                                 let formData = this.state.formData
@@ -112,6 +169,7 @@ class Sign extends Component{
                                   </InputAdornment>
                                 ),
                             }}
+                            value={this.state.formData.nic}
                             onChange={(e) => {
                                 console.log(e.target.value)
                                 let formData = this.state.formData
@@ -131,7 +189,8 @@ class Sign extends Component{
                                     <CreditCardIcon />
                                   </InputAdornment>
                                 ),
-                              }}
+                            }}
+                            value={this.state.formData.license}
                             onChange={(e) => {
                                 console.log(e.target.value)
                                 let formData = this.state.formData
@@ -151,7 +210,8 @@ class Sign extends Component{
                                     <HomeIcon />
                                   </InputAdornment>
                                 ),
-                              }}
+                            }}
+                            value={this.state.formData.address}
                             onChange={(e) => {
                                 console.log(e.target.value)
                                 let formData = this.state.formData
@@ -171,7 +231,8 @@ class Sign extends Component{
                                     <PhoneInTalkIcon />
                                   </InputAdornment>
                                 ),
-                              }}
+                            }}
+                            value={this.state.formData.contact}
                             onChange={(e) => {
                                 console.log(e.target.value)
                                 let formData = this.state.formData
@@ -181,18 +242,26 @@ class Sign extends Component{
                             style={{ width: '100%' }}
                             validators={['required',]}
                         />
-                    </ValidatorForm>
-                    <div className={classes.btn__container}>
+                       
                         <button className={classes.buttons}
                             variant="contained"
                             label="Sign-Up"
-                            onClick={() => {
-                               // this.checkValidity()
-                            }}
-                        > Login</button>
-                    </div>
+                            type="submit"
+                          > Login
+                        </button>
+                    </ValidatorForm>
+                
                 </div>
-         
+                <SnackBar
+                    open={this.state.alert}
+                    onClose={() => {
+                        this.setState({ alert: false })
+                    }}
+                    message={this.state.message}
+                    autoHideDuration={3000}
+                    severity={this.state.severity}
+                    variant="filled"
+                />
             </div>
             <div className={classes.containerBottom}>
                 <span className={classes.bottomSpan}>

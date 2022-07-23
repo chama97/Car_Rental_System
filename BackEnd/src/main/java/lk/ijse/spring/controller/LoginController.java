@@ -23,7 +23,7 @@ public class LoginController {
 
     @ResponseStatus(HttpStatus.CREATED) //201
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveLogin(@ModelAttribute LoginDTO login) {
+    public ResponseUtil saveLogin(@RequestBody LoginDTO login) {
         loginService.saveLogin(login);
         return new ResponseUtil(200,"Save",null);
     }

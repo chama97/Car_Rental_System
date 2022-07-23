@@ -9,6 +9,8 @@ import Button from '@mui/material/Button';
 import DataTable from "../../components/dataTable";
 import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 class Customer extends Component{
 
@@ -46,38 +48,56 @@ class Customer extends Component{
                 {
                     field: 'email',
                     headerName: 'User Name',
-                    width: 200,
+                    width: 190,
                 },
                 {
                     field: 'password',
                     headerName: 'Password',
-                    width: 150
+                    width: 130
                 },
                 {
                     field: 'name',
                     headerName: 'Name',
-                    width: 150,
+                    width: 130,
                     //sortable: false
                 },
                 {
                     field: 'nic',
                     headerName: 'NIC',
-                    width: 150
+                    width: 130
                 },
                 {
                     field: 'license',
                     headerName: 'License',
-                    width: 150
+                    width: 130
                 },
                 {
                     field: 'address',
                     headerName: 'Address',
-                    width: 150
+                    width: 130
                 },
                 {
                     field: 'contact',
                     headerName: 'Contact',
-                    width: 150
+                    width: 140
+                },
+                {
+                    field: "action",
+                    headerName: "Action",
+                    width: 100,
+                    renderCell: (params) => {
+                      return (
+                        <Tooltip title="Delete">
+                            <IconButton
+                                onClick={() => {
+                                    console.log(params)
+                                }}
+                                >
+                                <DeleteIcon color="error" />
+                            </IconButton>
+                        </Tooltip>
+                      );
+                    },
                 },
             ]
         }

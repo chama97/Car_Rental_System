@@ -33,7 +33,7 @@ class Reservation extends Component{
             severity: '',
     
             data: [
-                     { id: 1, reserveId: 'R001',customerID: 'C001',carID: 'CR001',driverId: 'R001', pickUpDate: '2022-07-16', returnDate: '2022-07-17', pickUpLocation: 'Colombo', status: 'Confirmed',},
+                     { id: 1, reserveId: 'R001',customerID: 'C001',carID: 'CR001',driverId: 'R001', pickUpDate: '2022-07-16', returnDate: '2022-07-17', pickUpLocation: 'Colombo', status: 'Confirmed'},
                      { id: 2, reserveId: 'R002',customerID: 'C001',carID: 'CR001',driverId: 'R001', pickUpDate: '2022-07-16', returnDate: '2022-07-17', pickUpLocation: 'Colombo', status: 'Confirmed' },
                      { id: 3, reserveId: 'R003',customerID: 'C001',carID: 'CR001',driverId: 'R001', pickUpDate: '2022-07-16', returnDate: '2022-07-17', pickUpLocation: 'Colombo', status: 'Confirmed' },
                      { id: 4, reserveId: 'R004',customerID: 'C001',carID: 'CR001',driverId: 'R001', pickUpDate: '2022-07-16', returnDate: '2022-07-17', pickUpLocation: 'Colombo', status: 'Confirmed' }     
@@ -56,27 +56,27 @@ class Reservation extends Component{
                 {
                     field: 'customerID',
                     headerName: 'Customer ID',
-                    width: 100,
+                    width: 120,
                 },
                 {
                     field: 'carID',
                     headerName: 'Car ID',
-                    width: 100,
+                    width: 120,
                 },
                 {
                     field: 'driverId',
                     headerName: 'Driver Id',
-                    width: 80,
+                    width: 120,
                 },
                 {
                     field: 'pickUpDate',
                     headerName: 'PickUp Date',
-                    width: 130
+                    width: 140
                 },
                 {
                     field: 'returnDate',
                     headerName: 'Return Date',
-                    width: 130,
+                    width: 140,
                 },
                 {
                     field: 'pickUpLocation',
@@ -89,9 +89,23 @@ class Reservation extends Component{
                     width: 120
                 },
                 {
-                    Action: () => <Button variant="contained" color="error">Delete</Button>,   
-                    headerName: 'Action',
-                    width: 230, 
+                    field: "action",
+                    headerName: "Action",
+                    width: 250,
+                    renderCell: () => {
+                      return (
+                        <Tooltip title="Delete">
+                            <IconButton
+                                onClick={() => {
+                                    console.log("delete icon clicked!")
+                                    //this.deleteCustomer(row.id)
+                                }}
+                                >
+                                <DeleteIcon color="error" />
+                            </IconButton>
+                        </Tooltip>
+                      );
+                    },
                 },
             ]
         }

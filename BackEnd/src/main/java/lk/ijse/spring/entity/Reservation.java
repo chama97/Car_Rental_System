@@ -31,7 +31,7 @@ public class Reservation {
     private Car car;
 
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.REFRESH})
-    @JoinColumn(name = "driverId",referencedColumnName = "driverNic")
+    @JoinColumn(name = "driverId",referencedColumnName = "driverEmail")
     private Schedule schedule;
 
     @OneToMany(mappedBy = "reservation",cascade = CascadeType.ALL)

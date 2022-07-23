@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -18,6 +15,7 @@ import java.util.List;
 @ToString
 public class Customer {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO )
     private String email;
     private String password;
     private String name;

@@ -9,8 +9,9 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import DataTable from "../../components/dataTable";
 import TextField from '@mui/material/TextField';
-
-
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import EditIcon from '@mui/icons-material/Edit';
 
 class Rental extends Component{
 
@@ -51,12 +52,12 @@ class Rental extends Component{
                 {
                     field: 'rentalCharge',
                     headerName: 'Rental Charge',
-                    width: 200
+                    width: 180
                 },
                 {
                     field: 'damageCharge',
                     headerName: 'Damage Charge',
-                    width: 200,
+                    width: 180,
                 },
                 {
                     field: 'additionalCharge',
@@ -71,8 +72,27 @@ class Rental extends Component{
                 {
                     field: 'totalCharge',
                     headerName: 'Total Charge',
-                    width: 200
-                }
+                    width: 180
+                },
+                {
+                    field: "action",
+                    headerName: "Action",
+                    width: 110,
+                    renderCell: () => {
+                      return (
+                        <Tooltip title="Edit">
+                            <IconButton 
+                                onClick={() => {
+                                    console.log("edit icon clicked!")
+                                    //this.updateCustomer(row);
+                                }}
+                                >
+                                <EditIcon color="primary" />
+                            </IconButton>
+                        </Tooltip>
+                      );
+                    },
+                },
             ]
         }
     }

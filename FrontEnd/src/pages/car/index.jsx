@@ -8,6 +8,10 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import DataTable from "../../components/dataTable";
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 class Car extends Component{
@@ -83,27 +87,58 @@ class Car extends Component{
                 {
                     field: 'dailyRate',
                     headerName: 'DailyRate',
-                    width: 130
+                    width: 100
                 },
                 {
                     field: 'monthlyRate',
                     headerName: 'MonthlyRate',
-                    width: 130
+                    width: 100
                 },
                 {
                     field: 'freeKmDay',
                     headerName: 'FreeKm Day',
-                    width: 130
+                    width: 100
                 },
                 {
                     field: 'priceExKm',
-                    headerName: 'PriceFor ExKm',
-                    width: 130
+                    headerName: 'Price/ExKm',
+                    width: 110
                 },
                 {
                     field: 'status',
                     headerName: 'Status',
-                    width: 130
+                    width: 120
+                },
+                {
+                    field: "action",
+                    headerName: "Action",
+                    width: 120,
+                    renderCell: () => {
+                      return (
+                        <div>
+                        <Tooltip title="Edit">
+                            <IconButton 
+                                onClick={() => {
+                                    console.log("edit icon clicked!")
+                                    //this.updateCustomer(row);
+                                }}
+                                >
+                                <EditIcon color="primary" />
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Delete">
+                            <IconButton
+                                onClick={() => {
+                                    console.log("edit icon clicked!")
+                                    //this.deleteCustomer(row.id)
+                                }}
+                                >
+                                <DeleteIcon color="error" />
+                            </IconButton>
+                        </Tooltip>
+                        </div>
+                      );
+                    },
                 },
             ]
         }
@@ -306,7 +341,6 @@ class Car extends Component{
                                     <Grid item xs={2} sm={4} md={4} style={{display: 'flex'}} justifyContent="flex-end" >
                                         <Stack spacing={2} direction="row">
                                             <Button variant="outlined" color="error">Cancel</Button>
-                                            <Button variant="contained" color="error">Delete</Button>
                                             <Button variant="contained" >Update</Button>
                                             <Button variant="contained" color="success">Save</Button>
                                         </Stack>

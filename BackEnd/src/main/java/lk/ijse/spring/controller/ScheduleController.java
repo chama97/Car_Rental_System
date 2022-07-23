@@ -23,7 +23,7 @@ public class ScheduleController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveCustomer(@ModelAttribute ScheduleDTO schedule) {
+    public ResponseUtil saveCustomer(@RequestBody ScheduleDTO schedule) {
         scheduleService.saveSchedule(schedule);
         return new ResponseUtil(200,"Save",null);
     }
