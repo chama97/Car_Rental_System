@@ -22,25 +22,16 @@ class AdminNavbar extends Component{
     render(){
   
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <Box sx={{ flexGrow: 1, backgroundColor: '#2c2c6d' }}>
+      <AppBar position="static" sx={{backgroundImage: 'linear-gradient(to right top, #402baa, #3b39b6, #3546c1, #2e53cc, #255fd7)' }}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            Easy Car
+            Easy Car Rental (pvt) ltd.
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -54,7 +45,7 @@ class AdminNavbar extends Component{
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={3} color="error">
+              <Badge badgeContent={2} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>

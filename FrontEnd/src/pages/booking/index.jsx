@@ -17,25 +17,73 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Autocomplete from '@mui/material/Autocomplete';
+import ReservationService from "../../services/ReservationService";
 
 class Booking extends Component{
 
     constructor(props) {
         super(props);
         this.state = {
-            
             formData: {
-                reserveId: '',
-                customerID: '',
-                carID: '',
-                driverId: '',
-                pickUpDate: new Date()  , 
-                returnDate: '',
+                reserveId: 'R002',
+                pickUpDate: new Date() , 
+                returnDate: new Date(),
                 pickUpLocation: '',
-                status: '',
+                note:'dd',
+                status: 'pending',
+                customerID: {email: 'Customer A', address: 'Address B', number: '123456789'},
+                carID: {carData : this.carData},
+                driverId: 'driverData',
+                rentalData:'rentalData'
                 
             },
-            
+
+           
+            carData: {
+                regId: 'CR001',
+                brand: '',
+                type: '',
+                transType: '',
+                fuelType: '',
+                noPassengers: '',
+                dailyRate: '',
+                monthlyRate: '',
+                freeKmDay: '',
+                priceExKm: '',
+                status: 'Available'
+            },
+
+            customerData: {
+                email: 'anura@gmail.com',
+                password: '',
+                name: '',
+                nic: '',
+                license: '',
+                address: '',
+                contact: 78765678
+            },
+
+            driverData: {
+                email: 'amal@gmail.com',
+                password: '',
+                name: '',
+                nic: '',
+                license: '',
+                address: '',
+                contact: 783782678
+            },
+
+            rentalData:[
+                {
+                    rentalId:'R002',
+                    rentalCharge:0,
+                    damageCharge:0,
+                    additionalCharge:0,
+                    duration:0,
+                    totalCharge:0
+                }
+            ],
+
 
             alert: false,
             message: '',
@@ -46,11 +94,58 @@ class Booking extends Component{
                 { label: 'No' },
             ], 
             
-            // data: [],
-            // loaded: false, 
-
+            data: [],
+            
         }
+
     }
+
+    handleChange(date) {
+        this.setState({
+            pickUpDate: date
+        })
+      }
+
+      clearFields = () => {
+        this.setState({
+            formData: {
+                reserveId: 'R003',
+                customerID: '',
+                carID: 'CR001',
+                driverId: '',
+                pickUpDate:  '', 
+                returnDate: '',
+                pickUpLocation: '',
+            }
+        });
+    };
+
+    submitReservation= async () => {
+        let formData = this.state.formData;
+        let res = await ReservationService.postRes(formData);
+
+        console.log(res)    //print the promise
+    
+        if (res.status === 201) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            this.clearFields();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.response.data.message,
+                severity: 'error'
+            });
+        }
+    };
+
+    componentDidMount() {
+        this.loadData();
+    }
+
 
     render(){
         let { classes } = this.props
@@ -92,7 +187,7 @@ class Booking extends Component{
                     <div className={classes.mybook}>
                         <div className={classes.lblprofile}><span>Booking Details</span></div> 
                         <hr className={classes.hr} /> 
-                        <ValidatorForm ref="form" onSubmit={this.handleSubmit} onError={errors => console.log(errors)}>
+                        <ValidatorForm ref="form" onSubmit={this.submitReservation} onError={errors => console.log(errors)}>
                                 <Grid container style={{padding: '10px'}} spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} >
                                     
                                 <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
@@ -134,11 +229,15 @@ class Booking extends Component{
                                         <Stack>
                                             <DatePicker
                                                 label="PickUp Date"
-                                                onChange={(e) => {
-                                                    let formData = this.state.formData
-                                                    formData.pickUpDate = e.target.value
-                                                    this.setState({ formData })
-                                                }}
+                                                value={this.state.formData.pickUpDate}
+                                                // onChange={(e) => {
+                                                //     let formData = this.state.formData
+                                                //     formData.pickUpDate = e.target.value
+                                                //     this.setState({ formData })
+                                                // }}
+                                                onChange={(e) => {  
+                                                    this.setState({pickUpDate: e})
+                                                 }}
                                                 style={{ width: '100%' }}
                                                 validators={['required',]}
                                                 renderInput={(params) => <TextField {...params} />}
@@ -152,17 +251,22 @@ class Booking extends Component{
                                         <Stack >
                                             <DatePicker
                                                 label="Return Date"
-                                                onChange={(e) => {
-                                                    let formData = this.state.formData
-                                                    formData.returnDate = e.target.value
-                                                    this.setState({ formData })
-                                                }}
+                                                value={this.state.formData.returnDate}
+                                                // onChange={(e) => {
+                                                //     let formData = this.state.formData
+                                                //     formData.returnDate = e.target.value
+                                                //     this.setState({ returnDate: e })
+                                                // }}
+                                                onChange={(e) => {  
+                                                    this.setState({returnDate: e})
+                                                 }}
                                                 style={{ width: '100%' }}
                                                 validators={['required',]}
                                                 renderInput={(params) => <TextField {...params} />}
                                             />
                                         </Stack>
                                         </LocalizationProvider>
+                                        
                                     </Grid>
 
                                     <Grid item lg={6} md={6} sm={6} xm={6} >
@@ -204,7 +308,7 @@ class Booking extends Component{
                                     <Grid item lg={12} md={12} sm={12} xm={12}  style={{display: 'flex', justifyContent:"flex-end"}}  >
                                         <Stack spacing={1} direction="row">
                                             <Button variant="outlined" color="error">Cancel</Button>
-                                            <Button variant="contained">Book</Button>
+                                            <Button variant="contained" type="submit">Book</Button>
                                             
                                         </Stack>
                                     </Grid>   

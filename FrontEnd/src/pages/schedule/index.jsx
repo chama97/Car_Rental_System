@@ -12,6 +12,16 @@ import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import ScheduleService from "../../services/ScheduleService";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import SubmitButton from '../../components/Button';
 
 
 
@@ -21,86 +31,145 @@ class Schedule extends Component{
         super(props);
         this.state = {
             formData: {
-                sid: '',
+                id: '',
                 startDate: '',
                 endDate: '',
-                driverNic: ''
+                driverEmail: ''
             },
             alert: false,
             message: '',
             severity: '',
     
-            data: [
-                     { id: 1, sid: 'S001', startDate: '2020-07-09', endDate: '2020-09-08', driverNic: '6352738378'},
-                     { id: 2, sid: 'S001', startDate: '2020-07-09', endDate: '2020-09-08', driverNic: '6352738378'},
-                     { id: 3, sid: 'S001', startDate: '2020-07-09', endDate: '2020-09-08', driverNic: '6352738378'},
-                     { id: 4, sid: 'S001', startDate: '2020-07-09', endDate: '2020-09-08', driverNic: '6352738378'}
-                 ],
-
-            loaded: true,
-
-            // data: [],
-            // loaded: false,
-
-            columns: [
-                
-                {
-                    field: 'sid',
-                    headerName: 'ID',
-                    width: 200,
-                },
-                {
-                    field: 'startDate',
-                    headerName: 'Start Date',
-                    width: 270
-                },
-                {
-                    field: 'endDate',
-                    headerName: 'End Date',
-                    width: 270,
-                },
-                {
-                    field: 'driverNic',
-                    headerName: 'Driver Nic',
-                    width: 260
-                },
-                {
-                    field: "action",
-                    headerName: "Action",
-                    width: 110,
-                    renderCell: () => {
-                      return (
-                        <Tooltip title="Edit">
-                            <IconButton 
-                                onClick={() => {
-                                    console.log("edit icon clicked!")
-                                    //this.updateCustomer(row);
-                                }}
-                                >
-                                <EditIcon color="primary" />
-                            </IconButton>
-                        </Tooltip>
-                      );
-                    },
-                },
-            ]
+            data: [],
+            btnLabel: 'save',
+            btnColor: 'success',
+           
         }
     }
 
+    deleteSchedule = async (id) => {
+        let params = {
+            id: id
+        }
+         let res = await ScheduleService.deleteSchedule(params);
+
+         if(res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            this.loadData();
+         } else {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'error'
+            });
+         }
+    };
+
+    updateSchedule = (data) => {
+         console.log(data)
+
+         this.setState({ 
+            btnLabel: 'update',
+            btnColor: 'primary',
+            formData: {
+                id: data.id,
+                startDate: data.startDate,
+                endDate: data.endDate,
+                driverEmail: data.driverEmail
+            }  
+        });
+    };
+
+    clearFields = () => {
+        this.setState({
+            formData: {
+                id: '',
+                startDate: '',
+                endDate: '',
+                driverEmail: ''
+            }
+        });
+    };
+
+
+    exampleForMap = () => {
+        this.state.data.map((value, index) => {
+            console.log(value)  
+        })
+    };
+
+    loadData = async () => {
+        let res = await ScheduleService.fetchSchedule();
+
+        if (res.status === 200) {
+            this.setState({
+                data: res.data.data
+            });
+        }
+        console.log(this.state.data)   
+
+        this.exampleForMap()
+
+    };
+
+    submitSchedule = async () => {
+        let formData = this.state.formData;
+
+        if(this.state.btnLabel === "save") {
+            let res = await ScheduleService.postSchedule(formData);
+
+            console.log(res)
     
+            if (res.status === 201) {
+                this.setState({
+                    alert: true,
+                    message: res.data.message,
+                    severity: 'success'
+                });
+                this.clearFields();
+                this.loadData();
+            } else {
+                this.setState({
+                    alert: true,
+                    message: res.response.data.message,
+                    severity: 'error'
+                });
+            }
+        } else {
+            let res = await ScheduleService.putSchedule(formData);
+            if(res.status === 200) {
+                this.setState({
+                    alert: true,
+                    message: res.data.message,
+                    severity: 'success',
+                    btnLabel: 'save',
+                    btnColor: 'primary'
+                });
+                this.clearFields();
+                this.loadData();
+            } else {
+                this.setState({
+                    alert: true,
+                    message: res.response.data.message,
+                    severity: 'error'
+                });
+            }
+        }
+    };
+
     componentDidMount() {
-        console.log('Post Screen Mounted!');
+        this.loadData();
     }
 
-    handleSubmit = async () => {
-        console.log('save button clicked!!')
-        
-    }
-
+    
     render(){
         let { classes } = this.props
         return(
-            <Fragment className={classes.container}>
+            <Fragment>
 
                 <div className={classes.container}>
 
@@ -121,8 +190,24 @@ class Schedule extends Component{
                         <div className={classes.lblcustomer}><span>Schedule</span></div> 
                             <hr className={classes.hr} /> 
 
-                            <ValidatorForm ref="form" onSubmit={this.handleSubmit} onError={errors => console.log(errors)}>
+                            <ValidatorForm ref="form" onSubmit={this.submitSchedule} onError={errors => console.log(errors)}>
                                 <Grid container className={classes.gridss} spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} >
+                                <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
+                                        <TextValidator
+                                            id="outlined-basic"
+                                            variant="outlined"
+                                            label="ID"
+                                            size="small"
+                                            value={this.state.formData.id}
+                                            onChange={(e) => {
+                                                let formData = this.state.formData
+                                                formData.id = e.target.value
+                                                this.setState({ formData })
+                                            }}
+                                            style={{ width: '100%' }}
+                                            validators={['required',]}
+                                        />
+                                    </Grid>
                                     <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
                                         <TextValidator
                                             id="outlined-basic"
@@ -139,7 +224,8 @@ class Schedule extends Component{
                                             validators={['required',]}
                                         />
                                     </Grid>
-                                    <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
+                                    
+                                    <Grid item lg={6} md={6} sm={6} xm={6}  >
                                         <TextValidator
                                             id="outlined-basic"
                                             variant="outlined"
@@ -159,26 +245,24 @@ class Schedule extends Component{
                                         <TextValidator
                                             id="outlined-basic"
                                             variant="outlined"
-                                            label="Driver NIC"
+                                            label="Driver Email"
                                             size="small"
-                                            value={this.state.formData.driverNic}
+                                            value={this.state.formData.driverEmail}
                                             onChange={(e) => {
                                                 let formData = this.state.formData
-                                                formData.driverNic = e.target.value
+                                                formData.driverEmail = e.target.value
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
                                             validators={['required',]}
                                         />
                                     </Grid>
-                                    
-                                    <Grid item lg={6} md={6} sm={6} xm={6}  style={{display: 'flex', justifyContent:"flex-end"}}  >
+                                    <Grid item lg={12} md={12} sm={12} xm={12}  style={{display: 'flex', justifyContent:"flex-end"}}  >
                                         <Stack spacing={1} direction="row">
                                             <TextField id="filled-search" label="Search field" type="search" size="small" variant="outlined"/>
                                             <Button variant="outlined">Search</Button>
                                             <Button variant="outlined" color="error">Cancel</Button>
-                                            <Button variant="contained">Update</Button>
-                                            
+                                            <SubmitButton variant="contained" label={this.state.btnLabel} type="submit" color={this.state.btnColor} />
                                         </Stack>
                                     </Grid>   
                                 </Grid>
@@ -188,17 +272,54 @@ class Schedule extends Component{
 
                         <div className={classes.table}>
                             <div className={classes.cartable}>          
-                            {this.state.loaded &&
                                 <Grid container style={{ height: '100%', width: '100%', padding: '5px' }}>
-                                    <DataTable
-                                        columns={this.state.columns}
-                                        rows={this.state.data}
-                                        rowsPerPageOptions={5}
-                                        pageSize={5}
-                                        checkboxSelection={true}
-                                    /> 
+                                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="customer table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="left"> Id</TableCell>
+                                    <TableCell align="left"> Start Date</TableCell>
+                                    <TableCell align="left"> End Date</TableCell>
+                                    <TableCell align="left"> Driver Email</TableCell>
+                                    <TableCell align="left">Action</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {
+                                    this.state.data.map((row) => (
+                                        <TableRow>
+                                            <TableCell align="left">{row.id}</TableCell>
+                                            <TableCell align="left">{row.startDate}</TableCell>
+                                            <TableCell align="left">{row.endDate}</TableCell>
+                                            <TableCell align="left">{row.driverEmail}</TableCell>
+                                            <TableCell align="left">
+                                                <Tooltip title="Edit">
+                                                    <IconButton 
+                                                        onClick={() => {
+                                                            console.log("edit icon clicked!")
+                                                            this.updateSchedule(row);
+                                                        }}
+                                                    >
+                                                        <EditIcon color="primary" />
+                                                    </IconButton>
+                                                </Tooltip>
+                                                <Tooltip title="Delete">
+                                                    <IconButton
+                                                        onClick={() => {
+                                                            this.deleteSchedule(row.id)
+                                                        }}
+                                                    >
+                                                        <DeleteIcon color="error" />
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                }
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
                                 </Grid>
-                            }
                             </div>
                         
                         </div>

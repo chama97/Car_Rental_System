@@ -8,52 +8,65 @@ import InputAdornment from '@mui/material/InputAdornment';
 import LockIcon from '@mui/icons-material/Lock';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import Loginlogo from "../../assets/img/login.jpg";
+import SnackBar from "../../components/SnackBar";
+// import { Link } from "react-router-dom";
+// import { useNavigate } from 'react-router-dom';
+
 
 class Login extends Component{
 
     constructor(props) {
         super(props);
         this.state = {
-            userName: 'admin',
-            pw: 'admin',
+            adminName: 'kamal@gmail.com',
+            apw: '1234',
+            userName: 'saman@gmail.com',
+            upw: '1234',
             formData: {
-                user_name: '',
+                email: '',
                 password: ''
             },
             open: false,
             message: '',
             severity: ''
+            
         }
+       this.checkLogin = this.checkLogin.bind(this);
     }
 
-    checkValidity() {
-        console.log("Login button clicked!")
 
-        console.log(this.state.formData)
+    checkLogin() {
+        let formData = this.state.formData;
 
-        let formData = this.state.formData
-
-        if (formData.user_name === this.state.userName && formData.password === this.state.pw) {
-            console.log('credential matched!')
+        if (formData.email === this.state.adminName && formData.password === this.state.apw) {   
             this.setState({
                 open: true,
-                message: 'User credential matching sucess!',
-                severity: 'success'
-            })
-        } else {
-            console.log('credential didn\'t matche!')
+                message: "Admin Login Successes..!",
+                severity: "success",
+          });
+          window.location.href = "./dash"
+    
+        } else if(formData.email === this.state.userName && formData.password === this.state.upw) {
+            this.setState({
+            open: true,
+            message: "User Login Successes..!",
+            severity: "success",
+          });
+           window.location.href = "./custdash"
+
+        } else{
             this.setState({
                 open: true,
-                message: 'User credential not matching!',
-                severity: 'error'
-            })
+                message: "Pleas Check Your Username Or Password..!",
+                severity: "error",
+            });
         }
     }
 
     render(){
         const { classes } = this.props;
         return(
-            <Fragment className={classes.containers}>
+            <Fragment>
             <div><Navbar /></div>
             <div className={classes.container}>
 
@@ -81,7 +94,7 @@ class Login extends Component{
                             onChange={(e) => {
                                 console.log(e.target.value)
                                 let formData = this.state.formData
-                                formData.user_name = e.target.value
+                                formData.email = e.target.value
                                 this.setState({ formData })
                             }}
                         />
@@ -106,16 +119,18 @@ class Login extends Component{
                         />
                     </div>
                     <div className={classes.btn__container}>
+       
                         <button className={classes.buttons}
                             variant="contained"
                             label="Login"
                             onClick={() => {
-                                this.checkValidity()
+                                this.checkLogin()
                             }}
                         > Login</button>
+     
                     </div>
                 </div>
-                {/* <GDSESnackBar
+                <SnackBar
                     open={this.state.open}
                     onClose={() => {
                         this.setState({ open: false })
@@ -124,7 +139,7 @@ class Login extends Component{
                     autoHideDuration={3000}
                     severity={this.state.severity}
                     variant="filled"
-                /> */}
+                />
          
             </div>
             <div className={classes.containerBottom}>
@@ -138,4 +153,5 @@ class Login extends Component{
     }
 }
 
-export default withStyles(styleSheet)(Login) 
+
+export default   withStyles(styleSheet)(Login) 

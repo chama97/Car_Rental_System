@@ -17,13 +17,11 @@ import java.util.List;
 public class Schedule {
     @Id
     private String id;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String startDate;
+    private String endDate;
 
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.REFRESH})
     @JoinColumn(name = "driverEmail",referencedColumnName = "email")
     private Driver driver;
 
-    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
-    private List<Reservation> reservations;
 }

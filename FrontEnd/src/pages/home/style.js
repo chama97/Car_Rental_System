@@ -1,3 +1,5 @@
+
+
 export const styleSheet = {
     container: {
         display: 'flex',
@@ -8,7 +10,24 @@ export const styleSheet = {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundSize: 'cover',
+        backgroundPosition: 'bottom center',
+        zIndex: '1'
     },
+
+    bodycontainer: {
+        backgroundColor: `black`,
+        height: '100%',
+        width: '100%',
+        opacity: '.3 ',
+        display:'flex',
+        justifyContent: 'center',
+        color: 'white',
+        alignItems: 'center',
+        textAlign: 'center',
+        zIndex: '2'
+    },
+
+
 
     containers: {
         display: 'flex', 

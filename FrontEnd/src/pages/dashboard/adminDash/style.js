@@ -58,17 +58,17 @@ export const styleSheet = {
 
      widgets: {
         height: '60%',
-        width: '20%',
+        width: '22%',
         backgroundColor: 'white',
         justifyContent: 'center',
-        borderRadius: '10px', 
-        boxShadow: '1px 2px 9px #F4AAB9',
-        border: '2px solid rgb(226, 226, 226)',
+        borderRadius: '10px',
+        boxShadow: '0px 5px 6px #7171c1',
+        border: '1px solid rgb(226, 226, 226)',
      },
 
      widgetss: {
         height: '60%',
-        width: '20%',
+        width: '23%',
         backgroundColor: 'white',
         justifyContent: 'space-around',
         borderRadius: '10px', 
@@ -80,31 +80,34 @@ export const styleSheet = {
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        color : 'blue',
+        color : '#323281',
         fontWeight: '500',
-        fontSize: '20px'
-        //backgroundColor: 'green',
+        fontSize: '20px',
+        backgroundColor: '#f0f0f4',
      },
 
      widgBody: {
         display: 'flex',
-        height: '45%',
+        height: '50%',
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
         color : 'green',
         fontWeight: '500',
-        fontSize: '45px'
+        fontSize: '40px'
         //backgroundColor: 'red',
      },
 
      widgBottom: {
         display: 'flex',
-        height: '30%',
+        height: '25%',
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        color: '#0c2341'
+        color: 'white',
+        backgroundColor: '#36367c',
+        borderBottomLeftRadius: '10px',
+        borderBottomRightRadius: '10px',
      },
 
      bottom:{

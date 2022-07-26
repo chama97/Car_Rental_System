@@ -22,8 +22,19 @@ class HomePage extends Component{
         return(
             <Fragment className={classes.containers}>
                 <div><Navbar /></div>
-                <div className={classes.container}>
-                    <img src={Car2} height={'700px'} width={'100%'} />
+                
+                <div className={classes.container} style={{ backgroundImage: `url(${Car2})` }}>
+                    <div className={classes.bodycontainer} >
+               
+                        <span style={{ color: `white`, fontSize: '18px ', zIndex: '5', marginTop:'25%'}}>
+                            Easy car rental private limited is a car rental service with 5 years of history.<br/>
+                            This company has about 50 cars and 40 drivers working for them in regular shifts.<br/>
+                            No. 200, Galle Road, Panadura
+                        </span>
+                    
+                        
+                    </div>
+             
             
                 </div>
 

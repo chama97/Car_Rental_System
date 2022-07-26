@@ -102,6 +102,12 @@ export const styleSheet = {
 
      },
 
+     cellImg:{
+        width: '30px',
+        height: '20px'
+        
+     },
+
      hr: {
         width: '100%',
         height: '7px',

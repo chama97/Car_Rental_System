@@ -20,6 +20,6 @@ public class ReservationDTO {
     private String note;
     private CustomerDTO customerID;
     private CarDTO carID;
-    private ScheduleDTO driverId;
+    private DriverDTO driverId;
     List<RentalDetailsDTO> rentalDetails;
 }

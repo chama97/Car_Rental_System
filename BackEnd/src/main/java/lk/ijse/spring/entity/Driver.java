@@ -25,4 +25,8 @@ public class Driver {
 
     @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
     private List<Schedule> schedules;
+
+    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
+    private List<Reservation> reservations;
+
 }

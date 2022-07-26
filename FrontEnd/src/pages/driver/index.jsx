@@ -101,10 +101,10 @@ class Driver extends Component{
         });
     };
 
-    // ------- React Map function example -------
+
     exampleForMap = () => {
         this.state.data.map((value, index) => {
-            console.log(value)   // access element one by one
+            console.log(value)  
         })
     };
 
@@ -116,7 +116,7 @@ class Driver extends Component{
                 data: res.data.data
             });
         }
-        console.log(this.state.data)    // print customers array
+        console.log(this.state.data)   
 
         this.exampleForMap()
 
@@ -309,7 +309,6 @@ class Driver extends Component{
                                     <Grid item lg={6} md={6} sm={6} xm={6}  style={{display: 'flex', justifyContent:"flex-end"}}  >
                                         <Stack spacing={2} direction="row">
                                             <Button variant="outlined">Cancel</Button>
-                                            {/* <Button variant="contained" >Update</Button> */}
                                             <SubmitButton variant="contained" label={this.state.btnLabel} type="submit" color={this.state.btnColor} />
                                         </Stack>
                                     </Grid>   

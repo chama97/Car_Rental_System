@@ -1,6 +1,7 @@
 package lk.ijse.spring.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,9 +15,7 @@ import java.time.LocalDate;
 @ToString
 public class ScheduleDTO {
     private String id;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate startDate;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate endDate;
-    private DriverDTO driverNic;
+    private String startDate;
+    private String endDate;
+    private String driverEmail;
 }

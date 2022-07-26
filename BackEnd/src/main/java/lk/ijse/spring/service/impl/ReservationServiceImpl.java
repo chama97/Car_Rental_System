@@ -29,15 +29,10 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public void applyReservation(ReservationDTO dto) {
-        Reservation reservation = mapper.map(dto, Reservation.class);
         if (!reservationRepo.existsById(dto.getReserveId())) {
-            reservation.setStatus("Pending");
-            reservationRepo.save(reservation);
-
-            if (dto.getRentalDetails().size() < 1) throw new RuntimeException("No cars added for the reservation..!");
-
+            reservationRepo.save(mapper.map(dto, Reservation.class));
         } else {
-            throw new RuntimeException("Reservation Failed..!, Reserve ID " + dto.getReserveId() + " Already Exist.!");
+            throw new RuntimeException("Reservation Already Exist..!");
         }
     }
 

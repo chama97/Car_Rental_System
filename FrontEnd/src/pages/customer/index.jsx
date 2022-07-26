@@ -11,6 +11,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import CustomerService from "../../services/CustomerService";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 class Customer extends Component{
 
@@ -30,78 +38,51 @@ class Customer extends Component{
             message: '',
             severity: '',
     
-            data: [
-                     { id: 1, email: 'amal@gmail.com', password: '1234', name: 'Amal', nic: '762938729V', license: '738372834', address: 'Colombo', contact: '0928273362' },
-                     { id: 2, email: 'amal@gmail.com', password: '1234', name: 'Amal', nic: '762938729V', license: '738372834', address: 'Colombo', contact: '0928273362' },
-                     { id: 3, email: 'amal@gmail.com', password: '1234', name: 'Amal', nic: '762938729V', license: '738372834', address: 'Colombo', contact: '0928273362' },
-                     { id: 4, email: 'amal@gmail.com', password: '1234', name: 'Amal', nic: '762938729V', license: '738372834', address: 'Colombo', contact: '0928273362' },
-                     { id: 5, email: 'amal@gmail.com', password: '1234', name: 'Amal', nic: '762938729V', license: '738372834', address: 'Colombo', contact: '0928273362' },
-                 ],
-
-            loaded: true,
-
-            // data: [],
-            // loaded: false,
-
-            columns: [
-                
-                {
-                    field: 'email',
-                    headerName: 'User Name',
-                    width: 190,
-                },
-                {
-                    field: 'password',
-                    headerName: 'Password',
-                    width: 130
-                },
-                {
-                    field: 'name',
-                    headerName: 'Name',
-                    width: 130,
-                    //sortable: false
-                },
-                {
-                    field: 'nic',
-                    headerName: 'NIC',
-                    width: 130
-                },
-                {
-                    field: 'license',
-                    headerName: 'License',
-                    width: 130
-                },
-                {
-                    field: 'address',
-                    headerName: 'Address',
-                    width: 130
-                },
-                {
-                    field: 'contact',
-                    headerName: 'Contact',
-                    width: 140
-                },
-                {
-                    field: "action",
-                    headerName: "Action",
-                    width: 100,
-                    renderCell: (params) => {
-                      return (
-                        <Tooltip title="Delete">
-                            <IconButton
-                                onClick={() => {
-                                    console.log(params)
-                                }}
-                                >
-                                <DeleteIcon color="error" />
-                            </IconButton>
-                        </Tooltip>
-                      );
-                    },
-                },
-            ]
+            data: [],
         }
     }
+
+    deleteCustomer = async (email) => {
+        let params = {
+            email: email
+        }
+         let res = await CustomerService.deleteCustomer(params);
+
+         if(res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            this.loadData();
+         } else {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'error'
+            });
+         }
+    };
+
+    loadData = async () => {
+        let res = await CustomerService.fetchCustomer();
+
+        if (res.status === 200) {
+            this.setState({
+                data: res.data.data
+            });
+        } else {
+            console.log("fetching error: " + res)
+        }
+
+        this.exampleForMap()
+    };
+
+    componentDidMount() {
+        this.loadData();
+    }
+
+
 
 
     render(){
@@ -129,20 +110,54 @@ class Customer extends Component{
                             <Stack className={classes.stack} spacing={2} direction="row">
                                 <TextField id="filled-search" label="Search field" type="search" size="small" variant="outlined"/>
                                 <Button variant="outlined">Search</Button>
-                                <Button variant="contained" color="error" startIcon={<DeleteIcon />}>Delete</Button>
                             </Stack>  
 
-                            {this.state.loaded &&
+                       
                                 <Grid container style={{ height: '100%', width: '100%', padding: '15px' }}>
-                                    <DataTable
-                                        columns={this.state.columns}
-                                        rows={this.state.data}
-                                        rowsPerPageOptions={5}
-                                        pageSize={5}
-                                        checkboxSelection={true}
-                                    /> 
-                                </Grid>
-                            }
+                                <TableContainer component={Paper}>
+                                <Table sx={{ minWidth: 650 }} aria-label="customer table">
+                                <TableHead>
+                                <TableRow>
+                                    <TableCell align="left"> Email</TableCell>
+                                    <TableCell align="left"> Password</TableCell>
+                                    <TableCell align="left"> Name</TableCell>
+                                    <TableCell align="left"> NIC</TableCell>
+                                    <TableCell align="left"> License</TableCell>
+                                    <TableCell align="left"> Address</TableCell>
+                                    <TableCell align="left"> Contact</TableCell>
+                                    <TableCell align="left">Action</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {
+                                    this.state.data.map((row) => (
+                                        <TableRow>
+                                            <TableCell align="left">{row.email}</TableCell>
+                                            <TableCell align="left">{row.password}</TableCell>
+                                            <TableCell align="left">{row.name}</TableCell>
+                                            <TableCell align="left">{row.nic}</TableCell>
+                                            <TableCell align="left">{row.license}</TableCell>
+                                            <TableCell align="left">{row.address}</TableCell>
+                                            <TableCell align="left">{row.contact}</TableCell>
+                                            <TableCell align="left">
+                                                <Tooltip title="Delete">
+                                                    <IconButton
+                                                        onClick={() => {
+                                                            this.deleteCustomer(row.email)
+                                                        }}
+                                                    >
+                                                        <DeleteIcon color="error" />
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                }
+                            </TableBody>
+                            </Table>
+                            </TableContainer> 
+                            </Grid>
+                       
                             </div>
                         
                         </div>

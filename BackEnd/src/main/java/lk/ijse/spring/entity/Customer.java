@@ -15,7 +15,6 @@ import java.util.List;
 @ToString
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO )
     private String email;
     private String password;
     private String name;

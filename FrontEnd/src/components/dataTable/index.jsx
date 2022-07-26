@@ -1,7 +1,6 @@
 import { Component } from "react";
 import { DataGrid } from '@mui/x-data-grid';
 
-
 class DataTable extends Component {
     render() {
         const {
@@ -12,13 +11,10 @@ class DataTable extends Component {
             checkboxSelection
         } = this.props;
 
-        
-
         return (
             <DataGrid
-           
-            rows={rows}
-                columns={columns} 
+                rows={rows}
+                columns={columns}
                 pageSize={pageSize}
                 rowsPerPageOptions={[rowsPerPageOptions]}
                 checkboxSelection={checkboxSelection}

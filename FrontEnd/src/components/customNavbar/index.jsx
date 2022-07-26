@@ -19,7 +19,7 @@ class CustomNavbar extends Component{
   
       return (
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
+          <AppBar position="static" sx={{backgroundImage: 'linear-gradient(to right top, #402baa, #3b39b6, #3546c1, #2e53cc, #255fd7)' }}>
             <Toolbar>
               <IconButton
                 size="large"
@@ -30,8 +30,8 @@ class CustomNavbar extends Component{
                 >
                 <AccountCircle />
               </IconButton>
-              <Typography variant="h5" component="div" sx={{ flexGrow: 1, fontFamily: 'monospace',fontWeight: 700,letterSpacing: '.2rem', }}>
-                Customer
+              <Typography variant="h5" component="div" sx={{ flexGrow: 1, fontFamily: 'monospace',fontWeight: 700,letterSpacing: '.1rem', }}>
+                Easy Car Rental
               </Typography> 
 
               <Link to="/custdash" style={{ color:'white', textDecoration: "none"}} >

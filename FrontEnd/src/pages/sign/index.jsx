@@ -86,7 +86,6 @@ class Sign extends Component{
                 
                 <div className={classes.login__cover}>
                     <div className={classes.title__container}>
-                        {/* <PersonPinIcon sx={{ fontSize: 90 }} className={classes.userIcon} /> */}
                         <span className={classes.titles} >SIGN UP</span>
                     </div>
                     <ValidatorForm

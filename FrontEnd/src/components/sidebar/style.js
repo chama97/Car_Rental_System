@@ -6,7 +6,8 @@ export const styleSheet = {
       minHeight: '100vh',
       backgroundColor: 'white',
       width: '20vw',
-      backgroundColor: '#d4e3f7',
+     // backgroundImage: 'linear-gradient(to right top, #1f2144, #262d59, #2c3a70, #2f4787, #30559f)'
+      backgroundImage: 'linear-gradient(to right top, #1f2039, #272c50, #2d3969, #304784, #30559f)'
   },
 
   top: {
@@ -14,7 +15,7 @@ export const styleSheet = {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-around',
-      backgroundColor: '#1a427f',
+      backgroundImage: 'linear-gradient(to right top, #2c2f67, #2f3875, #304183, #314b91, #30559f)'
   },
 
   logo: {
@@ -55,6 +56,9 @@ export const styleSheet = {
       alignItems: 'center',
       padding: '5px',
       cursor: 'pointer',
+      '&:hover': {
+        backgroundColor: '#6a6ac8',
+     },
       
   },
 
@@ -64,7 +68,7 @@ export const styleSheet = {
 
   icon: {
       fontSize: '18px',
-      color: '#7451f8',
+      color: '#c7c7ea',
   },
 
   icontop: {
@@ -76,7 +80,7 @@ export const styleSheet = {
   span: {
       fontSize: '15px',
       fontWeight: '600',
-      color: '#10103c',
+      color: '#f4f4fb',
       marginLeft: '10px',
   },
 
@@ -84,8 +88,7 @@ export const styleSheet = {
       display: 'flex',
       alignItems: 'center',
       marginTop: '20px',
-      margin:'10px'
-            
+      margin:'10px',  
   }
 
 

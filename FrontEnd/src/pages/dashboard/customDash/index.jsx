@@ -5,6 +5,7 @@ import CustomNavbar from "../../../components/customNavbar";
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import DataTable from "../../../components/dataTable";
+import Login from "../../login";
 
 
 class CustomDash extends Component{
@@ -13,81 +14,19 @@ class CustomDash extends Component{
         super(props);
         this.state = {
             formData: {
-                reserveId: '',
-                customerID: '',
-                carID: '',
-                driverId: '',
-                pickUpDate: '',
-                returnDate: '',
-                pickUpLocation: '',
-                status: '',
-                note: ''
+               
             },
             alert: false,
             message: '',
             severity: '',
     
-            data: [
-                     { id: 1, reserveId: 'R001',customerID: 'C001',carID: 'CR001',driverId: 'R001', pickUpDate: '2022-07-16', returnDate: '2022-07-17', pickUpLocation: 'Colombo', status: 'Confirmed', note: 'Have a good trip' },
-                     
-                 ],
+            data: [],
 
-            loaded: true,
-
-            // data: [],
-            // loaded: false,
-
-            columns: [
-                
-                {
-                    field: 'reserveId',
-                    headerName: 'Reserve Id',
-                    width: 100,
-                },
-                {
-                    field: 'customerID',
-                    headerName: 'Customer ID',
-                    width: 100,
-                },
-                {
-                    field: 'carID',
-                    headerName: 'Car ID',
-                    width: 100,
-                },
-                {
-                    field: 'driverId',
-                    headerName: 'Driver Id',
-                    width: 80,
-                },
-                {
-                    field: 'pickUpDate',
-                    headerName: 'PickUp Date',
-                    width: 130
-                },
-                {
-                    field: 'returnDate',
-                    headerName: 'Return Date',
-                    width: 130,
-                },
-                {
-                    field: 'pickUpLocation',
-                    headerName: 'Location',
-                    width: 120
-                },
-                {
-                    field: 'status',
-                    headerName: 'Status',
-                    width: 120
-                },
-                {
-                    field: 'note',
-                    headerName: 'Note',
-                    width: 230
-                },
-            ]
         }
+
     }
 
+   
     render(){
         let { classes } = this.props
 
