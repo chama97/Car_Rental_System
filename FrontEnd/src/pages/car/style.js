@@ -18,7 +18,7 @@ export const styleSheet = {
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'column',
-        height: '100vh',
+        height: '200vh',
         width: '20vw',
         alignItems: 'center',
         justifyContent: 'center'
@@ -29,7 +29,7 @@ export const styleSheet = {
        display: 'flex',
        flexWrap: 'wrap',
        flexDirection: 'row',
-       height: '100vh',
+       height: '200vh',
        width: '80vw',
        alignItems: 'center',
        justifyContent: 'center'
@@ -40,7 +40,7 @@ export const styleSheet = {
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'row',
-        height: '9%',
+        height: '4.5%',
         width: '100%',
         justifyContent: 'center'
     },
@@ -50,7 +50,7 @@ export const styleSheet = {
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'column',
-        height: '45.5%',
+        height: '23.5%',
         width: '100%',
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -61,7 +61,7 @@ export const styleSheet = {
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'column',
-        height: '45.5%',
+        height: '72.5%',
         width: '100%',
         alignItems: 'center',
         //justifyContent: 'center',
@@ -84,7 +84,7 @@ export const styleSheet = {
      },
 
      cartable: {
-        height: '95%',
+        height: '98%',
         width: '97%',
         backgroundColor: 'white',
         justifyContent: 'center',

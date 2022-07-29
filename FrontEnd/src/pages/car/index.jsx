@@ -282,7 +282,7 @@ class Car extends Component{
     render(){
         let { classes } = this.props
         return(
-            <Fragment className={classes.container}>
+            <Fragment>
 
                 <div className={classes.container}>
 

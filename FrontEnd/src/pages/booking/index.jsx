@@ -16,8 +16,13 @@ import Button from '@mui/material/Button';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import Autocomplete from '@mui/material/Autocomplete';
 import ReservationService from "../../services/ReservationService";
+import SnackBar from "../../components/SnackBar";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
 
 class Booking extends Component{
 
@@ -26,87 +31,55 @@ class Booking extends Component{
         this.state = {
             formData: {
                 reserveId: 'R002',
-                pickUpDate: new Date() , 
-                returnDate: new Date(),
+                pickUpDate: '', 
+                returnDate: '',
                 pickUpLocation: '',
-                note:'dd',
                 status: 'pending',
-                customerID: {email: 'Customer A', address: 'Address B', number: '123456789'},
-                carID: {carData : this.carData},
-                driverId: 'driverData',
-                rentalData:'rentalData'
-                
-            },
+                customerID: {
+                    email: 'sarath@gmail.com',
+                    password: '1234',
+                    name: 'Sarath',
+                    nic:"",
+                    license:"",
+                    address:"",
+                    contact:"78765678",
+                },
+                carID: {
+                    regId:"CR001",
+                    brand:"",
+                    type:"",
+                    transType:"",
+                    fuelType:"",
+                    noPassengers:"4",
+                    dailyRate:"2000",
+                    monthlyRate:"60000",
+                    freeKmDay:" 100",
+                    priceExKm:" 30",
+                    status:""
+                },
 
-           
-            carData: {
-                regId: 'CR001',
-                brand: '',
-                type: '',
-                transType: '',
-                fuelType: '',
-                noPassengers: '',
-                dailyRate: '',
-                monthlyRate: '',
-                freeKmDay: '',
-                priceExKm: '',
-                status: 'Available'
-            },
-
-            customerData: {
-                email: 'anura@gmail.com',
-                password: '',
-                name: '',
-                nic: '',
-                license: '',
-                address: '',
-                contact: 78765678
-            },
-
-            driverData: {
-                email: 'amal@gmail.com',
-                password: '',
-                name: '',
-                nic: '',
-                license: '',
-                address: '',
-                contact: 783782678
-            },
-
-            rentalData:[
-                {
-                    rentalId:'R002',
-                    rentalCharge:0,
+                driverId:'',
+               
+                rentalDetails:[{
+                    rentalId:"R002",
+                    rentalCharge:13500,
                     damageCharge:0,
                     additionalCharge:0,
-                    duration:0,
-                    totalCharge:0
-                }
-            ],
-
-
+                    duration:5,
+                    totalCharge:13500
+                }] 
+            },
+           
             alert: false,
             message: '',
             severity: '',
-
-            setDriver: [
-                { label: 'Yes' },
-                { label: 'No' },
-            ], 
             
             data: [],
             
         }
-
     }
 
-    handleChange(date) {
-        this.setState({
-            pickUpDate: date
-        })
-      }
-
-      clearFields = () => {
+    clearFields = () => {
         this.setState({
             formData: {
                 reserveId: 'R003',
@@ -124,7 +97,7 @@ class Booking extends Component{
         let formData = this.state.formData;
         let res = await ReservationService.postRes(formData);
 
-        console.log(res)    //print the promise
+        console.log(res)
     
         if (res.status === 201) {
             this.setState({
@@ -142,16 +115,13 @@ class Booking extends Component{
         }
     };
 
-    componentDidMount() {
-        this.loadData();
-    }
 
 
     render(){
         let { classes } = this.props
 
         return(
-            <Fragment className={classes.container}>
+            <Fragment>
                 <div><CustomNavbar /></div>
                 <div className={classes.board}>
                     <div className={classes.profile}>
@@ -187,9 +157,8 @@ class Booking extends Component{
                     <div className={classes.mybook}>
                         <div className={classes.lblprofile}><span>Booking Details</span></div> 
                         <hr className={classes.hr} /> 
-                        <ValidatorForm ref="form" onSubmit={this.submitReservation} onError={errors => console.log(errors)}>
-                                <Grid container style={{padding: '10px'}} spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} >
-                                    
+                        <ValidatorForm ref="form"  onError={errors => console.log(errors)}>
+                                <Grid container style={{padding: '10px'}} spacing={{ xs: 3, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }} >
                                 <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
                                         <TextValidator
                                             id="outlined-basic"
@@ -213,10 +182,10 @@ class Booking extends Component{
                                             variant="outlined"
                                             label="Customer ID"
                                             size="small"
-                                            value={this.state.formData.customerID}
+                                            value={this.state.formData.customerID.email}
                                             onChange={(e) => {
                                                 let formData = this.state.formData
-                                                formData.customerID = e.target.value
+                                                formData.customerID.email = e.target.value
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
@@ -226,45 +195,37 @@ class Booking extends Component{
 
                                     <Grid item lg={6} md={6} sm={6} xm={6} >
                                         <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                        <Stack>
-                                            <DatePicker
-                                                label="PickUp Date"
-                                                value={this.state.formData.pickUpDate}
-                                                // onChange={(e) => {
-                                                //     let formData = this.state.formData
-                                                //     formData.pickUpDate = e.target.value
-                                                //     this.setState({ formData })
-                                                // }}
-                                                onChange={(e) => {  
-                                                    this.setState({pickUpDate: e})
-                                                 }}
-                                                style={{ width: '100%' }}
-                                                validators={['required',]}
-                                                renderInput={(params) => <TextField {...params} />}
-                                            />
-                                        </Stack>
+                                            <Stack spacing={2}>
+                                               <DatePicker
+                                                    views={['day']}
+                                                    label="PickUp Date"
+                                                    value={this.state.formData.pickUpDate}
+                                                    onChange={(newValue) => {
+                                                        let formData = this.state.formData
+                                                        formData.pickUpDate = newValue
+                                                        this.setState({ formData })
+                                                    }}
+                                                    renderInput={(params) => <TextField {...params} helperText={null} />}
+                                                />
+                                            </Stack>
                                         </LocalizationProvider>
                                     </Grid>
 
                                     <Grid item lg={6} md={6} sm={6} xm={6} >
                                         <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                        <Stack >
-                                            <DatePicker
-                                                label="Return Date"
-                                                value={this.state.formData.returnDate}
-                                                // onChange={(e) => {
-                                                //     let formData = this.state.formData
-                                                //     formData.returnDate = e.target.value
-                                                //     this.setState({ returnDate: e })
-                                                // }}
-                                                onChange={(e) => {  
-                                                    this.setState({returnDate: e})
-                                                 }}
-                                                style={{ width: '100%' }}
-                                                validators={['required',]}
-                                                renderInput={(params) => <TextField {...params} />}
-                                            />
-                                        </Stack>
+                                            <Stack spacing={2}>
+                                               <DatePicker
+                                                    views={['day']}
+                                                    label="Return Date"
+                                                    value={this.state.formData.returnDate}
+                                                    onChange={(newValue) => {
+                                                        let formData = this.state.formData
+                                                        formData.returnDate = newValue
+                                                        this.setState({ formData })
+                                                    }}
+                                                    renderInput={(params) => <TextField {...params} helperText={null} />}
+                                                />
+                                            </Stack>
                                         </LocalizationProvider>
                                         
                                     </Grid>
@@ -287,34 +248,48 @@ class Booking extends Component{
                                     </Grid>
 
                                     <Grid item lg={6} md={6} sm={6} xm={6} >
-                                        <Autocomplete
-                                            disablePortal
-                                            id="combo-box-demo"
-                                            options={this.state.setDriver}
-                                            sx={{ width: 300 }}
-                                            renderInput={(params) => <TextField {...params} label="Driver" />}
-                                            // value={this.state.setDriver}
-                                            onChange={(e, value) => {
-                                                let formData = this.state.setDriver
-                                                formData.driverId = e.target.value
-                                                this.setState({ formData })
-                                            }}
-                                            size="small"
-                                            style={{ width: '100%' }}
-                                            
-                                        />
+                                        <FormControl fullWidth>
+                                            <InputLabel id="demo-simple-select-label">Driver</InputLabel>
+                                                <Select
+                                                    labelId="demo-simple-select-label"
+                                                    id="demo-simple-select"
+                                                    value={this.state.formData.driverId}
+                                                    label="Driver"
+                                                    onChange={(e) => {
+                                                        let formData = this.state.formData
+                                                        formData.driverId = e.target.value
+                                                        console.log(formData.driverId)
+                                                        this.setState({ formData })
+                                                    }}
+                                                >
+                                                <MenuItem value={true}>Yes</MenuItem>
+                                                <MenuItem value={false}>No</MenuItem>
+                                            </Select>
+                                        </FormControl>
                                     </Grid>
                                     
                                     <Grid item lg={12} md={12} sm={12} xm={12}  style={{display: 'flex', justifyContent:"flex-end"}}  >
                                         <Stack spacing={1} direction="row">
                                             <Button variant="outlined" color="error">Cancel</Button>
-                                            <Button variant="contained" type="submit">Book</Button>
+                                            <Button variant="contained"  onClick={() => {
+                                                this.submitReservation()
+                                                }} type="submit">Book</Button>
                                             
                                         </Stack>
                                     </Grid>   
                                 </Grid>
                             </ValidatorForm>
                     </div>
+                    <SnackBar
+                    open={this.state.alert}
+                    onClose={() => {
+                        this.setState({ alert: false })
+                    }}
+                    message={this.state.message}
+                    autoHideDuration={3000}
+                    severity={this.state.severity}
+                    variant="filled"
+                />
                         
                 </div>
 

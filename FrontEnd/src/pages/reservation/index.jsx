@@ -27,13 +27,19 @@ class Reservation extends Component{
         this.state = {
             formData: {
                 reserveId: '',
-                customerID: '',
-                carID: '',
-                driverId: '',
-                pickUpDate: '',
+                pickUpDate: '', 
                 returnDate: '',
                 pickUpLocation: '',
                 status: '',
+                customerID: {
+                    email: "",
+                },
+                carID: {
+                    regId: "",
+                },
+
+                driverId:'',
+
             },
             alert: false,
             message: '',
@@ -64,6 +70,12 @@ class Reservation extends Component{
                 severity: 'error'
             });
          }
+    };
+
+    exampleForMap = () => {
+        this.state.data.map((value, index) => {
+            console.log(value)   // access element one by one
+        })
     };
 
     loadData = async () => {
@@ -135,23 +147,13 @@ class Reservation extends Component{
                                         <TableRow>
                                             <TableCell align="left">{row.reserveId}</TableCell>
                                             <TableCell align="left">{row.customerID}</TableCell>
-                                            <TableCell align="left">{row.carID}</TableCell>
+                                            <TableCell align="left">{row.carID.regId}</TableCell>
                                             <TableCell align="left">{row.driverId}</TableCell>
                                             <TableCell align="left">{row.pickUpDate}</TableCell>
                                             <TableCell align="left">{row.returnDate}</TableCell>
                                             <TableCell align="left">{row.pickUpLocation}</TableCell>
                                             <TableCell align="left">{row.status}</TableCell>
                                             <TableCell align="left">
-                                                <Tooltip title="Edit">
-                                                    <IconButton 
-                                                        onClick={() => {
-                                                            console.log("edit icon clicked!")
-                                                            this.updateReservation(row);
-                                                        }}
-                                                    >
-                                                        <EditIcon color="primary" />
-                                                    </IconButton>
-                                                </Tooltip>
                                                 <Tooltip title="Delete">
                                                     <IconButton
                                                         onClick={() => {

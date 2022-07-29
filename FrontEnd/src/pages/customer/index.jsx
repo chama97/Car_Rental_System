@@ -6,7 +6,6 @@ import AdminNavbar from "../../components/adminNavbar";
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import DataTable from "../../components/dataTable";
 import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
@@ -83,12 +82,10 @@ class Customer extends Component{
     }
 
 
-
-
     render(){
         let { classes } = this.props
         return(
-            <Fragment className={classes.container}>
+            <Fragment>
 
                 <div className={classes.container}>
 
@@ -104,15 +101,14 @@ class Customer extends Component{
 
                         <div className={classes.table}>
                             <div className={classes.custable}>  
-                            <div className={classes.lblcustomer}><span>Customers</span></div> 
-                            <hr className={classes.hr} /> 
+                                <div className={classes.lblcustomer}><span>Customers</span></div> 
+                                <hr className={classes.hr} /> 
 
-                            <Stack className={classes.stack} spacing={2} direction="row">
-                                <TextField id="filled-search" label="Search field" type="search" size="small" variant="outlined"/>
-                                <Button variant="outlined">Search</Button>
-                            </Stack>  
+                                <Stack className={classes.stack} spacing={2} direction="row">
+                                    <TextField id="filled-search" label="Search field" type="search" size="small" variant="outlined"/>
+                                    <Button variant="outlined">Search</Button>
+                                </Stack>  
 
-                       
                                 <Grid container style={{ height: '100%', width: '100%', padding: '15px' }}>
                                 <TableContainer component={Paper}>
                                 <Table sx={{ minWidth: 650 }} aria-label="customer table">
@@ -167,9 +163,7 @@ class Customer extends Component{
                 </div>
              
             </Fragment>
-           
         )
-
     }
 }
 

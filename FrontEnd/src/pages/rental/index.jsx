@@ -47,10 +47,13 @@ class Rental extends Component{
         console.log(data)
         this.setState({ 
            formData: {
+            rentalId: data.rentalId,
+            rentalCharge: data.rentalCharge,
             damageCharge: data.damageCharge,
             additionalCharge: data.additionalCharge,
             duration: data.duration,
-            totalCharge: data.totalCharge 
+            totalCharge: data.totalCharge ,
+
            }  
        });
    };
@@ -60,8 +63,7 @@ class Rental extends Component{
            formData: {
             damageCharge: '',
             additionalCharge: '',
-            duration: '',
-            totalCharge: '' 
+            rentalId: '',
            }
        });
    };
@@ -168,12 +170,12 @@ class Rental extends Component{
                                         <TextValidator
                                             id="outlined-basic"
                                             variant="outlined"
-                                            label="Duration"
+                                            label="Rental Id"
                                             size="small"
-                                            value={this.state.formData.duration}
+                                            value={this.state.formData.rentalId}
                                             onChange={(e) => {
                                                 let formData = this.state.formData
-                                                formData.duration = e.target.value
+                                                formData.rentalId = e.target.value
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}

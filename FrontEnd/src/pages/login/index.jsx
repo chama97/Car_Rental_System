@@ -9,6 +9,8 @@ import LockIcon from '@mui/icons-material/Lock';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import Loginlogo from "../../assets/img/login.jpg";
 import SnackBar from "../../components/SnackBar";
+import CustomerService from "../../services/CustomerService";
+import LoginService from "../../services/LoginService";
 // import { Link } from "react-router-dom";
 // import { useNavigate } from 'react-router-dom';
 
@@ -18,41 +20,76 @@ class Login extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            adminName: 'kamal@gmail.com',
-            apw: '1234',
-            userName: 'saman@gmail.com',
-            upw: '1234',
+            adminName: 'admin@gmail.com',
+            password: '1234',
             formData: {
                 email: '',
-                password: ''
+                password: '',
+                role: ''
             },
             open: false,
             message: '',
-            severity: ''
+            severity: '',
+
+            data: [],
             
         }
+
        this.checkLogin = this.checkLogin.bind(this);
     }
 
 
-    checkLogin() {
-        let formData = this.state.formData;
+    isExistsCustomer(id,pw){
+        let x=-1;
+        for(let i=0;i<this.state.data.length;i++){
+            if(this.state.data[i].email === id && this.state.data[i].password === pw) {
+                x = i;
+            }
+        }
+        return x;
+    }
 
-        if (formData.email === this.state.adminName && formData.password === this.state.apw) {   
+
+    loadData = async () => {
+        let res = await CustomerService.fetchCustomer();
+        if (res.status === 200) {
+            this.setState({
+                data: res.data.data,
+            });
+        } else {
+            console.log("fetching error: " + res)
+        }
+    };
+
+   
+    checkLogin= async () =>{
+        let formData = this.state.formData;
+        let index = this.isExistsCustomer(formData.email,formData.password);
+
+        if(index !== -1){      
+            let res = await LoginService.postLogin(formData);
+            if (res.status === 201) {
+                this.setState({
+                    alert: true,
+                    message: 'done',
+                    severity: 'success'
+                });
+                window.location.href = "./custdash"
+            } else {
+                this.setState({
+                    alert: true,
+                    message: 'error try again',
+                    severity: 'error'
+                });
+            }
+    
+        } else if(formData.email === this.state.adminName && formData.password === this.state.password) {
             this.setState({
                 open: true,
                 message: "Admin Login Successes..!",
                 severity: "success",
-          });
-          window.location.href = "./dash"
-    
-        } else if(formData.email === this.state.userName && formData.password === this.state.upw) {
-            this.setState({
-            open: true,
-            message: "User Login Successes..!",
-            severity: "success",
-          });
-           window.location.href = "./custdash"
+            });
+            window.location.href = "./dash"
 
         } else{
             this.setState({
@@ -71,7 +108,7 @@ class Login extends Component{
             <div className={classes.container}>
 
                 <div className={classes.login__image}>
-                    <img src={Loginlogo} height={550} width={550} />
+                    <img src={Loginlogo} height={550} width={550} alt=''/>
                 </div>
                 
                 <div className={classes.login__cover}>
@@ -117,18 +154,18 @@ class Login extends Component{
                                 this.setState({ formData })
                             }}
                         />
+                        <div className={classes.btn__container}>
+                            <button className={classes.buttons}
+                                variant="contained"
+                                label="Login"
+                                // type="submit"
+                                onClick={() => {
+                                    this.checkLogin()
+                                }}
+                            > Login</button>
+                        </div>
                     </div>
-                    <div className={classes.btn__container}>
-       
-                        <button className={classes.buttons}
-                            variant="contained"
-                            label="Login"
-                            onClick={() => {
-                                this.checkLogin()
-                            }}
-                        > Login</button>
-     
-                    </div>
+                    
                 </div>
                 <SnackBar
                     open={this.state.open}
@@ -152,6 +189,5 @@ class Login extends Component{
 
     }
 }
-
 
 export default   withStyles(styleSheet)(Login) 

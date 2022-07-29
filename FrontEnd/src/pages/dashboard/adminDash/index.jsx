@@ -15,7 +15,7 @@ class DashBoard extends Component{
     render(){
         let { classes } = this.props
         return(
-            <Fragment className={classes.container}>
+            <Fragment >
 
                 <div className={classes.container}>
 
@@ -45,13 +45,14 @@ class DashBoard extends Component{
                                 <div className={classes.widgBody}><span>40</span></div>
                                 <div className={classes.widgBottom}><span>View Details</span></div>
                             </div>
+                            
+                        </div>
+                        <div className={classes.bottom}>
                             <div className={classes.widgets}>
                                 <div className={classes.widgTitle}><span>Customers</span></div>
                                 <div className={classes.widgBody}><span>03</span></div>
                                 <div className={classes.widgBottom}><span>View Details</span></div>
                             </div>
-                        </div>
-                        <div className={classes.bottom}>
                             <div className={classes.widgets}>
                                 <div className={classes.widgTitle}><span>Daily Rate</span></div>
                                 <div className={classes.widgBody}><span>10300</span></div>
@@ -62,8 +63,7 @@ class DashBoard extends Component{
                                 <div className={classes.widgBody}><span>309000</span></div>
                                 <div className={classes.widgBottom}><span>View Details</span></div>
                             </div>
-                            <div className={classes.widgetss}></div>
-                            <div className={classes.widgetss}></div>
+                            
                         </div>
 
                     </div>

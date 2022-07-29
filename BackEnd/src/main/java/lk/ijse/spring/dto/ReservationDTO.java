@@ -17,9 +17,8 @@ public class ReservationDTO {
     private String returnDate;
     private String pickUpLocation;
     private String status;
-    private String note;
     private CustomerDTO customerID;
     private CarDTO carID;
-    private DriverDTO driverId;
+    private String driverId;
     List<RentalDetailsDTO> rentalDetails;
 }

@@ -20,7 +20,6 @@ public class Reservation {
     private String returnDate;
     private String pickUpLocation;
     private String status;
-    private String note;
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "customerID",referencedColumnName = "email",nullable = false)

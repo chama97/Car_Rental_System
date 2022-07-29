@@ -58,7 +58,7 @@ export const styleSheet = {
 
      widgets: {
         height: '60%',
-        width: '22%',
+        width: '28%',
         backgroundColor: 'white',
         justifyContent: 'center',
         borderRadius: '10px',
@@ -88,7 +88,7 @@ export const styleSheet = {
 
      widgBody: {
         display: 'flex',
-        height: '50%',
+        height: '52%',
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
@@ -100,7 +100,7 @@ export const styleSheet = {
 
      widgBottom: {
         display: 'flex',
-        height: '25%',
+        height: '23%',
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
