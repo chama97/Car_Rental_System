@@ -159,6 +159,7 @@ class Rental extends Component{
                                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                                             <DatePicker
                                                 label="Pay Date"
+                                                size="small"
                                                 value={this.state.formData.payDate}
                                                 onChange={(newValue) => {
                                                     let formData = this.state.formData

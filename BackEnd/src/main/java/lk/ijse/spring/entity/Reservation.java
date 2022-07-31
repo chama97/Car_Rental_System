@@ -29,9 +29,11 @@ public class Reservation {
     @JoinColumn(name = "carID",referencedColumnName = "regId",nullable = false)
     private Car car;
 
-    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.REFRESH})
-    @JoinColumn(name = "driverId",referencedColumnName = "email")
-    private Driver driver;
+//    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.REFRESH})
+//    @JoinColumn(name = "driverId",referencedColumnName = "email")
+//    private Driver driver;
+
+    private String driverId;
 
     @OneToMany(mappedBy = "reservation",cascade = CascadeType.ALL)
     private List<RentalDetails> rentalDetails;

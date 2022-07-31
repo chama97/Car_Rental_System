@@ -7,7 +7,6 @@ import Grid from '@mui/material/Grid';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import DataTable from "../../components/dataTable";
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import EditIcon from '@mui/icons-material/Edit';
@@ -22,6 +21,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import SnackBar from "../../components/SnackBar";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 
 class Car extends Component{
@@ -42,7 +45,7 @@ class Car extends Component{
                 priceExKm: '',
                 status: ''
             },
-            
+
             alert: false,
             message: '',
             severity: '',
@@ -52,7 +55,6 @@ class Car extends Component{
             btnLabel: 'save',
             btnColor: 'success',
 
-            
         }
     }
 
@@ -141,14 +143,13 @@ class Car extends Component{
     };
 
     
-
     submitCar = async () => {
         let formData = this.state.formData;
 
         if(this.state.btnLabel === "save") {
             let res = await CarService.postCar(formData);
 
-            console.log(res)    //print the promise
+            console.log(res) 
     
             if (res.status === 201) {
                 this.setState({
@@ -247,52 +248,72 @@ class Car extends Component{
                                         />
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} style={{ marginTop:'20px'}} >
-                                        <TextValidator
-                                            id="outlined-basic"
-                                            variant="outlined"
-                                            label="Type"
-                                            size="small"
-                                            value={this.state.formData.type}
-                                            onChange={(e) => {
-                                                let formData = this.state.formData
-                                                formData.type = e.target.value
-                                                this.setState({ formData })
-                                            }}
-                                            style={{ width: '100%' }}
-                                            validators={['required',]}
-                                        />
+                                        <FormControl fullWidth>
+                                            <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                                                <Select
+                                                    labelId="demo-simple-select-label"
+                                                    id="demo-simple-select"
+                                                    label="Type"
+                                                    size="small"
+                                                    value={this.state.formData.type}
+                                                    onChange={(e) => {
+                                                        let formData = this.state.formData
+                                                        formData.type = e.target.value
+                                                        this.setState({ formData })     
+                                                    }}
+                                                    validators={['required',]}
+                                                >
+                                                <MenuItem value={''}></MenuItem>
+                                                <MenuItem value={'General'}>General</MenuItem>
+                                                <MenuItem value={'Premium'}>Premium</MenuItem>
+                                                <MenuItem value={'Luxury'}>Luxury</MenuItem>
+                                            </Select>
+                                        </FormControl>
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} >
-                                        <TextValidator
-                                            id="outlined-basic"
-                                            variant="outlined"
-                                            label="Transmition Type"
-                                            size="small"
-                                            value={this.state.formData.transType}
-                                            onChange={(e) => {
-                                                let formData = this.state.formData
-                                                formData.transType = e.target.value
-                                                this.setState({ formData })
-                                            }}
-                                            style={{ width: '100%' }}
-                                            validators={['required',]}
-                                        />
+                                        <FormControl fullWidth>
+                                            <InputLabel id="demo-simple-select-label">Transmition Type</InputLabel>
+                                                <Select
+                                                    labelId="demo-simple-select-label"
+                                                    id="demo-simple-select"
+                                                    label="Transmition Type"
+                                                    size="small"
+                                                    value={this.state.formData.transType}
+                                                    onChange={(e) => {
+                                                        let formData = this.state.formData
+                                                        formData.transType = e.target.value
+                                                        this.setState({ formData })     
+                                                    }}
+                                                    validators={['required',]}
+                                                >
+                                                <MenuItem value={''}></MenuItem>
+                                                <MenuItem value={'Auto'}>Auto</MenuItem>
+                                                <MenuItem value={'Manual'}>Manual</MenuItem>
+                                            </Select>
+                                        </FormControl>
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} >
-                                        <TextValidator
-                                            id="outlined-basic"
-                                            variant="outlined"
-                                            label="Fuel Type"
-                                            size="small"
-                                            value={this.state.formData.fuelType}
-                                            onChange={(e) => {
-                                                let formData = this.state.formData
-                                                formData.fuelType = e.target.value
-                                                this.setState({ formData })
-                                            }}
-                                            style={{ width: '100%' }}
-                                            validators={['required',]}
-                                        />
+                                        <FormControl fullWidth>
+                                            <InputLabel id="demo-simple-select-label">Fuel Type</InputLabel>
+                                                <Select
+                                                    labelId="demo-simple-select-label"
+                                                    id="demo-simple-select"
+                                                    label="Fuel Type"
+                                                    size="small"
+                                                    value={this.state.formData.fuelType}
+                                                    onChange={(e) => {
+                                                        let formData = this.state.formData
+                                                        formData.fuelType = e.target.value
+                                                        this.setState({ formData })     
+                                                    }}
+                                                    validators={['required',]}
+                                                >
+                                                <MenuItem value={''}></MenuItem>
+                                                <MenuItem value={'Petrol'}>Petrol</MenuItem>
+                                                <MenuItem value={'Diesel'}>Diesel</MenuItem>
+                                                <MenuItem value={'Hybrid'}>Hybrid</MenuItem>
+                                            </Select>
+                                        </FormControl>
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} >
                                         <TextValidator
@@ -375,20 +396,26 @@ class Car extends Component{
                                         />
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} >
-                                    <TextValidator
-                                            id="outlined-basic"
-                                            variant="outlined"
-                                            label="Status"
-                                            size="small"
-                                            value={this.state.formData.status}
-                                            onChange={(e) => {
-                                                let formData = this.state.formData
-                                                formData.status = e.target.value
-                                                this.setState({ formData })
-                                            }}
-                                            style={{ width: '100%' }}
-                                            validators={['required',]}
-                                        />
+                                        <FormControl fullWidth>
+                                            <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                                                <Select
+                                                    labelId="demo-simple-select-label"
+                                                    id="demo-simple-select"
+                                                    label="Status"
+                                                    size="small"
+                                                    value={this.state.formData.status}
+                                                    onChange={(e) => {
+                                                        let formData = this.state.formData
+                                                        formData.status = e.target.value
+                                                        this.setState({ formData })     
+                                                    }}
+                                                    validators={['required',]}
+                                                >
+                                                <MenuItem value={''}></MenuItem>
+                                                <MenuItem value={'Available'}>Available</MenuItem>
+                                                <MenuItem value={'Not Available'}>Not Available</MenuItem>
+                                            </Select>
+                                        </FormControl>
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} style={{display: 'flex'}} justifyContent="flex-end" >
                                         <Stack spacing={2} direction="row">

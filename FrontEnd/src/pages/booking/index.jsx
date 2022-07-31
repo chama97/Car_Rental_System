@@ -63,7 +63,7 @@ class Booking extends Component{
                
                 rentalDetails:[{
                     rentalId:"R002",
-                    rentalCharge:13500,
+                    rentalCharge:'',
                     damageCharge:0,
                     additionalCharge:0,
                     duration:5,
@@ -74,8 +74,7 @@ class Booking extends Component{
             alert: false,
             message: '',
             severity: '',
-            data: []
-            
+            data: [] 
         }
     }
 
@@ -93,9 +92,7 @@ class Booking extends Component{
                 data: res.data.data
             });
         }
-
         console.log(this.state.data)
-
         this.exampleForMap()
     };
 
@@ -280,6 +277,7 @@ class Booking extends Component{
                                                     id="demo-simple-select"
                                                     value={this.state.formData.driverId}
                                                     label="Driver"
+                                                    size="small"
                                                     onChange={(e) => {
                                                         let formData = this.state.formData
                                                         formData.driverId = e.target.value
