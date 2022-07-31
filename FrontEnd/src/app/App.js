@@ -16,6 +16,7 @@ import Generalcar from "../pages/sale/GeneralCars"
 import Luxurycar from "../pages/sale/LuxuryCars"
 import PremiumCar from "../pages/sale/PremiumCars"
 import Booking from "../pages/booking"
+import Report from "../pages/report"
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path='luxurycar' element={<Luxurycar/>}/>
           <Route path='premiumCar' element={<PremiumCar/>}/>
           <Route path='booking' element={<Booking/>}/>
+          <Route path='report' element={<Report/>}/>
       </Routes>
   );
 }

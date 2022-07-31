@@ -129,16 +129,16 @@ class Reservation extends Component{
                                     <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 650 }} aria-label="Reservation table">
                             <TableHead>
-                                <TableRow>
-                                    <TableCell align="left"> Reserv Id</TableCell>
-                                    <TableCell align="left"> Customer Id</TableCell>
-                                    <TableCell align="left"> Car Id</TableCell>
-                                    <TableCell align="left"> Driver Id</TableCell>
-                                    <TableCell align="left"> PickUp Date</TableCell>
-                                    <TableCell align="left"> Return Date</TableCell>
-                                    <TableCell align="left"> PickUp Location</TableCell>
-                                    <TableCell align="left"> Status</TableCell>
-                                    <TableCell align="left">Action</TableCell>
+                                <TableRow style={{backgroundImage: 'linear-gradient(to right top, #777277, #766e7a, #736a7e, #6c6783, #626589)'}}>
+                                    <TableCell align="left" style={{color:'white'}}> Reserv Id</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Customer Id</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Car Id</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Driver Id</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> PickUp Date</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Return Date</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> PickUp Location</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Status</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}>Action</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>

@@ -276,12 +276,12 @@ class Schedule extends Component{
                                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} aria-label="customer table">
                             <TableHead>
-                                <TableRow>
-                                    <TableCell align="left"> Id</TableCell>
-                                    <TableCell align="left"> Start Date</TableCell>
-                                    <TableCell align="left"> End Date</TableCell>
-                                    <TableCell align="left"> Driver Email</TableCell>
-                                    <TableCell align="left">Action</TableCell>
+                                <TableRow style={{backgroundImage: 'linear-gradient(to right top, #777277, #766e7a, #736a7e, #6c6783, #626589)'}}>
+                                    <TableCell align="left" style={{color:'white'}}> Id</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Start Date</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> End Date</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Driver Email</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}>Action</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>

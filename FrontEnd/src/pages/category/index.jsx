@@ -321,14 +321,14 @@ class Category extends Component{
                                 <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 650 }} aria-label="Category table">
                             <TableHead>
-                                <TableRow>
-                                    <TableCell align="left"> Car Id</TableCell>
-                                    <TableCell align="left"> Description</TableCell>
-                                    <TableCell align="left"> FrontView</TableCell>
-                                    <TableCell align="left"> BackView</TableCell>
-                                    <TableCell align="left"> SideView</TableCell>
-                                    <TableCell align="left"> InteriorView</TableCell>
-                                    <TableCell align="left">Action</TableCell>
+                                <TableRow style={{backgroundImage: 'linear-gradient(to right top, #777277, #766e7a, #736a7e, #6c6783, #626589)'}}>
+                                    <TableCell align="left" style={{color:'white'}}> Car Id</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Description</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> FrontView</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> BackView</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> SideView</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> InteriorView</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}>Action</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>

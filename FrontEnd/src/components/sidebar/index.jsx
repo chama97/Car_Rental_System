@@ -13,6 +13,7 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CycloneIcon from '@mui/icons-material/Cyclone';
 import HomeIcon from '@mui/icons-material/Home';
+import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 
 
 class Sidebar extends Component{
@@ -75,6 +76,12 @@ class Sidebar extends Component{
                             <li className={classes.li}>
                                 <CarRentalIcon className={classes.icon} />
                                 <span className={classes.span}>Rental</span>
+                            </li>
+                        </Link>
+                        <Link to="/report" style={{ textDecoration: "none" }}>
+                            <li className={classes.li}>
+                                <BarChartOutlinedIcon className={classes.icon} />
+                                <span className={classes.span}>Reports</span>
                             </li>
                         </Link>
 

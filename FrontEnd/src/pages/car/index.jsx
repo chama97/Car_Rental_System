@@ -40,8 +40,9 @@ class Car extends Component{
                 monthlyRate: '',
                 freeKmDay: '',
                 priceExKm: '',
-                status: 'Available'
+                status: ''
             },
+            
             alert: false,
             message: '',
             severity: '',
@@ -51,95 +52,7 @@ class Car extends Component{
             btnLabel: 'save',
             btnColor: 'success',
 
-            // columns: [
-            //     {
-            //         field: 'regId',
-            //         headerName: 'reg Id',
-            //         width: 70
-            //     },
-            //     {
-            //         field: 'brand',
-            //         headerName: 'Brand',
-            //         width: 200
-            //     },
-            //     {
-            //         field: 'type',
-            //         headerName: 'Car type',
-            //         width: 130,
-            //         //sortable: false
-            //     },
-            //     {
-            //         field: 'transType',
-            //         headerName: 'Transmition',
-            //         width: 100
-            //     },
-            //     {
-            //         field: 'fuelType',
-            //         headerName: 'Fuel Type',
-            //         width: 100
-            //     },
-            //     {
-            //         field: 'noPassengers',
-            //         headerName: 'Passengers',
-            //         width: 100
-            //     },
-            //     {
-            //         field: 'dailyRate',
-            //         headerName: 'DailyRate',
-            //         width: 100
-            //     },
-            //     {
-            //         field: 'monthlyRate',
-            //         headerName: 'MonthlyRate',
-            //         width: 100
-            //     },
-            //     {
-            //         field: 'freeKmDay',
-            //         headerName: 'FreeKm Day',
-            //         width: 100
-            //     },
-            //     {
-            //         field: 'priceExKm',
-            //         headerName: 'Price/ExKm',
-            //         width: 110
-            //     },
-            //     {
-            //         field: 'status',
-            //         headerName: 'Status',
-            //         width: 120
-            //     },
-                // {
-                //     field: "action",
-                //     headerName: "Action",
-                //     width: 120,
-                //     renderCell: (params) => {
-                //       return (
-                //         <div>
-                //         <Tooltip title="Edit">
-                //             <IconButton 
-                //                 onClick={() => {
-                //                     console.log("edit icon clicked!")
-                //                     this.updateDriver(params.row);
-                //                 }}
-                //                 >
-                //                 <EditIcon color="primary" />
-                //             </IconButton>
-                //         </Tooltip>
-                //         <Tooltip title="Delete">
-                //             <IconButton
-                //                 onClick={() => {
-                //                     console.log("edit icon clicked!")
-                //                     this.deleteDriver(params.row.id)
-                //                 }}
-                //                 >
-                //                 <DeleteIcon color="error" />
-                //             </IconButton>
-                //         </Tooltip>
-                //         </div>
-                //       );
-                //     },
-                // },
-            // ]
+            
         }
     }
 
@@ -201,7 +114,7 @@ class Car extends Component{
                 monthlyRate: '',
                 freeKmDay: '',
                 priceExKm: '',
-                status: ''
+                status:''
             }
         });
     };
@@ -462,6 +375,20 @@ class Car extends Component{
                                         />
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} >
+                                    <TextValidator
+                                            id="outlined-basic"
+                                            variant="outlined"
+                                            label="Status"
+                                            size="small"
+                                            value={this.state.formData.status}
+                                            onChange={(e) => {
+                                                let formData = this.state.formData
+                                                formData.status = e.target.value
+                                                this.setState({ formData })
+                                            }}
+                                            style={{ width: '100%' }}
+                                            validators={['required',]}
+                                        />
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} style={{display: 'flex'}} justifyContent="flex-end" >
                                         <Stack spacing={2} direction="row">
@@ -478,22 +405,22 @@ class Car extends Component{
                             <div className={classes.cartable}>          
                        
                             <Grid container style={{ height: '100%', width: '100%', padding: '5px' }}>
-                            <TableContainer component={Paper}>
+                            <TableContainer component={Paper} sx={{maxHeight:'100%'}}>
                             <Table sx={{ minWidth: 650 }} aria-label="customer table">
                             <TableHead>
-                                <TableRow>
-                                    <TableCell align="left"> RegId</TableCell>
-                                    <TableCell align="left"> Brand</TableCell>
-                                    <TableCell align="left"> Type</TableCell>
-                                    <TableCell align="left"> TransType</TableCell>
-                                    <TableCell align="left"> FuelType</TableCell>
-                                    <TableCell align="left"> NoPassengers</TableCell>
-                                    <TableCell align="left"> DailyRate</TableCell>
-                                    <TableCell align="left"> MonthlyRate</TableCell>
-                                    <TableCell align="left"> FreeKmDay</TableCell>
-                                    <TableCell align="left"> PriceExKm</TableCell>
-                                    <TableCell align="left"> Status</TableCell>
-                                    <TableCell align="left">Action</TableCell>
+                                <TableRow style={{backgroundImage: 'linear-gradient(to right top, #777277, #766e7a, #736a7e, #6c6783, #626589)'}}>
+                                    <TableCell align="left" style={{color:'white'}}> RegId</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Brand</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Type</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> TransType</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> FuelType</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Passengers</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> DailyRate</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> MonthlyRate</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> FreeKmDay</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> PriceExKm</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Status</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}>Action</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -548,15 +475,15 @@ class Car extends Component{
                     </div>
 
                     <SnackBar
-                    open={this.state.alert}
-                    onClose={() => {
-                        this.setState({ open: false })
-                    }}
-                    message={this.state.message}
-                    autoHideDuration={3000}
-                    severity={this.state.severity}
-                    variant="filled"
-                />
+                        open={this.state.alert}
+                        onClose={() => {
+                            this.setState({ open: false })
+                        }}
+                        message={this.state.message}
+                        autoHideDuration={3000}
+                        severity={this.state.severity}
+                        variant="filled"
+                    />
                     
                 </div>
              

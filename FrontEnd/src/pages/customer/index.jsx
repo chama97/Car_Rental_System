@@ -113,15 +113,15 @@ class Customer extends Component{
                                 <TableContainer component={Paper}>
                                 <Table sx={{ minWidth: 650 }} aria-label="customer table">
                                 <TableHead>
-                                <TableRow>
-                                    <TableCell align="left"> Email</TableCell>
-                                    <TableCell align="left"> Password</TableCell>
-                                    <TableCell align="left"> Name</TableCell>
-                                    <TableCell align="left"> NIC</TableCell>
-                                    <TableCell align="left"> License</TableCell>
-                                    <TableCell align="left"> Address</TableCell>
-                                    <TableCell align="left"> Contact</TableCell>
-                                    <TableCell align="left">Action</TableCell>
+                                <TableRow style={{backgroundImage: 'linear-gradient(to right top, #777277, #766e7a, #736a7e, #6c6783, #626589)'}}>
+                                    <TableCell align="left" style={{color:'white'}}> Email</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Password</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Name</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> NIC</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> License</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Address</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Contact</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}>Action</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>

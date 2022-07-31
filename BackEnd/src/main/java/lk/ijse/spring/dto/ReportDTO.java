@@ -11,6 +11,7 @@ import lombok.ToString;
 @ToString
 public class ReportDTO {
     private String rentalId;
+    private String payDate;
     private double rentalCharge;
     private double damageCharge;
     private double additionalCharge;
