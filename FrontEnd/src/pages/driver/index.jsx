@@ -47,6 +47,17 @@ class Driver extends Component{
         }
     }
 
+    loadData = async () => {
+        let res = await DriverService.fetchLogin();
+        if (res.status === 200) {
+            this.setState({
+                data: res.data.data,
+            });
+        } else {
+            console.log("fetching error: " + res)
+        }
+    };
+
     deleteDriver = async (email) => {
         let params = {
             email: email

@@ -13,6 +13,7 @@ import CustomerService from "../../services/CustomerService";
 import LoginService from "../../services/LoginService";
 // import { Link } from "react-router-dom";
 // import { useNavigate } from 'react-router-dom';
+import CustomNavbar from "../../components/customNavbar";
 
 
 class Login extends Component{
@@ -36,6 +37,7 @@ class Login extends Component{
         }
 
        this.checkLogin = this.checkLogin.bind(this);
+  
     }
 
 
@@ -61,6 +63,10 @@ class Login extends Component{
         }
     };
 
+    componentDidMount() {
+        this.loadData();
+    }
+
    
     checkLogin= async () =>{
         let formData = this.state.formData;
@@ -74,6 +80,7 @@ class Login extends Component{
                     message: 'done',
                     severity: 'success'
                 });
+                
                 window.location.href = "./custdash"
             } else {
                 this.setState({

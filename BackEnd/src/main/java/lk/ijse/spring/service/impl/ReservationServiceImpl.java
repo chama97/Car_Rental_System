@@ -4,6 +4,7 @@ import lk.ijse.spring.dto.ReservationDTO;
 import lk.ijse.spring.entity.Car;
 import lk.ijse.spring.entity.Reservation;
 import lk.ijse.spring.repo.CarRepo;
+import lk.ijse.spring.repo.CustomerRepo;
 import lk.ijse.spring.repo.ReservationRepo;
 import lk.ijse.spring.service.ReservationService;
 import org.modelmapper.ModelMapper;
@@ -23,6 +24,11 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Autowired
     private CarRepo carRepo;
+
+
+    @Autowired
+    private CustomerRepo customerRepo;
+
 
     @Autowired
     private ModelMapper mapper;

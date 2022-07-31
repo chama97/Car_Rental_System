@@ -7,15 +7,65 @@ import Typography from '@mui/material/Typography';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
+import LoginService from "../../services/LoginService";
 
 
 class CustomNavbar extends Component{
 
     constructor(props) {
         super(props);
+        this.state = {
+
+          open: false,
+          message: '',
+          severity: '',
+
+          data: [],
+          
+      }
+      this.LogOutAction = this.LogOutAction.bind(this);
     }
 
+    
+    loadData = async () => {
+      let res = await LoginService.fetchLogin();
+      if (res.status === 200) {
+          this.setState({
+              data: res.data.data,
+          });
+      } else {
+          console.log("fetching error: " + res)
+      }
+    };
+
+    componentDidMount() {
+      this.loadData();
+    }
+
+    LogOutAction= async (email) =>{
+      let params = {
+        email: email
+      }
+      let res = await LoginService.deleteLogin(params);
+        if (res.status === 200) {
+              this.setState({
+                  alert: true,
+                  message: 'done',
+                  severity: 'success'
+              });
+              window.location.href = "./"
+        } else {
+              this.setState({
+                  alert: true,
+                  message: 'error try again',
+                  severity: 'error'
+              });
+        }
+    }
+
+
     render(){
+      // const {data} = this.props.location
   
       return (
         <Box sx={{ flexGrow: 1 }}>
@@ -31,8 +81,11 @@ class CustomNavbar extends Component{
                 <AccountCircle />
               </IconButton>
               <Typography variant="h5" component="div" sx={{ flexGrow: 1, fontFamily: 'monospace',fontWeight: 700,letterSpacing: '.1rem', }}>
-                Easy Car Rental
+                Easy Car Rental 
+                
               </Typography> 
+              {/* <h1>{this.props.email}</h1> */}
+             
 
               <Link to="/custdash" style={{ color:'white', textDecoration: "none"}} >
                 <Button color="inherit">DashBoard</Button>
@@ -42,9 +95,15 @@ class CustomNavbar extends Component{
                 <Button color="inherit">Cars</Button>
               </Link>
 
-              <Link to="/" style={{ color:'white', textDecoration: "none"}}>
-                <Button color="inherit">LogOut</Button>
-              </Link>
+             
+              <Button
+                color="inherit"
+                onClick={() => {
+                  this.LogOutAction(this.state.data[0].email)
+                }}
+                >LogOut
+              </Button>
+             
             </Toolbar>
           </AppBar>
         </Box>

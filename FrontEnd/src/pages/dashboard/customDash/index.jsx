@@ -23,23 +23,23 @@ class CustomDash extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            formData: {
-                reserveId: '',
-                pickUpDate: '', 
-                returnDate: '',
-                pickUpLocation: '',
-                status: '',
-                customerID: {
-                    email: "",
-                },
-                carID: {
-                    regId: "",
-                },
+            // formData: {
+            //     reserveId: '',
+            //     pickUpDate: '', 
+            //     returnDate: '',
+            //     pickUpLocation: '',
+            //     status: '',
+            //     customerID: {
+            //         email: "",
+            //     },
+            //     carID: {
+            //         regId: "",
+            //     },
 
-                driverId:'',
+            //     driverId:'',
 
                
-            },
+            // },
             alert: false,
             message: '',
             severity: '',
@@ -184,8 +184,8 @@ class CustomDash extends Component{
                                     this.state.data.map((row) => (
                                         <TableRow>
                                             <TableCell align="left">{row.reserveId}</TableCell>
-                                            <TableCell align="left">{row.customerID}</TableCell>
-                                            <TableCell align="left">{row.carID.regId}</TableCell>
+                                            <TableCell align="left">{row.customer.email}</TableCell>
+                                            <TableCell align="left">{row.car.regId}</TableCell>
                                             <TableCell align="left">{row.driverId}</TableCell>
                                             <TableCell align="left">{row.pickUpDate}</TableCell>
                                             <TableCell align="left">{row.returnDate}</TableCell>

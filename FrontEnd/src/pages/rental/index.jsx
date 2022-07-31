@@ -20,6 +20,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import RentalService from "../../services/RentalService";
+import ReservationService from "../../services/ReservationService";
 
 class Rental extends Component{
 
@@ -28,11 +29,10 @@ class Rental extends Component{
         this.state = {
             formData: {
                 rentalId: '',
-                rentalCharge: '',
-                damageCharge: '',
-                additionalCharge: '',
-                duration: '',
-                totalCharge: '' 
+                rentalCharge: 0,
+                damageCharge: 0,
+                additionalCharge: 0,
+                totalCharge: 0 
             },
             alert: false,
             message: '',
@@ -46,14 +46,12 @@ class Rental extends Component{
     updateRental = (data) => {
         console.log(data)
         this.setState({ 
-           formData: {
-            rentalId: data.rentalId,
-            rentalCharge: data.rentalCharge,
-            damageCharge: data.damageCharge,
-            additionalCharge: data.additionalCharge,
-            duration: data.duration,
-            totalCharge: data.totalCharge ,
-
+            formData: {
+                rentalId: data.rentalId,
+                rentalCharge: data.rentalCharge,
+                damageCharge: data.damageCharge,
+                additionalCharge: data.additionalCharge,
+                totalCharge: data.totalCharge ,
            }  
        });
    };
@@ -85,7 +83,7 @@ class Rental extends Component{
 
     submitRental = async () => {
         let formData = this.state.formData;
-        let res = await RentalService.putRent(formData);
+        let res = await ReservationService.putRes(formData);
         if(res.status === 200) {
             this.setState({
                 alert: true,
@@ -107,11 +105,26 @@ class Rental extends Component{
         this.loadData();
     }
 
+    calculateTotal() {
+        console.log("calculate function calling");
+       
+        this.setState({
+            formData: {
+                rentalId: this.state.formData.rentalId,
+                rentalCharge: this.state.formData.rentalCharge,
+                totalCharge : (+this.state.formData.totalCharge) + (+this.state.formData.additionalCharge) + (+this.state.formData.damageCharge),
+                additionalCharge: this.state.formData.additionalCharge,
+                damageCharge: this.state.formData.damageCharge
+            }
+        });
+    }
+
    
     render(){
         let { classes } = this.props
+        const totalCharge = 0;
         return(
-            <Fragment className={classes.container}>
+            <Fragment>
 
                 <div className={classes.container}>
 
@@ -134,39 +147,7 @@ class Rental extends Component{
 
                             <ValidatorForm ref="form" onSubmit={this.submitRental} onError={errors => console.log(errors)}>
                                 <Grid container className={classes.gridss} spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} >
-                                    <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
-                                        <TextValidator
-                                            id="outlined-basic"
-                                            variant="outlined"
-                                            label="Damage Charge"
-                                            size="small"
-                                            value={this.state.formData.damageCharge}
-                                            onChange={(e) => {
-                                                let formData = this.state.formData
-                                                formData.damageCharge = e.target.value
-                                                this.setState({ formData })
-                                            }}
-                                            style={{ width: '100%' }}
-                                            validators={['required',]}
-                                        />
-                                    </Grid>
-                                    <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
-                                        <TextValidator
-                                            id="outlined-basic"
-                                            variant="outlined"
-                                            label="Additional Charge"
-                                            size="small"
-                                            value={this.state.formData.additionalCharge}
-                                            onChange={(e) => {
-                                                let formData = this.state.formData
-                                                formData.additionalCharge = e.target.value
-                                                this.setState({ formData })
-                                            }}
-                                            style={{ width: '100%' }}
-                                            validators={['required',]}
-                                        />
-                                    </Grid>
-                                    <Grid item lg={6} md={6} sm={6} xm={6} >
+                                    <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'10px'}} >
                                         <TextValidator
                                             id="outlined-basic"
                                             variant="outlined"
@@ -182,13 +163,85 @@ class Rental extends Component{
                                             validators={['required',]}
                                         />
                                     </Grid>
+
+                                    <Grid item lg={6} md={6} sm={6} xm={6} style={{ marginTop:'10px'}}   >
+                                        <TextValidator
+                                            id="outlined-basic"
+                                            variant="outlined"
+                                            label="Rental Charge"
+                                            size="small"
+                                            value={this.state.formData.rentalCharge}
+                                            onChange={(e) => {
+                                                let formData = this.state.formData
+                                                formData.rentalCharge = e.target.value
+                                                this.setState({ formData })
+                                            }}
+                                            style={{ width: '100%' }}
+                                            validators={['required',]}
+                                        />
+                                    </Grid>   
+
+                                    <Grid item lg={6} md={6} sm={6} xm={6}  >
+                                        <TextValidator
+                                            id="outlined-basic"
+                                            variant="outlined"
+                                            label="Additional Charge"
+                                            size="small"
+                                            value={this.state.formData.additionalCharge}
+                                            onChange={(e) => {
+                                                let formData = this.state.formData
+                                                formData.additionalCharge = e.target.value
+                                                this.setState({ formData })
+                                            }}
+                                            style={{ width: '100%' }}
+                                            validators={['required',]}
+                                        />
+                                    </Grid>
+
+                                    <Grid item lg={6} md={6} sm={6} xm={6} >
+                                        <TextValidator
+                                            id="outlined-basic"
+                                            variant="outlined"
+                                            label="Damage Charge"
+                                            size="small"
+                                            value={this.state.formData.damageCharge}
+                                            onChange={(e) => {
+                                                let formData = this.state.formData
+                                                formData.damageCharge = e.target.value
+                                                this.setState({ formData })
+                                            }}
+                                            style={{ width: '100%' }}
+                                            validators={['required',]}
+                                        />
+                                    </Grid>
+
+                                    <Grid item lg={6} md={6} sm={6} xm={6} >
+                                        <TextValidator
+                                            id="outlined-basic"
+                                            variant="outlined"
+                                            label="Total Charge"
+                                            size="small"
+                                            value={this.state.formData.totalCharge}
+                                            onChange={(e) => {
+                                                let formData = this.state.formData
+                                                formData.totalCharge = e.target.value
+                                                this.setState({ formData })
+                                            }}
+                                            style={{ width: '100%' }}
+                                            validators={['required',]}
+                                        />
+                                    </Grid>
                                     
                                     <Grid item lg={6} md={6} sm={6} xm={6}  style={{display: 'flex', justifyContent:"flex-end"}}  >
                                         <Stack spacing={1} direction="row">
-                                            <TextField id="filled-search" label="Search field" type="search" size="small" variant="outlined"/>
-                                            <Button variant="outlined">Search</Button>
+                                            <Button variant="outlined"
+                                                onClick={() => {
+                                                    console.log('Calculate button clicked!')
+                                                    this.calculateTotal()
+                                                }}>Calculate
+                                            </Button>
                                             <Button variant="outlined" color="error">Cancel</Button>
-                                            <Button variant="contained" type="submit">Update</Button>
+                                            <Button variant="contained" type="submit">Pay</Button>
                                             
                                         </Stack>
                                     </Grid>   
@@ -206,8 +259,8 @@ class Rental extends Component{
                                 <TableRow>
                                     <TableCell align="left"> Rental Id</TableCell>
                                     <TableCell align="left"> Rental Charge</TableCell>
-                                    <TableCell align="left"> Damage Charge</TableCell>
-                                    <TableCell align="left"> Additional Charge</TableCell>
+                                    {/* <TableCell align="left"> Damage Charge</TableCell> */}
+                                    {/* <TableCell align="left"> Additional Charge</TableCell> */}
                                     <TableCell align="left"> Duration</TableCell>
                                     <TableCell align="left"> Total Charge</TableCell>
                                     <TableCell align="left">Action</TableCell>
@@ -219,8 +272,8 @@ class Rental extends Component{
                                         <TableRow>
                                             <TableCell align="left">{row.rentalId}</TableCell>
                                             <TableCell align="left">{row.rentalCharge}</TableCell>
-                                            <TableCell align="left">{row.damageCharge}</TableCell>
-                                            <TableCell align="left">{row.additionalCharge}</TableCell>
+                                            {/* <TableCell align="left">{row.damageCharge}</TableCell> */}
+                                            {/* <TableCell align="left">{row.additionalCharge}</TableCell> */}
                                             <TableCell align="left">{row.duration}</TableCell>
                                             <TableCell align="left">{row.totalCharge}</TableCell>
                                             <TableCell align="left">

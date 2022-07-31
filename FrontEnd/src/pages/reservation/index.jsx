@@ -85,10 +85,10 @@ class Reservation extends Component{
             this.setState({
                 data: res.data.data
             });
-        } else {
-            console.log("fetching error: " + res)
-        }
-
+        } 
+            
+        console.log(res.data.data)
+     
         this.exampleForMap()
     };
 
@@ -146,8 +146,8 @@ class Reservation extends Component{
                                     this.state.data.map((row) => (
                                         <TableRow>
                                             <TableCell align="left">{row.reserveId}</TableCell>
-                                            <TableCell align="left">{row.customerID}</TableCell>
-                                            <TableCell align="left">{row.carID.regId}</TableCell>
+                                            <TableCell align="left">{row.customer.email}</TableCell>
+                                            <TableCell align="left">{row.car.regId}</TableCell>
                                             <TableCell align="left">{row.driverId}</TableCell>
                                             <TableCell align="left">{row.pickUpDate}</TableCell>
                                             <TableCell align="left">{row.returnDate}</TableCell>

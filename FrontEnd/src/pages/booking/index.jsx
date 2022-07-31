@@ -22,6 +22,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import CustomerService from "../../services/CustomerService";
 
 
 class Booking extends Component{
@@ -35,26 +36,26 @@ class Booking extends Component{
                 returnDate: '',
                 pickUpLocation: '',
                 status: 'pending',
-                customerID: {
-                    email: 'sarath@gmail.com',
-                    password: '1234',
-                    name: 'Sarath',
+                customer: {
+                    email: "sarath@gmail.com",
+                    password: "",
+                    name: "",
                     nic:"",
                     license:"",
                     address:"",
-                    contact:"78765678",
+                    contact:"",
                 },
-                carID: {
+                car: {
                     regId:"CR001",
                     brand:"",
                     type:"",
                     transType:"",
                     fuelType:"",
-                    noPassengers:"4",
-                    dailyRate:"2000",
-                    monthlyRate:"60000",
-                    freeKmDay:" 100",
-                    priceExKm:" 30",
+                    noPassengers:"",
+                    dailyRate:"",
+                    monthlyRate:"",
+                    freeKmDay:"",
+                    priceExKm:"",
                     status:""
                 },
 
@@ -73,17 +74,41 @@ class Booking extends Component{
             alert: false,
             message: '',
             severity: '',
-            
-            data: [],
+            data: []
             
         }
+    }
+
+    exampleForMap = () => {
+        this.state.data.map((value, index) => {
+            console.log(value)  
+        })
+    };
+
+    loadData = async () => {
+        let res = await CustomerService.fetchCustomer(); 
+
+        if (res.status === 200) {
+            this.setState({
+                data: res.data.data
+            });
+        }
+
+        console.log(this.state.data)
+
+        this.exampleForMap()
+    };
+
+    
+    componentDidMount() {
+        this.loadData();
     }
 
     clearFields = () => {
         this.setState({
             formData: {
                 reserveId: 'R003',
-                customerID: '',
+                customerID: "sarath@gmail.com",
                 carID: 'CR001',
                 driverId: '',
                 pickUpDate:  '', 
@@ -182,12 +207,12 @@ class Booking extends Component{
                                             variant="outlined"
                                             label="Customer ID"
                                             size="small"
-                                            value={this.state.formData.customerID.email}
-                                            onChange={(e) => {
-                                                let formData = this.state.formData
-                                                formData.customerID.email = e.target.value
-                                                this.setState({ formData })
-                                            }}
+                                           // value={this.state.formData.customerID.email}
+                                            // onChange={(e) => {
+                                            //     let formData = this.state.formData
+                                            //     formData.customerID.email = e.target.value
+                                            //     this.setState({ formData })
+                                            // }}
                                             style={{ width: '100%' }}
                                             validators={['required',]}
                                         />
