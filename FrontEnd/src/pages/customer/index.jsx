@@ -110,7 +110,7 @@ class Customer extends Component{
                                 </Stack>  
 
                                 <Grid container style={{ height: '100%', width: '100%', padding: '15px' }}>
-                                <TableContainer component={Paper}>
+                                <TableContainer component={Paper} sx={{maxHeight:'100%'}}>
                                 <Table sx={{ minWidth: 650 }} aria-label="customer table">
                                 <TableHead>
                                 <TableRow style={{backgroundImage: 'linear-gradient(to right top, #777277, #766e7a, #736a7e, #6c6783, #626589)'}}>

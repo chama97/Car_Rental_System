@@ -46,7 +46,7 @@ public class ReservationServiceImpl implements ReservationService {
     public void saveReservation(ReservationDTO dto) {
         Reservation reserve = mapper.map(dto, Reservation.class);
         if (reservationRepo.existsById(dto.getReserveId())) {
-            reserve.setStatus("Success");
+//            reserve.setStatus("Success");
             reservationRepo.save(reserve);
 
             Car car = carRepo.findById(reserve.getCar().getRegId()).get();
@@ -93,5 +93,16 @@ public class ReservationServiceImpl implements ReservationService {
         } else {
             throw new RuntimeException("Search Reservation Failed..!, Reserve ID " + reserveId + " Not Exist.!");
         }
+    }
+
+    @Override
+    public String generateReservationID() {
+        Reservation top = reservationRepo.findTopByOrderByReserveIdDesc();
+        if(top!=null){
+            Integer index = Integer.parseInt(top.getReserveId().split("-")[1]);
+            ++index;
+            return index<10 ? "R-00"+index : index<100 ? "R-0"+index :"R-"+index;
+        }
+        return "R-001";
     }
 }

@@ -19,4 +19,6 @@ public interface ReservationService {
     void updateReservation(ReservationDTO dto);
 
     ReservationDTO searchReservation(String reserveId);
+
+    String generateReservationID();
 }

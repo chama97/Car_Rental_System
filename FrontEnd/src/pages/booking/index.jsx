@@ -9,7 +9,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, Input } from '@mui/material';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -31,13 +31,13 @@ class Booking extends Component{
         super(props);
         this.state = {
             formData: {
-                reserveId: 'R002',
+                reserveId: '',
                 pickUpDate: '', 
                 returnDate: '',
                 pickUpLocation: '',
-                status: 'pending',
+                status: '',
                 customer: {
-                    email: "sarath@gmail.com",
+                    email: "",
                     password: "",
                     name: "",
                     nic:"",
@@ -46,7 +46,7 @@ class Booking extends Component{
                     contact:"",
                 },
                 car: {
-                    regId:"CR001",
+                    regId:"",
                     brand:"",
                     type:"",
                     transType:"",
@@ -62,12 +62,12 @@ class Booking extends Component{
                 driverId:'',
                
                 rentalDetails:[{
-                    rentalId:"R002",
+                    rentalId:"",
                     rentalCharge:'',
                     damageCharge:0,
                     additionalCharge:0,
-                    duration:5,
-                    totalCharge:13500
+                    duration:'',
+                    totalCharge:0
                 }] 
             },
            
@@ -84,12 +84,22 @@ class Booking extends Component{
         })
     };
 
-    loadData = async () => {
-        let res = await CustomerService.fetchCustomer(); 
 
+    loadIdData = async () => {
+        let res = await ReservationService.fetchResId(); 
         if (res.status === 200) {
             this.setState({
-                data: res.data.data
+                formData: {
+                    reserveId: res.data.data,
+                    status: 'pending',
+                    customer: { email : 'sarath@gmail.com'},
+                    car: { regId: 'CR002'},
+                    rentalDetails:  [{ rentalId: res.data.data,
+                                       rentalCharge: 2500,
+                                       duration: 5,
+                                       additionalCharge: 0.0
+                                    }]
+                }
             });
         }
         console.log(this.state.data)
@@ -98,13 +108,13 @@ class Booking extends Component{
 
     
     componentDidMount() {
-        this.loadData();
+        this.loadIdData()
     }
 
     clearFields = () => {
         this.setState({
             formData: {
-                reserveId: 'R003',
+                reserveId: '',
                 customerID: "sarath@gmail.com",
                 carID: 'CR001',
                 driverId: '',
@@ -182,6 +192,7 @@ class Booking extends Component{
                         <ValidatorForm ref="form"  onError={errors => console.log(errors)}>
                                 <Grid container style={{padding: '10px'}} spacing={{ xs: 3, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }} >
                                 <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
+                                <Stack spacing={1} direction="row">
                                         <TextValidator
                                             id="outlined-basic"
                                             variant="outlined"
@@ -196,6 +207,11 @@ class Booking extends Component{
                                             style={{ width: '100%' }}
                                             validators={['required',]}
                                         />
+                                        {/* <Button variant="outlined"  onClick={() => {
+                                                this.loadIdData()
+                                                }}>+
+                                        </Button> */}
+                                        </Stack>
                                     </Grid>
 
                                     <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
@@ -216,7 +232,7 @@ class Booking extends Component{
                                     </Grid>
 
                                     <Grid item lg={6} md={6} sm={6} xm={6} >
-                                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                        {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
                                             <Stack spacing={2}>
                                                <DatePicker
                                                     views={['day']}
@@ -230,11 +246,26 @@ class Booking extends Component{
                                                     renderInput={(params) => <TextField {...params} helperText={null} />}
                                                 />
                                             </Stack>
-                                        </LocalizationProvider>
+                                        </LocalizationProvider> */}
+                                        <TextValidator
+                                            id="outlined-basic"
+                                            variant="outlined"
+                                            label="PickUp Date"
+                                            size="small"
+                                            type="date"
+                                            value={this.state.formData.pickUpDate}
+                                            onChange={(e) => {
+                                                let formData = this.state.formData
+                                                formData.pickUpDate = e.target.value
+                                                this.setState({ formData })
+                                            }}
+                                            style={{ width: '100%' }}
+                                            validators={['required',]}
+                                        />
                                     </Grid>
 
                                     <Grid item lg={6} md={6} sm={6} xm={6} >
-                                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                        {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
                                             <Stack spacing={2}>
                                                <DatePicker
                                                     views={['day']}
@@ -248,8 +279,22 @@ class Booking extends Component{
                                                     renderInput={(params) => <TextField {...params} helperText={null} />}
                                                 />
                                             </Stack>
-                                        </LocalizationProvider>
-                                        
+                                        </LocalizationProvider> */}
+                                        <TextValidator
+                                            id="outlined-basic"
+                                            variant="outlined"
+                                            label="Return Date"
+                                            size="small"
+                                            type="date"
+                                            value={this.state.formData.returnDate}
+                                            onChange={(e) => {
+                                                let formData = this.state.formData
+                                                formData.returnDate = e.target.value
+                                                this.setState({ formData })
+                                            }}
+                                            style={{ width: '100%' }}
+                                            validators={['required',]}
+                                        />
                                     </Grid>
 
                                     <Grid item lg={6} md={6} sm={6} xm={6} >

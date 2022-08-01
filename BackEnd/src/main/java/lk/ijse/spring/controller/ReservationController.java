@@ -45,4 +45,9 @@ public class ReservationController {
     public ResponseUtil searchReservation(@PathVariable String reserveId) {
         return new ResponseUtil(200, "Ok", reservationService.searchReservation(reserveId));
     }
+
+    @GetMapping(path = "/GenerateReservationID",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil generateReservationID() {
+        return new ResponseUtil(200,"Ok",reservationService.generateReservationID());
+    }
 }

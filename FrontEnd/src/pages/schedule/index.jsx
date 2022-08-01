@@ -272,10 +272,10 @@ class Schedule extends Component{
 
                         <div className={classes.table}>
                             <div className={classes.cartable}>          
-                                <Grid container style={{ height: '100%', width: '100%', padding: '5px' }}>
-                                    <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} aria-label="customer table">
-                            <TableHead>
+                            <Grid container style={{ height: '100%', width: '100%', padding: '5px' }}>
+                                <TableContainer component={Paper}>
+                                <Table sx={{ minWidth: 650 }} aria-label="customer table">
+                                <TableHead>
                                 <TableRow style={{backgroundImage: 'linear-gradient(to right top, #777277, #766e7a, #736a7e, #6c6783, #626589)'}}>
                                     <TableCell align="left" style={{color:'white'}}> Id</TableCell>
                                     <TableCell align="left" style={{color:'white'}}> Start Date</TableCell>
@@ -283,8 +283,8 @@ class Schedule extends Component{
                                     <TableCell align="left" style={{color:'white'}}> Driver Email</TableCell>
                                     <TableCell align="left" style={{color:'white'}}>Action</TableCell>
                                 </TableRow>
-                            </TableHead>
-                            <TableBody>
+                                </TableHead>
+                                <TableBody>
                                 {
                                     this.state.data.map((row) => (
                                         <TableRow>
@@ -316,10 +316,10 @@ class Schedule extends Component{
                                         </TableRow>
                                     ))
                                 }
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                                </Grid>
+                               </TableBody>
+                               </Table>
+                               </TableContainer>
+                            </Grid>
                             </div>
                         
                         </div>

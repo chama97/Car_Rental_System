@@ -276,7 +276,7 @@ class Rental extends Component{
                         <div className={classes.table}>
                             <div className={classes.cartable}>          
                                 <Grid container style={{ height: '100%', width: '100%', padding: '5px' }}>
-                                    <TableContainer component={Paper}>
+                                    <TableContainer component={Paper} sx={{maxHeight:'100%'}}>
                             <Table sx={{ minWidth: 650 }} aria-label="Category table">
                             <TableHead>
                                 <TableRow style={{backgroundImage: 'linear-gradient(to right top, #777277, #766e7a, #736a7e, #6c6783, #626589)'}}>
@@ -285,7 +285,7 @@ class Rental extends Component{
                                     {/* <TableCell align="left"> Damage Charge</TableCell> */}
                                     {/* <TableCell align="left"> Additional Charge</TableCell> */}
                                     <TableCell align="left" style={{color:'white'}}> Duration</TableCell>
-                                    <TableCell align="left" style={{color:'white'}}> Total Charge</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Refund</TableCell>
                                     <TableCell align="left" style={{color:'white'}}>Action</TableCell>
                                 </TableRow>
                             </TableHead>
@@ -297,7 +297,7 @@ class Rental extends Component{
                                             <TableCell align="left">{row.rentalCharge}</TableCell>
                                             {/* <TableCell align="left">{row.damageCharge}</TableCell> */}
                                             {/* <TableCell align="left">{row.additionalCharge}</TableCell> */}
-                                            <TableCell align="left">{row.duration}</TableCell>
+                                            <TableCell align="left">{row.duration +' days'}</TableCell>
                                             <TableCell align="left">{row.totalCharge}</TableCell>
                                             <TableCell align="left">
                                                 <Tooltip title="Edit">

@@ -19,6 +19,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import SendIcon from '@mui/icons-material/Send';
 
 class Reservation extends Component{
 
@@ -31,22 +32,78 @@ class Reservation extends Component{
                 returnDate: '',
                 pickUpLocation: '',
                 status: '',
-                customerID: {
+                customer: {
                     email: "",
                 },
-                carID: {
+                car: {
                     regId: "",
                 },
-
                 driverId:'',
-
+                rentalDetails:[{
+                    rentalId:"",
+                    rentalCharge:'',
+                    duration:'',
+                    additionalCharge:''
+                }]
             },
+
             alert: false,
             message: '',
             severity: '',
     
             data: [],
 
+        }
+    }
+
+    updateReservation = (data) => {
+        console.log(data)
+
+        this.setState({ 
+           formData: {
+                reserveId: data.reserveId,
+                pickUpDate: data.pickUpDate, 
+                returnDate: data.returnDate,
+                pickUpLocation: data.pickUpLocation,
+                status: data.status,
+                driverId: data.driverId,
+                customer: { email : data.customer.email},
+                car: { regId:  data.car.regId},
+                rentalDetails: [{ rentalId: data.reserveId ,
+                                  rentalCharge: data.car.dailyRate ,
+                                  duration: 5,
+                                  additionalCharge: 0.0
+                                }]
+           }  
+       });
+   };
+
+   clearFields = () => {
+        this.setState({
+            formData: {
+                status: '' 
+            }
+        });
+    };
+
+   
+   acceptReservation = async () => {
+    let formData = this.state.formData;
+        let res = await ReservationService.putRes(formData);
+        if(res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success',
+            });
+            this.clearFields();
+            this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.response.data.message,
+                severity: 'error'
+            });
         }
     }
 
@@ -74,7 +131,7 @@ class Reservation extends Component{
 
     exampleForMap = () => {
         this.state.data.map((value, index) => {
-            console.log(value)   // access element one by one
+            console.log(value) 
         })
     };
 
@@ -101,7 +158,7 @@ class Reservation extends Component{
     render(){
         let { classes } = this.props
         return(
-            <Fragment className={classes.container}>
+            <Fragment>
 
                 <div className={classes.container}>
 
@@ -121,14 +178,26 @@ class Reservation extends Component{
                             <hr className={classes.hr} /> 
 
                             <Stack className={classes.stack} spacing={2} direction="row">
-                                <TextField id="filled-search" label="Search field" type="search" size="small" variant="outlined"/>
-                                <Button variant="outlined">Search</Button>
-                                <Button variant="contained" color="error" startIcon={<DeleteIcon />}>Delete</Button>
+                                <TextField id="filled-search"
+                                 value={this.state.formData.status}
+                                    onChange={(e) => {
+                                        let formData = this.state.formData
+                                        formData.status = e.target.value
+                                        this.setState({ formData })
+                                    }}     
+                                    label="Status" size="small" variant="outlined"
+                                />
+                                <Button 
+                                    onClick={() => {
+                                        this.acceptReservation()
+                                    }}
+                                    variant="contained"  endIcon={<SendIcon />}>Send
+                                </Button>
                             </Stack>  
-                                <Grid container style={{ height: '100%', width: '100%', padding: '15px' }}>
-                                    <TableContainer component={Paper}>
-                            <Table sx={{ minWidth: 650 }} aria-label="Reservation table">
-                            <TableHead>
+                            <Grid container style={{ height: '100%', width: '100%', padding: '15px' }}>
+                                <TableContainer component={Paper} sx={{maxHeight:'100%'}}>
+                                <Table sx={{ minWidth: 650 }} aria-label="Reservation table">
+                                <TableHead>
                                 <TableRow style={{backgroundImage: 'linear-gradient(to right top, #777277, #766e7a, #736a7e, #6c6783, #626589)'}}>
                                     <TableCell align="left" style={{color:'white'}}> Reserv Id</TableCell>
                                     <TableCell align="left" style={{color:'white'}}> Customer Id</TableCell>
@@ -140,8 +209,8 @@ class Reservation extends Component{
                                     <TableCell align="left" style={{color:'white'}}> Status</TableCell>
                                     <TableCell align="left" style={{color:'white'}}>Action</TableCell>
                                 </TableRow>
-                            </TableHead>
-                            <TableBody>
+                                </TableHead>
+                                <TableBody>
                                 {
                                     this.state.data.map((row) => (
                                         <TableRow>
@@ -154,6 +223,16 @@ class Reservation extends Component{
                                             <TableCell align="left">{row.pickUpLocation}</TableCell>
                                             <TableCell align="left">{row.status}</TableCell>
                                             <TableCell align="left">
+                                                <Tooltip title="Edit">
+                                                    <IconButton 
+                                                        onClick={() => {
+                                                            console.log("edit icon clicked!")
+                                                            this.updateReservation(row);
+                                                        }}
+                                                    >
+                                                        <EditIcon color="primary" />
+                                                    </IconButton>
+                                                </Tooltip>
                                                 <Tooltip title="Delete">
                                                     <IconButton
                                                         onClick={() => {

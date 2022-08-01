@@ -30,7 +30,7 @@ class ReservationService {
 
     fetchResId = async () => {
         const promise = new Promise((resolve, reject) => {
-            axios.get('car/id')
+            axios.get('reservation/GenerateReservationID')
                 .then((res) => {
                     return resolve(res)
                 })
@@ -40,6 +40,19 @@ class ReservationService {
         })
         return await promise;
     }
+
+    // fetchResId = async () => {
+    //     const promise = new Promise((resolve, reject) => {
+    //         axios.get('car/id')
+    //             .then((res) => {
+    //                 return resolve(res)
+    //             })
+    //             .catch((er) => {
+    //                 return resolve(er)
+    //             })
+    //     })
+    //     return await promise;
+    // }
 
     putRes = async (data) => {
          const promise = new Promise((resolve, reject) => {
