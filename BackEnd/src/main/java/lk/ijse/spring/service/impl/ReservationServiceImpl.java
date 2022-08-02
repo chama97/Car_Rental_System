@@ -45,8 +45,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void saveReservation(ReservationDTO dto) {
         Reservation reserve = mapper.map(dto, Reservation.class);
-        if (reservationRepo.existsById(dto.getReserveId())) {
-//            reserve.setStatus("Success");
+        if (!reservationRepo.existsById(dto.getReserveId())) {
             reservationRepo.save(reserve);
 
             Car car = carRepo.findById(reserve.getCar().getRegId()).get();

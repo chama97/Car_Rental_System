@@ -3,7 +3,7 @@ import { styleSheet } from "./style";
 import { withStyles } from "@mui/styles";
 import CustomNavbar from "../../components/customNavbar";
 import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
+//import TextField from '@mui/material/TextField';
 import SuzukiAlto from '../../assets/img/General Cars/Suzuki Alto - Premium/suzuki-alto.jpg';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -13,9 +13,9 @@ import { CardActionArea, Input } from '@mui/material';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import ReservationService from "../../services/ReservationService";
 import SnackBar from "../../components/SnackBar";
 import InputLabel from '@mui/material/InputLabel';
@@ -192,7 +192,6 @@ class Booking extends Component{
                         <ValidatorForm ref="form"  onError={errors => console.log(errors)}>
                                 <Grid container style={{padding: '10px'}} spacing={{ xs: 3, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }} >
                                 <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
-                                <Stack spacing={1} direction="row">
                                         <TextValidator
                                             id="outlined-basic"
                                             variant="outlined"
@@ -211,7 +210,7 @@ class Booking extends Component{
                                                 this.loadIdData()
                                                 }}>+
                                         </Button> */}
-                                        </Stack>
+                                     
                                     </Grid>
 
                                     <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
@@ -220,7 +219,7 @@ class Booking extends Component{
                                             variant="outlined"
                                             label="Customer ID"
                                             size="small"
-                                           // value={this.state.formData.customerID.email}
+                                            //value={this.state.formData.customer.email}
                                             // onChange={(e) => {
                                             //     let formData = this.state.formData
                                             //     formData.customerID.email = e.target.value
@@ -247,10 +246,11 @@ class Booking extends Component{
                                                 />
                                             </Stack>
                                         </LocalizationProvider> */}
+                                        <Typography variant="subtitle1" style={{fontSize:'15px'}}>Pickup Date</Typography>
                                         <TextValidator
                                             id="outlined-basic"
                                             variant="outlined"
-                                            label="PickUp Date"
+                                            placeholder="Pickup Date"
                                             size="small"
                                             type="date"
                                             value={this.state.formData.pickUpDate}
@@ -265,25 +265,11 @@ class Booking extends Component{
                                     </Grid>
 
                                     <Grid item lg={6} md={6} sm={6} xm={6} >
-                                        {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                            <Stack spacing={2}>
-                                               <DatePicker
-                                                    views={['day']}
-                                                    label="Return Date"
-                                                    value={this.state.formData.returnDate}
-                                                    onChange={(newValue) => {
-                                                        let formData = this.state.formData
-                                                        formData.returnDate = newValue
-                                                        this.setState({ formData })
-                                                    }}
-                                                    renderInput={(params) => <TextField {...params} helperText={null} />}
-                                                />
-                                            </Stack>
-                                        </LocalizationProvider> */}
+                                        <Typography variant="subtitle1" style={{fontSize:'15px'}}>Return Date</Typography>
                                         <TextValidator
                                             id="outlined-basic"
                                             variant="outlined"
-                                            label="Return Date"
+                                            placeholder="Return Date"
                                             size="small"
                                             type="date"
                                             value={this.state.formData.returnDate}

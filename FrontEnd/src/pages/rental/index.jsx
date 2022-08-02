@@ -7,7 +7,6 @@ import Grid from '@mui/material/Grid';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import EditIcon from '@mui/icons-material/Edit';
@@ -20,9 +19,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import RentalService from "../../services/RentalService";
 import ReportService from "../../services/ReportService";
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import ReservationService from "../../services/ReservationService";
+
 
 class Rental extends Component{
 
@@ -31,12 +29,14 @@ class Rental extends Component{
         this.state = {
             formData: {
                 rentalId: '',
-                payDate: new Date(),
+                payDate: '',
                 rentalCharge: '',
                 damageCharge: 0,
                 additionalCharge: 0,
                 totalCharge: '' 
             },
+
+            duration:'',
             alert: false,
             message: '',
             severity: '',
@@ -55,7 +55,8 @@ class Rental extends Component{
                 damageCharge: data.damageCharge,
                 additionalCharge: data.additionalCharge,
                 totalCharge: data.totalCharge ,
-           }  
+           },
+           duration: data.duration
        });
    };
 
@@ -84,11 +85,35 @@ class Rental extends Component{
         }
         this.exampleForMap()
     };
+    
+
+    deleteReservation = async () => {
+        let params = {
+            reserveId: this.state.formData.rentalId
+        }
+         let res = await ReservationService.deleteRes(params);
+
+         if(res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            this.loadData();
+         } else {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'error'
+            });
+         }
+    };
+
 
     submitRental = async () => {
         let formData = this.state.formData;
         let res = await ReportService.postReport(formData);
-
+        
         console.log(res) 
     
         if (res.status === 201) {
@@ -97,6 +122,7 @@ class Rental extends Component{
                 message: res.data.message,
                 severity: 'success'
             });
+            this.deleteReservation();
             this.clearFields();
             this.loadData();
         } else {
@@ -119,7 +145,7 @@ class Rental extends Component{
             formData: {
                 rentalId: this.state.formData.rentalId,
                 rentalCharge: this.state.formData.rentalCharge,
-                totalCharge : (+this.state.formData.totalCharge) + (+this.state.formData.additionalCharge) + (+this.state.formData.damageCharge),
+                totalCharge : (+this.state.formData.rentalCharge) * (+this.state.duration) + (+this.state.formData.additionalCharge) + (+this.state.formData.damageCharge),
                 additionalCharge: this.state.formData.additionalCharge,
                 damageCharge: this.state.formData.damageCharge
             }
@@ -129,7 +155,7 @@ class Rental extends Component{
    
     render(){
         let { classes } = this.props
-        const totalCharge = 0;
+        const rentalCharge = 0;
         return(
             <Fragment>
 
@@ -156,20 +182,21 @@ class Rental extends Component{
                                 <Grid container className={classes.gridss} spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} >
                                     <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'10px'}} >
                                     <Stack spacing={3} direction="row" style={{ width: '100%' }}>
-                                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                            <DatePicker
-                                                label="Pay Date"
-                                                size="small"
-                                                value={this.state.formData.payDate}
-                                                onChange={(newValue) => {
-                                                    let formData = this.state.formData
-                                                    formData.payDate = newValue
-                                                    this.setState({ formData })
+                                        <TextValidator
+                                            id="outlined-basic"
+                                            variant="outlined"
+                                            placeholder="Pickup Date"
+                                            size="small"
+                                            type="date"
+                                            value={this.state.formData.payDate}
+                                            onChange={(e) => {
+                                                let formData = this.state.formData
+                                                formData.payDate = e.target.value
+                                                this.setState({ formData })
                                             }}
-                                            renderInput={(params) => <TextField {...params} />}
-                                            />
-                                        </LocalizationProvider>
-                        
+                                            style={{ width: '100%' }}
+                                            validators={['required',]}
+                                        />
                                         <TextValidator
                                             id="outlined-basic"
                                             variant="outlined"
@@ -183,7 +210,22 @@ class Rental extends Component{
                                             }}
                                             style={{ width: '100%',}}
                                             validators={['required',]}
-                                        />
+                                        /> 
+                                        <TextValidator
+                                            id="outlined-basic"
+                                            variant="outlined"
+                                            label="Duration"
+                                            size="small"
+                                            value={this.state.duration}
+                                            onChange={(e) => {
+                                                let formData = this.state
+                                                formData.duration = e.target.value
+                                                this.setState({ formData })
+                                            }}
+                                            style={{ width: '100%',}}
+                                            validators={['required',]}
+                                        /> 
+
                                         </Stack>
                                     </Grid>
 
@@ -281,7 +323,7 @@ class Rental extends Component{
                             <TableHead>
                                 <TableRow style={{backgroundImage: 'linear-gradient(to right top, #777277, #766e7a, #736a7e, #6c6783, #626589)'}}>
                                     <TableCell align="left" style={{color:'white'}}> Rental Id</TableCell>
-                                    <TableCell align="left" style={{color:'white'}}> Rental Charge</TableCell>
+                                    <TableCell align="left" style={{color:'white'}}> Daily Rate</TableCell>
                                     {/* <TableCell align="left"> Damage Charge</TableCell> */}
                                     {/* <TableCell align="left"> Additional Charge</TableCell> */}
                                     <TableCell align="left" style={{color:'white'}}> Duration</TableCell>

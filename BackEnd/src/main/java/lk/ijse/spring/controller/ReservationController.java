@@ -25,7 +25,7 @@ public class ReservationController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveReservation(@RequestBody ReservationDTO reservationDTO) {
         System.out.println(reservationDTO.toString());
-        reservationService.applyReservation(reservationDTO);
+        reservationService.saveReservation(reservationDTO);
         return new ResponseUtil(200, "Save", null);
     }
 
