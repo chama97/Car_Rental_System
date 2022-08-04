@@ -112,7 +112,7 @@ class Sign extends Component{
                                 this.setState({ formData })
                             }}
                             style={{ width: '100%' }}
-                            validators={['required',]}
+                            validators={['required', 'isEmail']}
                         />
                         <TextValidator
                             id="outlined-basic"
@@ -134,7 +134,7 @@ class Sign extends Component{
                                 this.setState({ formData })
                             }}
                             style={{ width: '100%' }}
-                            validators={['required',]}
+                            validators={['required','matchRegexp:^[A-z0-9/ ]{4,10}$']}
                         />
                         <TextValidator
                             id="outlined-basic"
@@ -155,7 +155,7 @@ class Sign extends Component{
                                 this.setState({ formData })
                             }}
                             style={{ width: '100%' }}
-                            validators={['required',]}
+                            validators={['required','matchRegexp:^[A-z]{3,15}$']}
                         />
                         <TextValidator
                             id="outlined-basic"
@@ -176,7 +176,7 @@ class Sign extends Component{
                                 this.setState({ formData })
                             }}
                             style={{ width: '100%' }}
-                            validators={['required',]}
+                            validators={['required','matchRegexp:^[0-9]{9}[A-Z]{1}$']}
                         />
                         <TextValidator
                             id="outlined-basic"
@@ -197,7 +197,7 @@ class Sign extends Component{
                                 this.setState({ formData })
                             }}
                             style={{ width: '100%' }}
-                            validators={['required',]}
+                            validators={['required','matchRegexp:^[0-9]{9}$']}
                         />
                         <TextValidator
                             id="outlined-basic"
@@ -218,7 +218,7 @@ class Sign extends Component{
                                 this.setState({ formData })
                             }}
                             style={{ width: '100%' }}
-                            validators={['required',]}
+                            validators={['required','matchRegexp:^[A-z0-9/ ]{3,20}$']}
                         />
                         <TextValidator
                             id="outlined-basic"
@@ -239,7 +239,7 @@ class Sign extends Component{
                                 this.setState({ formData })
                             }}
                             style={{ width: '100%' }}
-                            validators={['required',]}
+                            validators={['required','matchRegexp:^[0-9]{9}$']}
                         />
                        
                         <button className={classes.buttons}

@@ -218,7 +218,7 @@ class Driver extends Component{
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
-                                            validators={['required',]}
+                                            validators={['required','isEmail']}
                                         />
                                     </Grid>
                                     <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
@@ -234,7 +234,7 @@ class Driver extends Component{
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
-                                            validators={['required',]}
+                                            validators={['required','matchRegexp:^[A-z0-9/ ]{4,10}$']}
                                         />
                                     </Grid>
                                     <Grid item lg={6} md={6} sm={6} xm={6} >
@@ -250,7 +250,7 @@ class Driver extends Component{
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
-                                            validators={['required',]}
+                                            validators={['required','matchRegexp:^[A-z]{3,20}$']}
                                         />
                                     </Grid>
                                     <Grid item lg={6} md={6} sm={6} xm={6}  >
@@ -266,7 +266,7 @@ class Driver extends Component{
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
-                                            validators={['required',]}
+                                            validators={['required','matchRegexp:^[0-9]{9}[A-Z]{1}$']}
                                         />
                                     </Grid>
                                     <Grid item lg={6} md={6} sm={6} xm={6}  >
@@ -282,7 +282,7 @@ class Driver extends Component{
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
-                                            validators={['required',]}
+                                            validators={['required','matchRegexp:^[0-9]{9}$']}
                                         />
                                     </Grid>
                                     <Grid item lg={6} md={6} sm={6} xm={6}  >
@@ -298,7 +298,7 @@ class Driver extends Component{
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
-                                            validators={['required',]}
+                                            validators={['required','matchRegexp:^[A-z0-9/ ]{3,20}$']}
                                         />
                                     </Grid>
                                     <Grid item lg={6} md={6} sm={6} xm={6}  >
@@ -314,7 +314,7 @@ class Driver extends Component{
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
-                                            validators={['required',]}
+                                            validators={['required','matchRegexp:^[0-9]{9}$']}
                                         />
                                     </Grid>
                                     <Grid item lg={6} md={6} sm={6} xm={6}  style={{display: 'flex', justifyContent:"flex-end"}}  >

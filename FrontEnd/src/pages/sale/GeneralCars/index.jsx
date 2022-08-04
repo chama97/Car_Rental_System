@@ -65,7 +65,7 @@ class General extends Component{
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         <span>Auto | Petrol</span><br/>
-                                        <span>Passengers - 4</span><br/>
+                                        <span>Passengers - <span>4</span></span><br/>
                                         <span>FreeKm/Day - 100Km | Price/ExtraKm - 30.0</span><br/>
                                         <span>Daily Rate - Rs:2500 | Monthly Rate - Rs:64,350</span>
                                     </Typography>
@@ -76,7 +76,7 @@ class General extends Component{
                        
 
                         <Card  className={classes.divs}>
-                        <Link to="/booking" style={{textDecoration: 'none'}}>
+                        <Link to="/booking3" style={{textDecoration: 'none'}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -100,7 +100,7 @@ class General extends Component{
                         </Card>
 
                         <Card  className={classes.divs}>
-                        <Link to="/booking" style={{textDecoration: 'none'}}>
+                        <Link to="/booking2" style={{textDecoration: 'none'}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -126,7 +126,7 @@ class General extends Component{
 
                     <div className={classes.mybook}>
                         <Card  className={classes.divs}>
-                        <Link to="/booking" style={{textDecoration: 'none'}}>
+                        <Link to="/booking3" style={{textDecoration: 'none'}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"

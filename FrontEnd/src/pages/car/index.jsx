@@ -228,7 +228,7 @@ class Car extends Component{
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
-                                            validators={['required',]}
+                                            validators={['required','matchRegexp:^[C][R][0-9]{3}$']}
                                         />
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} style={{ marginTop:'20px'}} >
@@ -244,7 +244,7 @@ class Car extends Component{
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
-                                            validators={['required',]}
+                                            validators={['required','isString']}
                                         />
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} style={{ marginTop:'20px'}} >
@@ -328,7 +328,7 @@ class Car extends Component{
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
-                                            validators={['required',]}
+                                            validators={['required','matchRegexp:^[0-9]{1,2}$']}
                                         />
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} >
@@ -344,7 +344,7 @@ class Car extends Component{
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
-                                            validators={['required',]}
+                                            validators={['required','matchRegexp:^[0-9]{3,5}$']}
                                         />
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} >
@@ -360,7 +360,7 @@ class Car extends Component{
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
-                                            validators={['required',]}
+                                            validators={['required','matchRegexp:^[0-9]{5,6}$']}
                                         />
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} >
@@ -376,7 +376,7 @@ class Car extends Component{
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
-                                            validators={['required',]}
+                                            validators={['required','matchRegexp:^[0-9]{1,3}$']}
                                         />
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} >
@@ -392,7 +392,7 @@ class Car extends Component{
                                                 this.setState({ formData })
                                             }}
                                             style={{ width: '100%' }}
-                                            validators={['required',]}
+                                            validators={['required','matchRegexp:^[0-9]{2,4}$']}
                                         />
                                     </Grid>
                                     <Grid item xs={2} sm={4} md={4} >
@@ -409,7 +409,7 @@ class Car extends Component{
                                                         formData.status = e.target.value
                                                         this.setState({ formData })     
                                                     }}
-                                                    validators={['required',]}
+                                                    validators={['required']}
                                                 >
                                                 <MenuItem value={''}></MenuItem>
                                                 <MenuItem value={'Available'}>Available</MenuItem>

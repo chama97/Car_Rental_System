@@ -4,7 +4,7 @@ import { withStyles } from "@mui/styles";
 import CustomNavbar from "../../components/customNavbar";
 import Grid from '@mui/material/Grid';
 //import TextField from '@mui/material/TextField';
-import SuzukiAlto from '../../assets/img/General Cars/Suzuki Alto - Premium/suzuki-alto.jpg';
+import SuzukiAlto from '../../assets/img/General Cars/Perodua (Daihatsu) Axia/carlist-perodua-axia1.jpg';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -25,7 +25,7 @@ import Select from '@mui/material/Select';
 import CustomerService from "../../services/CustomerService";
 
 
-class Booking extends Component{
+class Booking3 extends Component{
 
     constructor(props) {
         super(props);
@@ -93,10 +93,10 @@ class Booking extends Component{
                     reserveId: res.data.data,
                     status: 'pending',
                     customer: { email : 'sarath@gmail.com'},
-                    car: { regId: 'CR001'},
+                    car: { regId: 'CR003'},
                     rentalDetails:  [{ rentalId: res.data.data,
-                                       rentalCharge: 2500,
-                                       duration: 5,
+                                       rentalCharge: 3800,
+                                       duration: 3,
                                        additionalCharge: 0.0
                                     }]
                 }
@@ -171,15 +171,15 @@ class Booking extends Component{
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
-                                        Suzuki Alto - Premium
+                                         Perodua (Daihatsu) Axia
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         <span>Auto | Petrol</span><br/>
                                         <span>Passengers - <span>4</span> </span><br/>
                                         <span>FreeKm/Day - <span> 100Km</span>  </span><br/>
                                         <span>Price/ExtraKm - <span> 30.0</span> </span><br/>
-                                        <span>Daily Rate - <span> Rs:2500</span>  </span><br/>
-                                        <span>Monthly Rate - <span> Rs:64,350</span> </span><br/>
+                                        <span>Daily Rate - <span> Rs:3800</span>  </span><br/>
+                                        <span>Monthly Rate - <span> Rs:90,200</span> </span><br/>
                                         <span>Status - <span> Available</span> </span>
                                     </Typography>
                                 </CardContent>
@@ -232,7 +232,21 @@ class Booking extends Component{
                                     </Grid>
 
                                     <Grid item lg={6} md={6} sm={6} xm={6} >
-                                       
+                                        {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                            <Stack spacing={2}>
+                                               <DatePicker
+                                                    views={['day']}
+                                                    label="PickUp Date"
+                                                    value={this.state.formData.pickUpDate}
+                                                    onChange={(newValue) => {
+                                                        let formData = this.state.formData
+                                                        formData.pickUpDate = newValue
+                                                        this.setState({ formData })
+                                                    }}
+                                                    renderInput={(params) => <TextField {...params} helperText={null} />}
+                                                />
+                                            </Stack>
+                                        </LocalizationProvider> */}
                                         <Typography variant="subtitle1" style={{fontSize:'15px'}}>Pickup Date</Typography>
                                         <TextValidator
                                             id="outlined-basic"
@@ -347,4 +361,4 @@ class Booking extends Component{
 
 }
 
-export default withStyles(styleSheet)(Booking) 
+export default withStyles(styleSheet)(Booking3) 

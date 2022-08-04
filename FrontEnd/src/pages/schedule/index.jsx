@@ -208,11 +208,28 @@ class Schedule extends Component{
                                             validators={['required',]}
                                         />
                                     </Grid>
-                                    <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
+                                    <Grid item lg={6} md={6} sm={6} xm={6} style={{ marginTop:'20px'}} >
+                                        <TextValidator
+                                            id="outlined-basic"
+                                            variant="outlined"
+                                            label="Driver Email"
+                                            size="small"
+                                            value={this.state.formData.driverEmail}
+                                            onChange={(e) => {
+                                                let formData = this.state.formData
+                                                formData.driverEmail = e.target.value
+                                                this.setState({ formData })
+                                            }}
+                                            style={{ width: '100%' }}
+                                            validators={['required',]}
+                                        />
+                                    </Grid>
+                                    <Grid item lg={6} md={6} sm={6} xm={6}  >
                                         <TextValidator
                                             id="outlined-basic"
                                             variant="outlined"
                                             label="Start Date"
+                                            type="date"
                                             size="small"
                                             value={this.state.formData.startDate}
                                             onChange={(e) => {
@@ -230,6 +247,7 @@ class Schedule extends Component{
                                             id="outlined-basic"
                                             variant="outlined"
                                             label="End Date"
+                                            type="date"
                                             size="small"
                                             value={this.state.formData.endDate}
                                             onChange={(e) => {
@@ -241,22 +259,7 @@ class Schedule extends Component{
                                             validators={['required',]}
                                         />
                                     </Grid>
-                                    <Grid item lg={6} md={6} sm={6} xm={6} >
-                                        <TextValidator
-                                            id="outlined-basic"
-                                            variant="outlined"
-                                            label="Driver Email"
-                                            size="small"
-                                            value={this.state.formData.driverEmail}
-                                            onChange={(e) => {
-                                                let formData = this.state.formData
-                                                formData.driverEmail = e.target.value
-                                                this.setState({ formData })
-                                            }}
-                                            style={{ width: '100%' }}
-                                            validators={['required',]}
-                                        />
-                                    </Grid>
+                                    
                                     <Grid item lg={12} md={12} sm={12} xm={12}  style={{display: 'flex', justifyContent:"flex-end"}}  >
                                         <Stack spacing={1} direction="row">
                                             <TextField id="filled-search" label="Search field" type="search" size="small" variant="outlined"/>
