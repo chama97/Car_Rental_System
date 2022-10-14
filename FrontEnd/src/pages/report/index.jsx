@@ -91,7 +91,7 @@ class Report extends Component{
                                             <div style={{width: '100%', height:'50%'}}>
                                                 <span style={{paddingLeft: '8%', fontSize:'22px', color:'#862d59'}}>
                                                     <span>Rs : </span> 
-                                                    8000000
+                                                   0000
                                                 </span>
                                             </div>
                                         </div>
@@ -108,7 +108,7 @@ class Report extends Component{
                                             <div style={{width: '100%', height:'50%'}}>
                                                 <span style={{paddingLeft: '8%', fontSize:'22px', color:'#862d59'}}>
                                                     <span>Rs : </span> 
-                                                    20000
+                                                    0000
                                                 </span>
                                             </div>
                                         </div>
@@ -125,7 +125,7 @@ class Report extends Component{
                                             <div style={{width: '100%', height:'50%'}}>
                                                 <span style={{paddingLeft: '8%', fontSize:'22px', color:'#862d59'}}>
                                                     <span>Rs : </span> 
-                                                    600000
+                                                    0000
                                                 </span>
                                             </div>
                                         </div>

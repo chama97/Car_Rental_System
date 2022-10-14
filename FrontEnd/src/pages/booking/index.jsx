@@ -92,7 +92,7 @@ class Booking extends Component{
                 formData: {
                     reserveId: res.data.data,
                     status: 'pending',
-                    customer: { email : 'sarath@gmail.com'},
+                    customer: { email : 'amal@gmail.com'},
                     car: { regId: 'CR001'},
                     rentalDetails:  [{ rentalId: res.data.data,
                                        rentalCharge: 2500,
@@ -115,7 +115,7 @@ class Booking extends Component{
         this.setState({
             formData: {
                 reserveId: '',
-                customerID: "sarath@gmail.com",
+                customerID: "amal@gmail.com",
                 carID: 'CR001',
                 driverId: '',
                 pickUpDate:  '', 
@@ -215,7 +215,7 @@ class Booking extends Component{
                                     </Grid>
 
                                     <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
-                                        <TextValidator
+                                        {/* <TextValidator
                                             id="outlined-basic"
                                             variant="outlined"
                                             label="Customer ID"
@@ -228,7 +228,7 @@ class Booking extends Component{
                                             // }}
                                             style={{ width: '100%' }}
                                             validators={['required',]}
-                                        />
+                                        /> */}
                                     </Grid>
 
                                     <Grid item lg={6} md={6} sm={6} xm={6} >
