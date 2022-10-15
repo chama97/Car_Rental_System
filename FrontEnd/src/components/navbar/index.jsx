@@ -43,7 +43,7 @@ class Navbar extends Component{
                                         Home
                         </Button>
                     </Link> 
-                    <Link to="/custdash" className={classes.link__cover}>      
+                    <Link to="/" className={classes.link__cover}>      
                         <Button style={{color:'#ebf1ff',
                                         height: '100%',
                                         fontWeight: 'bold',
@@ -54,7 +54,7 @@ class Navbar extends Component{
                                         Contact Us
                         </Button>
                     </Link> 
-                    <Link to="/dash" className={classes.link__cover}>      
+                    <Link to="/" className={classes.link__cover}>      
                         <Button style={{color:'#ebf1ff',
                                         height: '100%',
                                         fontWeight: 'bold',
