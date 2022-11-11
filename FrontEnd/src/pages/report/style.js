@@ -1,86 +1,61 @@
 export const styleSheet = {
 
     container: {
-        display: 'flex', 
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        height: '100vh',
-        width: '100vw',
-        //justifyContent: 'center',
-       // alignItems: 'center',
-        backgroundColor: 'blue'
-    },
-
-   
-
-    leftSide:{
-        backgroundColor: 'rebeccapurple',
         display: 'flex',
-        flexWrap: 'wrap',
-        flexDirection: 'column',
-        height: '100vh',
-        width: '20vw',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-
-    center:{
-       backgroundColor: 'green',
-       display: 'flex',
-       flexWrap: 'wrap',
-       flexDirection: 'row',
-       height: '100vh',
-       width: '80vw',
-       alignItems: 'center',
-       justifyContent: 'center'
+        flexDirection: 'row',
+        width: '100%',
+        // backgroundColor: 'blue'
     },
 
     appBar:{
         backgroundColor: 'red',
         display: 'flex',
-        flexWrap: 'wrap',
         flexDirection: 'row',
-        height: '9%',
         width: '100%',
         justifyContent: 'center'
     },
- 
+
     table:{
         backgroundColor: 'white',
         display: 'flex',
-        flexWrap: 'wrap',
         flexDirection: 'row',
-        height: '91%',
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
      },
 
-     custable: {
+    custable: {
+        marginTop: '30px',
         display: 'flex',
         flexDirection: 'column',
-        height: '93%',
         width: '97%',
         backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: '6px', 
+        borderRadius: '6px',
         boxShadow: '1px 2px 7px #9aace5',
-        border: '1px solid rgb(226, 226, 226)',
-     },
+        border: '1px solid #92a6e6',
+    },
 
-     lblcustomer:{
-        marginTop: '16px',
+    lblcustomer:{
+        left: 0,
+        right: 0,
+        margin: 'auto',
+        marginTop: '15px',
+        textAlign: 'center',
         fontSize: '30px',
-        width: '97%',
+        width: '90%',
+        fontWeight: 'bold',
+        color: 'rgb(81, 159, 13)',
+        fontFamily: 'Arial, Helvetica, sans-serif'
+    },
 
-     },
-
-     hr: {
+    hr: {
+        marginTop: '13px',
         width: '100%',
-        height: '8px',
+        height: '12px',
         border: '0.5px solid rgb(230, 227, 227)',
-        backgroundColor: 'green',
+        backgroundColor: 'rgb(153, 29, 110)',
     },
 
     stack: {
@@ -89,17 +64,15 @@ export const styleSheet = {
         width: '97%',
         justifyContent:"center",
         padding: '20px'
-        
     },
 
     Incomebox:{
-        width: '32%',
+        width: '90%',
         height: '120px',
         border: '1px solid rgb(230, 227, 227)',
         boxShadow: '1px 3px 7px #9aace5',
         flexDirection: 'row',
         display: 'flex',
-        flexWrap: 'wrap',
     },
 
     divIcon:{
@@ -109,8 +82,6 @@ export const styleSheet = {
         display: 'flex',
         justifyContent:"center",
         alignItems: 'center',
-
-       // boxShadow: '1px 2px 6px #9aace5',
     },
 
     divtext: {
@@ -120,8 +91,11 @@ export const styleSheet = {
         width:"69%",
         height: '100%',
         justifyContent:"center",
-        
-    }
+    },
 
+    gridss: {
+        paddingTop: '30px',
+        padding: '12px'
+    },
 
 }

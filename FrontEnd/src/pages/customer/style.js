@@ -1,95 +1,73 @@
 export const styleSheet = {
 
     container: {
-        display: 'flex', 
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        height: '100vh',
-        width: '100vw',
-        //justifyContent: 'center',
-       // alignItems: 'center',
-        backgroundColor: 'blue'
-    },
-
-   
-
-    leftSide:{
-        backgroundColor: 'rebeccapurple',
         display: 'flex',
-        flexWrap: 'wrap',
-        flexDirection: 'column',
-        height: '100vh',
-        width: '20vw',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-
-    center:{
-       backgroundColor: 'green',
-       display: 'flex',
-       flexWrap: 'wrap',
-       flexDirection: 'row',
-       height: '100vh',
-       width: '80vw',
-       alignItems: 'center',
-       justifyContent: 'center'
+        flexDirection: 'row',
+        width: '100%',
     },
 
     appBar:{
         backgroundColor: 'red',
         display: 'flex',
-        flexWrap: 'wrap',
         flexDirection: 'row',
-        height: '9%',
         width: '100%',
         justifyContent: 'center'
     },
- 
+
     table:{
         backgroundColor: 'white',
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'row',
-        height: '91%',
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
      },
 
      custable: {
+        marginTop: '20px',
         display: 'flex',
         flexDirection: 'column',
-        height: '93%',
         width: '97%',
         backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: '10px', 
-        boxShadow: '1px 2px 7px #F4AAB9',
-        border: '1px solid rgb(226, 226, 226)',
+        borderRadius: '10px',
+        boxShadow: '1px 0.5px 7px rgb(255, 167, 224)',
+        border: '1px solid rgb(255, 112, 205)',
      },
 
      lblcustomer:{
-        marginTop: '20px',
+        left: 0,
+        right: 0,
+        margin: 'auto',
+        marginTop: '15px',
+        textAlign: 'center',
         fontSize: '30px',
-        width: '97%',
-
+        width: '90%',
+        fontWeight: 'bold',
+        color: 'rgb(81, 159, 13)',
+        fontFamily: 'Arial, Helvetica, sans-serif'
      },
 
      hr: {
+        marginTop: '13px',
         width: '100%',
-        height: '8px',
+        height: '12px',
         border: '0.5px solid rgb(230, 227, 227)',
-        backgroundColor: 'green',
+        backgroundColor: 'rgb(153, 29, 110)',
+    },
+
+    stacks: {
+        paddingTop: '30px',
+        width: '90%',
+        display: 'flex',
+        backgroundColor: 'white',
+        justifyContent:"flex-end",
     },
 
     stack: {
-        display: 'flex',
-        backgroundColor: 'white',
-        width: '97%',
-        justifyContent:"flex-end",
         padding: '10px'
-        
     }
 
 }

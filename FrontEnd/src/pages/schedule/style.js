@@ -1,46 +1,16 @@
 export const styleSheet = {
 
     container: {
-        display: 'flex', 
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        height: '100vh',
-        width: '100vw',
-        //justifyContent: 'center',
-       // alignItems: 'center',
-        backgroundColor: 'blue'
-    },
-
-   
-
-    leftSide:{
-        backgroundColor: 'rebeccapurple',
         display: 'flex',
-        flexWrap: 'wrap',
-        flexDirection: 'column',
-        height: '100vh',
-        width: '20vw',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-
-    center:{
-       backgroundColor: 'green',
-       display: 'flex',
-       flexWrap: 'wrap',
-       flexDirection: 'row',
-       height: '100vh',
-       width: '80vw',
-       alignItems: 'center',
-       justifyContent: 'center'
+        flexDirection: 'row',
+        width: '100%',
+        // backgroundColor: 'blue'
     },
 
     appBar:{
         backgroundColor: 'red',
         display: 'flex',
-        flexWrap: 'wrap',
         flexDirection: 'row',
-        height: '9%',
         width: '100%',
         justifyContent: 'center'
     },
@@ -50,64 +20,69 @@ export const styleSheet = {
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'column',
-        height: '45.5%',
         width: '100%',
         alignItems: 'center',
         justifyContent: 'space-around',
     },
 
     table:{
+        marginTop: '5px',
         backgroundColor: 'white',
         display: 'flex',
-        flexWrap: 'wrap',
         flexDirection: 'column',
-        height: '45.5%',
         width: '100%',
         alignItems: 'center',
-        //justifyContent: 'center',
      },
 
-     widgets: {
-        height: '90%',
+    widgets: {
+        marginTop: '20px',
         width: '97%',
         backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: '10px', 
-        boxShadow: '1px 2px 7px #F4AAB9',
-        border: '1px solid rgb(226, 226, 226)',
-     },
-
-     gridss: {
-        padding: '10px'
-        
-     },
-
-     cartable: {
-        height: '95%',
-        width: '97%',
-        backgroundColor: 'white',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: '10px', 
-        boxShadow: '1px 2px 7px #F4AAB9',
-        border: '1px solid rgb(226, 226, 226)',
-     },
-
-     lblcustomer:{
-        marginTop: '15px',
-        marginLeft: '7px',
-        fontSize: '28px',
-        width: '97%',
-
-     },
-
-     hr: {
-        width: '100%',
-        height: '7px',
-        border: '0.5px solid rgb(230, 227, 227)',
-        backgroundColor: 'green',
+        borderRadius: '10px',
+        boxShadow: '1px 0.5px 7px rgb(255, 167, 224)',
+        border: '1px solid rgb(255, 112, 205)',
     },
+
+    gridss: {
+        paddingTop: '30px',
+        padding: '12px'
+    },
+
+    cartable: {
+        marginTop: '20px',
+        width: '97%',
+        height: '45vh',
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: '10px',
+        boxShadow: '1px 0.5px 7px rgb(255, 167, 224)',
+        border: '2px solid rgb(255, 112, 205)',
+    },
+
+    lblcustomer:{
+        left: 0,
+        right: 0,
+        margin: 'auto',
+        marginTop: '15px',
+        textAlign: 'center',
+        fontSize: '30px',
+        width: '90%',
+        fontWeight: 'bold',
+        color: 'rgb(81, 159, 13)',
+        fontFamily: 'Arial, Helvetica, sans-serif'
+     },
+
+    hr: {
+        marginTop: '13px',
+        width: '100%',
+        height: '10px',
+        border: '0.5px solid rgb(230, 227, 227)',
+        backgroundColor: 'rgb(153, 29, 110)',
+    },
+
 
 
 }

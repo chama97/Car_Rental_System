@@ -1,0 +1,12 @@
+.custBtn:hover{
+  background-color: rgb(41, 148, 230);
+}
+
+.lblEmail {
+  border: 2px solid wheat;
+  border-radius: 5px;
+  padding: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+

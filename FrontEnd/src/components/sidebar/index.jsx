@@ -1,4 +1,4 @@
-import {Component} from "react";
+import { Component } from "react";
 import { styleSheet } from "./style";
 import { withStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
@@ -11,28 +11,21 @@ import CarRentalIcon from '@mui/icons-material/CarRental';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import LogoutIcon from '@mui/icons-material/Logout';
-import CycloneIcon from '@mui/icons-material/Cyclone';
 import HomeIcon from '@mui/icons-material/Home';
 import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
+import "./sidebar.css";
 
 
-class Sidebar extends Component{
+class Sidebar extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
-    
-    render(){
+    render() {
         let { classes } = this.props
 
-        return(
-            <div className={classes.sidebar}>
+        return (
+            <div className="sidebar">
                 <div className={classes.top}>
-                    <CycloneIcon className={classes.icontop} />
                     <Link to="/" style={{ textDecoration: "none" }}>
-                        
-                        <span className={classes.logo}>CAR<span>RENTAL</span></span>
+                        <span className="logo">CAR<span> RENTAL</span></span>
                     </Link>
                 </div>
                 <div className={classes.center}>
@@ -59,7 +52,7 @@ class Sidebar extends Component{
                             </li>
                         </Link>
 
-                        <p className={classes.title}>BOOKINGS</p>
+                        <p className={classes.title}>BOOK</p>
                         <Link to="/customer" style={{ textDecoration: "none" }}>
                             <li className={classes.li}>
                                 <PeopleAltIcon className={classes.icon} />
@@ -98,8 +91,6 @@ class Sidebar extends Component{
                                 <span className={classes.span}>Schedule</span>
                             </li>
                         </Link>
-         
-          
                     </ul>
                 </div>
                 <hr />
@@ -111,7 +102,7 @@ class Sidebar extends Component{
                                 <span className={classes.span}>Home</span>
                             </li>
                         </Link>
-                       <Link to="/" style={{ textDecoration: "none" }}>
+                        <Link to="/" style={{ textDecoration: "none" }}>
                             <li className={classes.li}>
                                 <LogoutIcon className={classes.icon} />
                                 <span className={classes.span}>LogOut</span>
@@ -119,11 +110,9 @@ class Sidebar extends Component{
                         </Link>
                     </ul>
                 </div>
-
             </div>
-
         )
     }
 }
 
-export default  withStyles(styleSheet)(Sidebar)
+export default withStyles(styleSheet)(Sidebar)

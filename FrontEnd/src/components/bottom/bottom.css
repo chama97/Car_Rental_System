@@ -1,0 +1,12 @@
+.bottom {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
+    height: 220px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    background-color: #193032;
+}

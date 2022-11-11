@@ -1,0 +1,46 @@
+.profile-top {
+    margin-top: 20px;
+    width: 97%;
+    height: 300px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: rgb(58, 110, 93);
+    position: relative;
+    z-index: 1;
+    background-image: url("../../../assets/img/cars.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.photo {
+    z-index: 2;
+    margin-top: -150px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: rgb(53, 53, 103);
+    background-image: url("../../../assets/img/user.png");
+    background-size: cover;
+    border: 6px solid rgb(93, 208, 218);
+    background-position: center;
+    color: rgb(74, 54, 101);
+}
+
+.profile-top::after {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: .5;
+    z-index: -1;
+}
+
+.btnIcon {
+    border: 2px solid blue;
+    border-radius: 50%;
+}

@@ -1,21 +1,61 @@
 export const styleSheet = {
-    container: {
-        display: 'flex', 
-        flexDirection: 'column',
-        height: '100vh',
-        width: '100vw',
-        justifyContent: 'center'
-    },
-    
+
     board: {
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'column',
-        height: '95vh',
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        background: "white",
+        backgroundImage: 'linear-gradient(to right top, #effafe, #e2f4ff, #e1ebff, #ecdfff, #ffd1f9)',
+    },
+
+    profile: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '70%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: '10px',
+        boxShadow: '1px 2px 7px #9aace5',
+        border: '1px solid #92a6e6',
+        marginTop: '30px',
+        backgroundImage: 'linear-gradient(to right top, #f7fdff, #f5fcff, #f6faff, #faf7ff, #fff4fe)',
+    },
+
+    mybook: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '80%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: '10px',
+        boxShadow: '1px 2px 7px #9aace5',
+        border: '1px solid #92a6e6',
+        marginTop: '50px',
+        marginBottom: '40px',
+        backgroundImage: 'linear-gradient(to right top, #f7fdff, #f5fcff, #f6faff, #faf7ff, #fff4fe)',
+    },
+
+    lblprofile:{
+        left: 0,
+        right: 0,
+        margin: 'auto',
+        marginTop: '15px',
+        textAlign: 'center',
+        fontSize: '40px',
+        width: '90%',
+        fontWeight: 'bold',
+        color: 'rgb(74, 54, 101)',
+        fontFamily: 'Arial, Helvetica, sans-serif'
+    },
+
+    hr: {
+        marginTop: '13px',
+        width: '100%',
+        height: '8px',
+        border: '0.5px solid rgb(230, 227, 227)',
+        backgroundColor: 'rgb(153, 29, 110)',
     },
 
     containerBottom: {
@@ -28,48 +68,6 @@ export const styleSheet = {
         justifyContent: 'center',
         background: "#181b34",
         color: 'white'
-    },
-
-    profile: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        flexDirection: 'column',
-        height: '90%',
-        width: '30%',
-        alignItems: 'center',
-        //justifyContent: 'center',
-        borderRadius: '10px', 
-        boxShadow: '1px 2px 9px #F4AAB9',
-        border: '2px solid rgb(226, 226, 226)',
-       // marginRight: '15%',
-    },
-
-    mybook: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: '90%',
-        width: '60%',
-        alignItems: 'center',
-        //justifyContent: 'center',
-        borderRadius: '10px', 
-        boxShadow: '1px 2px 9px #F4AAB9',
-        border: '2px solid rgb(226, 226, 226)',
-       // marginRight: '15%',
-    },
-
-    lblprofile:{
-        marginTop: '15px',
-        marginLeft: '7px',
-        fontSize: '28px',
-        width: '97%',
-
-     },
-
-     hr: {
-        width: '100%',
-        height: '7px',
-        border: '0.5px solid rgb(230, 227, 227)',
-        backgroundColor: 'green',
     },
 
 }

@@ -1,55 +1,66 @@
-import {Component, Fragment} from "react";
-import { styleSheet } from "./style";
-import { withStyles } from "@mui/styles";
-import Navbar from "../../components/navbar";
-import { Slide } from 'react-slideshow-image';
-import Car1 from "../../assets/img/car5.jpg";
-import Car2 from "../../assets/img/lamborghini_huracan_5k.jpg";
-import Car3 from "../../assets/img/lamborghini_huracan 8k.jpg";
-import { Carousel } from 'react-responsive-carousel';
+import { Component, Fragment } from "react";
+import Navbar from "../../components/navbar/NavBar";
+import "./home.css"
+import ElectricCarIcon from '@mui/icons-material/ElectricCar';
+import DiamondSharpIcon from '@mui/icons-material/DiamondSharp';
+import EmojiEventsSharpIcon from '@mui/icons-material/EmojiEventsSharp';
+import Bottom from "../../components/bottom/Bottom";
+import { Link } from "react-router-dom";
+import StarBorderPurple500OutlinedIcon from '@mui/icons-material/StarBorderPurple500Outlined';
 
 
-class HomePage extends Component{
+class HomePage extends Component {
 
-    constructor(props) {
-        super(props);
-
-    }
-
-    render(){
-        let { classes } = this.props
-
-        return(
-            <Fragment className={classes.containers}>
+    render() {
+        return (
+            <Fragment >
                 <div><Navbar /></div>
-                
-                <div className={classes.container} style={{ backgroundImage: `url(${Car2})` }}>
-                    <div className={classes.bodycontainer} >
-               
-                        <span style={{ color: `white`, fontSize: '18px ', zIndex: '5', marginTop:'25%'}}>
-                            Easy car rental private limited is a car rental service with 5 years of history.<br/>
-                            This company has about 50 cars and 40 drivers working for them in regular shifts.<br/>
-                            No. 200, Galle Road, Panadura
-                        </span>
-                    
-                        
+
+                <div className="home">
+                    <div class="home-content">
+                        <div class="text-1">Best cars for speciel occations</div>
+                        <div class="text-2">Easy <span>ＣᗩＲ</span>  Rental</div>
+                        <div class="text-3">Lorem ipsum, dolor sit amet consect <br /> adipisicing elit. <br /> </div>
+                        <div className="text-4" >
+                            <StarBorderPurple500OutlinedIcon style={{fontSize:"40px", color:'yellow'}} />
+                            <StarBorderPurple500OutlinedIcon style={{fontSize:"40px", color:'yellow'}} />
+                            <StarBorderPurple500OutlinedIcon style={{fontSize:"40px", color:'yellow'}} />
+                            <StarBorderPurple500OutlinedIcon style={{fontSize:"40px", color:'yellow'}} />
+                            <StarBorderPurple500OutlinedIcon style={{fontSize:"40px", color:'yellow'}} />
+                        </div>
+                        <Link to="/login" style={{textDecoration: "none", color:'white'}} ><div class="btn">Book Now</div></Link>
                     </div>
-             
-            
                 </div>
 
-                <div className={classes.containerBottom}>
-                    <span className={classes.bottomSpan}>
-                        Copyright @ 2022 Easy Car Rental
-                    </span>
+                <div className="services">
+                    <div className="serv-content">
+                        <div className="card">
+                            <div className="box">
+                                <DiamondSharpIcon style={{ fontSize: '60px', color:'rgb(253, 253, 85)' }} />
+                                <div className="text">Club Economy</div>
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
+                            </div>
+                        </div>
+                        <div className="card">
+                            <div className="box">
+                                <ElectricCarIcon style={{ fontSize: '60px', color:'rgb(253, 253, 85)' }} />
+                                <div className="text">Book Safe And Easy</div>
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
+                            </div>
+                        </div>
+                        <div className="card">
+                            <div className="box">
+                                <EmojiEventsSharpIcon style={{ fontSize: '60px', color:'rgb(253, 253, 85)' }} />
+                                <div className="text">Leading experts</div>
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-    
+                <Bottom />
             </Fragment>
-            
         )
-
     }
-
 }
 
-export default withStyles(styleSheet)(HomePage) 
+export default HomePage

@@ -1,0 +1,29 @@
+
+ .leftSide4 {
+    background-color: rebeccapurple;
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    align-items: baseline;
+    justify-content: baseline;
+
+ }
+
+.center4 {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    align-items: baseline;
+    justify-content: baseline;
+ }
+
+
+ @media screen and (max-width: 768px) {
+    .leftSide4 {
+        width: 60px;
+     }
+
+    .center4 {
+      width: 92.2%;
+     }
+}

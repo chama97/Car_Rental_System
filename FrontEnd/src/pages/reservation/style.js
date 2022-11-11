@@ -3,48 +3,17 @@ export const styleSheet = {
     container: {
         display: 'flex', 
         flexDirection: 'row',
-        flexWrap: 'wrap',
-        height: '100vh',
         width: '100vw',
-        //justifyContent: 'center',
-       // alignItems: 'center',
-        backgroundColor: 'blue'
-    },
-
-   
-
-    leftSide:{
-        backgroundColor: 'rebeccapurple',
-        display: 'flex',
-        flexWrap: 'wrap',
-        flexDirection: 'column',
-        height: '100vh',
-        width: '20vw',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-
-    center:{
-       backgroundColor: 'green',
-       display: 'flex',
-       flexWrap: 'wrap',
-       flexDirection: 'row',
-       height: '100vh',
-       width: '80vw',
-       alignItems: 'center',
-       justifyContent: 'center'
     },
 
     appBar:{
         backgroundColor: 'red',
         display: 'flex',
-        flexWrap: 'wrap',
         flexDirection: 'row',
-        height: '9%',
         width: '100%',
         justifyContent: 'center'
     },
- 
+    
     table:{
         backgroundColor: 'white',
         display: 'flex',
@@ -65,28 +34,36 @@ export const styleSheet = {
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: '10px', 
-        boxShadow: '1px 2px 7px #F4AAB9',
-        border: '1px solid rgb(226, 226, 226)',
+        boxShadow: '1px 0.5px 7px rgb(255, 167, 224)',
+        border: '1px solid rgb(255, 112, 205)',
      },
 
      lblcustomer:{
-        marginTop: '17px',
+        left: 0,
+        right: 0,
+        margin: 'auto',
+        marginTop: '15px',
+        textAlign: 'center', 
         fontSize: '30px',
-        width: '97%',
-
+        width: '90%',
+        fontWeight: 'bold',
+        color: 'rgb(81, 159, 13)',
+        fontFamily: 'Arial, Helvetica, sans-serif'
      },
-
+  
      hr: {
+        marginTop: '13px',
         width: '100%',
-        height: '8px',
+        height: '12px',
         border: '0.5px solid rgb(230, 227, 227)',
-        backgroundColor: 'green',
+        backgroundColor: 'rgb(153, 29, 110)',
     },
 
     stack: {
+        paddingTop: '30px',
         display: 'flex',
         backgroundColor: 'white',
-        width: '97%',
+        width: '90%',
         justifyContent:"flex-end",
         padding: '15px'
         

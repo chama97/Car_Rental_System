@@ -8,6 +8,8 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
 import LoginService from "../../services/LoginService";
+import './cusnav.css'
+import localStorageService from "../../services/StorageService";
 
 
 class CustomNavbar extends Component{
@@ -20,31 +22,25 @@ class CustomNavbar extends Component{
           message: '',
           severity: '',
 
-          data: [],
-          
+          userData: "",
       }
       this.LogOutAction = this.LogOutAction.bind(this);
     }
 
-    
-    loadData = async () => {
-      let res = await LoginService.fetchLogin();
-      if (res.status === 200) {
-          this.setState({
-              data: res.data.data,
-          });
-      } else {
-          console.log("fetching error: " + res)
-      }
-    };
 
-    componentDidMount() {
-      this.loadData();
+    componentDidMount = async () =>{
+      const token = await localStorageService.getItem("userToken");
+        if (token) {
+            console.log(token);
+            this.setState({
+                userData: token
+            })
+        }
     }
 
-    LogOutAction= async (email) =>{
+    LogOutAction= async () =>{
       let params = {
-        email: email
+        email: localStorageService.getItem("userToken")
       }
       let res = await LoginService.deleteLogin(params);
         if (res.status === 200) {
@@ -53,6 +49,8 @@ class CustomNavbar extends Component{
                   message: 'done',
                   severity: 'success'
               });
+
+              localStorage.removeItem('userToken');
               window.location.href = "./"
         } else {
               this.setState({
@@ -66,44 +64,47 @@ class CustomNavbar extends Component{
 
     render(){
       // const {data} = this.props.location
-  
+
       return (
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static" sx={{backgroundImage: 'linear-gradient(to right top, #402baa, #3b39b6, #3546c1, #2e53cc, #255fd7)' }}>
+        <Box sx={{ flexGrow: 1,height:'70px' }}>
+          <AppBar position="static" sx={{backgroundImage: 'linear-gradient(to right top, #402baa, #3b39b6, #3546c1, #2e53cc, #255fd7)',height:'70px' }}>
             <Toolbar>
               <IconButton
                 size="large"
                 edge="start"
                 color="inherit"
                 aria-label="menu"
-                sx={{ mr: 2 }}
+                sx={{ mr: 1 }}
                 >
-                <AccountCircle />
+                <AccountCircle style={{fontSize:'40px'}}/>
               </IconButton>
-              <Typography variant="h5" component="div" sx={{ flexGrow: 1, fontFamily: 'monospace',fontWeight: 700,letterSpacing: '.1rem', }}>
-                Easy Car Rental 
-                
-              </Typography> 
-              {/* <h1>{this.props.email}</h1> */}
-             
+              <Typography variant="h5" component="div"
+                  sx={{ flexGrow: 0.7, fontFamily: 'Arial, Helvetica, sans-serif',fontWeight: 800, display: { xs: 'none', sm: 'block' } }}>
+                Easy <span>ＣᗩＲ</span> Rental
+              </Typography>
+
+              <Typography variant="h6" component="div"
+                  sx={{ flexGrow: 1, fontFamily: 'Arial, Helvetica, sans-serif',fontWeight: 500, display: { xs: 'none', sm: 'block' } }}>
+                <span className="lblEmail">{this.state.userData}</span>
+              </Typography>
 
               <Link to="/custdash" style={{ color:'white', textDecoration: "none"}} >
-                <Button color="inherit">DashBoard</Button>
+                <Button className="custBtn" color="inherit">Profile</Button>
               </Link>
 
               <Link to="/generalcar" style={{ color:'white', textDecoration: "none"}}>
-                <Button color="inherit">Cars</Button>
+                <Button className="custBtn" color="inherit">Cars</Button>
               </Link>
 
-             
               <Button
+                className="custBtn"
                 color="inherit"
                 onClick={() => {
-                  this.LogOutAction(this.state.data[0].email)
+                  this.LogOutAction()
                 }}
                 >LogOut
               </Button>
-             
+
             </Toolbar>
           </AppBar>
         </Box>

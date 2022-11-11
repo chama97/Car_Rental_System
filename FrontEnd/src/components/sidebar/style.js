@@ -1,35 +1,18 @@
 export const styleSheet = {
 
-  sidebar: {
-      flex: '1',
-      borderRight: '0.5px solid rgb(230, 227, 227)',
-      minHeight: '100vh',
-      backgroundColor: 'white',
-      width: '20vw',
-     // backgroundImage: 'linear-gradient(to right top, #1f2144, #262d59, #2c3a70, #2f4787, #30559f)'
-      backgroundImage: 'linear-gradient(to right top, #1f2039, #272c50, #2d3969, #304784, #30559f)'
-  },
-
   top: {
-      height: '65px',
+      height: '60px',
+      width: '100%',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'space-around',
-      backgroundImage: 'linear-gradient(to right top, #2c2f67, #2f3875, #304183, #314b91, #30559f)'
-  },
-
-  logo: {
-      fontSize: '20px',
-      fontWeight: 'bold',
-      color: 'white',
-      marginRight: '90px',
+      borderBottom: '1px solid #fff'
+    //   backgroundImage: 'linear-gradient(to right top, #2c2f67, #2f3875, #304183, #314b91, #30559f)'
   },
 
   hr: {
       height: '1',
       border: '0.5px solid rgb(230, 227, 227)',
   },
-
 
   center: {
       paddingLeft: '10px',
@@ -71,17 +54,11 @@ export const styleSheet = {
       color: '#c7c7ea',
   },
 
-  icontop: {
-    fontSize: '30px',
-    color: 'white',
-    marginLeft: '60px'
-  },
-
   span: {
       fontSize: '15px',
       fontWeight: '600',
       color: '#f4f4fb',
-      marginLeft: '10px',
+      marginLeft: '20px',
   },
 
   bottom:{
@@ -90,7 +67,5 @@ export const styleSheet = {
       marginTop: '20px',
       margin:'10px',  
   }
-
-
 
 }

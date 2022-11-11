@@ -1,0 +1,29 @@
+
+ .leftSide {
+    background-color: rebeccapurple;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    align-items: baseline;
+    justify-content: baseline;
+
+ }
+
+.center {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: baseline;
+    justify-content: baseline;
+ }
+
+
+ @media screen and (max-width: 768px) {
+    .leftSide {
+        width: 60px;
+     }
+
+    .center {
+        width: 100%;
+     }
+}

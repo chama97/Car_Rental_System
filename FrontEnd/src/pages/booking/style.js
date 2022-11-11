@@ -1,87 +1,76 @@
 export const styleSheet = {
-    container: {
-        display: 'flex', 
-        flexDirection: 'column',
-        height: '100vh',
-        width: '100vw',
-        justifyContent: 'center'
-    },
-    
+
     board: {
         display: 'flex',
         flexWrap: 'wrap',
-        flexDirection: 'column',
-        height: '90vh',
+        flexDirection: 'row',
         width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: "white",
-    },
-
-    containerBottom: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        flexDirection: 'column',
-        height: '200px',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: "#181b34",
-        color: 'white'
+        alignItems: 'baseline',
+        justifyContent: 'space-around',
+        backgroundImage: 'linear-gradient(to right top, #f3f4ff, #f5f5ff, #f7f6ff, #f8f8ff, #faf9ff)',
     },
 
     profile: {
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'column',
-        height: '95%',
-        width: '47%',
+        width: '100%',
         alignItems: 'center',
-        //justifyContent: 'center',
-        borderRadius: '5px', 
-        boxShadow: '1px 2px 5px #F4AAB9',
-        border: '2px solid rgb(226, 226, 226)',
-       // marginRight: '15%',
+        borderRadius: '5px',
+        boxShadow: '1px 0.5px 7px #F4AAB9',
+        border: '1px solid rgb(255, 112, 205)',
+        marginTop: '20px',
+        marginBottom: '20px',
+
     },
 
     mybook: {
         display: 'flex',
+        marginTop: '20px',
         flexDirection: 'column',
-        height: '95%',
-        width: '47%',
+        width: '100%',
+        paddingBottom:'30px',
         alignItems: 'center',
-        //justifyContent: 'center',
-        borderRadius: '5px', 
-        boxShadow: '1px 2px 5px #F4AAB9',
-        border: '2px solid rgb(226, 226, 226)',
-       // marginRight: '15%',
+        borderRadius: '5px',
+        boxShadow: '1px 0.5px 7px #F4AAB9',
+        border: '1px solid rgb(255, 112, 205)',
     },
 
     lblprofile:{
-        marginTop: '10px',
-        marginLeft: '7px',
-        fontSize: '24px',
-        width: '97%',
-        fontWeight: 'bold'
+        left: 0,
+        right: 0,
+        margin: 'auto',
+        marginTop: '15px',
+        textAlign: 'center',
+        fontSize: '30px',
+        width: '90%',
+        fontWeight: 'bold',
+        color: 'rgb(81, 159, 13)',
+        fontFamily: 'Arial, Helvetica, sans-serif'
+    },
 
-     },
-
-     hr: {
+    hr: {
+        marginTop: '13px',
         width: '100%',
-        height: '7px',
+        height: '8px',
         border: '0.5px solid rgb(230, 227, 227)',
-        backgroundColor: 'green',
+        backgroundColor: 'rgb(153, 29, 110)',
+    },
+
+    hrr: {
+        width: '100%',
+        height: '2px',
+        backgroundColor: 'rgb(153, 29, 110)',
     },
 
     divs:{
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'column',
-        height: '88%',
         width: '97%',
-        borderRadius: '5px', 
-        // boxShadow: '1px 2px 6px gray',
-        // border: '1px solid rgb(226, 226, 226)',
+        borderRadius: '5px',
+        marginTop:'10px',
+        marginBottom:'10px',
      },
 
 }

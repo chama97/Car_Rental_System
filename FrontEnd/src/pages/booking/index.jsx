@@ -1,104 +1,125 @@
-import {Component, Fragment} from "react";
+import { Component, Fragment } from "react";
 import { styleSheet } from "./style";
 import { withStyles } from "@mui/styles";
 import CustomNavbar from "../../components/customNavbar";
 import Grid from '@mui/material/Grid';
-//import TextField from '@mui/material/TextField';
-import SuzukiAlto from '../../assets/img/General Cars/Suzuki Alto - Premium/suzuki-alto.jpg';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea, Input } from '@mui/material';
+import { CardActionArea } from '@mui/material';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import ReservationService from "../../services/ReservationService";
 import SnackBar from "../../components/SnackBar";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import CustomerService from "../../services/CustomerService";
+import localStorageService from "../../services/StorageService";
+import Bottom from "../../components/bottom/Bottom";
+// import { format } from "date-fns";
 
+// let { route } = this.props
 
-class Booking extends Component{
+class Booking extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             formData: {
                 reserveId: '',
-                pickUpDate: '', 
+                pickUpDate: '',
                 returnDate: '',
                 pickUpLocation: '',
                 status: '',
                 customer: {
-                    email: "",
-                    password: "",
-                    name: "",
-                    nic:"",
-                    license:"",
-                    address:"",
-                    contact:"",
+                    email: '',
+                    password: '',
+                    name: '',
+                    nic: '',
+                    license: '',
+                    address: '',
+                    contact: '',
                 },
                 car: {
-                    regId:"",
-                    brand:"",
-                    type:"",
-                    transType:"",
-                    fuelType:"",
-                    noPassengers:"",
-                    dailyRate:"",
-                    monthlyRate:"",
-                    freeKmDay:"",
-                    priceExKm:"",
-                    status:""
+                    regId: "",
+                    brand: "",
+                    type: "",
+                    transType: "",
+                    fuelType: "",
+                    noPassengers: "",
+                    dailyRate: "",
+                    monthlyRate: "",
+                    freeKmDay: "",
+                    priceExKm: "",
+                    status: ""
                 },
 
-                driverId:'',
-               
-                rentalDetails:[{
-                    rentalId:"",
-                    rentalCharge:'',
-                    damageCharge:0,
-                    additionalCharge:0,
-                    duration:'',
-                    totalCharge:0
-                }] 
+                driverId: '',
+
+                rentalDetails: [{
+                    rentalId: '',
+                    rentalCharge: '',
+                    damageCharge: 0,
+                    additionalCharge: 0,
+                    duration: '',
+                    totalCharge: 0
+                }]
             },
-           
+
             alert: false,
             message: '',
             severity: '',
-            data: [] 
+            data: [],
+            carData: [{
+                id: "",
+                brand: "",
+                img: "",
+                passengers: "",
+                dailyRate: 0,
+                monthlyRate: "",
+                freeKmDay: "",
+                priceExKm: "",
+            }],
+
+            userData: "",
         }
     }
 
     exampleForMap = () => {
-        this.state.data.map((value, index) => {
-            console.log(value)  
+        this.state.data.map((value) => {
+            console.log(value)
+            return (value);
         })
+    };
+
+    dateDifference= () => {
+        var date1 = new Date(this.state.formData.pickUpDate);
+        var date2 = new Date(this.state.formData.returnDate);
+        var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10);
+        return diffDays+' days';
     };
 
 
     loadIdData = async () => {
-        let res = await ReservationService.fetchResId(); 
+        let res = await ReservationService.fetchResId();
+        let rentalCharge = this.state.carData.dailyRate;
+
         if (res.status === 200) {
             this.setState({
                 formData: {
                     reserveId: res.data.data,
                     status: 'pending',
-                    customer: { email : 'amal@gmail.com'},
-                    car: { regId: 'CR001'},
-                    rentalDetails:  [{ rentalId: res.data.data,
-                                       rentalCharge: 2500,
-                                       duration: 5,
-                                       additionalCharge: 0.0
-                                    }]
+                    customer: { email: this.state.userData },
+                    car: { regId: this.state.carData.id },
+                    rentalDetails: [{
+                        rentalId: res.data.data,
+                        rentalCharge: rentalCharge,
+                        duration: this.dateDifference(),
+                        additionalCharge: 0.0
+                    }]
                 }
             });
         }
@@ -106,31 +127,56 @@ class Booking extends Component{
         this.exampleForMap()
     };
 
-    
-    componentDidMount() {
+
+    componentDidMount = async () => {
         this.loadIdData()
+
+        const token = await localStorageService.getItem("carToken");
+        if (token) {
+            console.log(token);
+            this.setState({
+                carData: {
+                    id: token.id,
+                    brand: token.brand,
+                    img: token.img,
+                    passengers: token.passenger,
+                    dailyRate: token.dailyRate,
+                    monthlyRate: token.monthlyRate,
+                    freeKmDay: token.freeKm,
+                    priceExKm: token.priceExKm,
+                }
+            })
+        }
+
+        const userToken = await localStorageService.getItem("userToken");
+        if (userToken) {
+            console.log(userToken);
+            this.setState({
+                userData: userToken
+            })
+        }
     }
+
 
     clearFields = () => {
         this.setState({
             formData: {
                 reserveId: '',
-                customerID: "amal@gmail.com",
-                carID: 'CR001',
+                customerID: '',
+                carID: '',
                 driverId: '',
-                pickUpDate:  '', 
+                pickUpDate: '',
                 returnDate: '',
                 pickUpLocation: '',
             }
         });
     };
 
-    submitReservation= async () => {
+    submitReservation = async () => {
         let formData = this.state.formData;
         let res = await ReservationService.postRes(formData);
-
         console.log(res)
-    
+
         if (res.status === 201) {
             this.setState({
                 alert: true,
@@ -147,149 +193,172 @@ class Booking extends Component{
         }
     };
 
+    cancelBook = () => {
+        localStorage.removeItem('carToken');
+        window.location.href = '/generalcar';
+    }
 
 
-    render(){
-        const { data } = this.props;
+    render() {
         let { classes } = this.props
 
-        return(
+        return (
             <Fragment>
                 <div><CustomNavbar /></div>
                 <div className={classes.board}>
-                    <div className={classes.profile}>
-                        <div className={classes.lblprofile}><span>Car Details</span></div> 
-                        <hr className={classes.hr} /> 
-                        
-                        <Card  className={classes.divs}>
-                            <CardActionArea>
-                                <CardMedia
-                                    component="img"
-                                    height="320"
-                                    imag src={SuzukiAlto}
-                                    alt="green iguana"
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        Suzuki Alto - Premium
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        <span>Auto | Petrol</span><br/>
-                                        <span>Passengers - <span>4</span> </span><br/>
-                                        <span>FreeKm/Day - <span> 100Km</span>  </span><br/>
-                                        <span>Price/ExtraKm - <span> 30.0</span> </span><br/>
-                                        <span>Daily Rate - <span> Rs:2500</span>  </span><br/>
-                                        <span>Monthly Rate - <span> Rs:64,350</span> </span><br/>
-                                        <span>Status - <span> Available</span> </span>
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </div>
-
-                    <div className={classes.mybook}>
-                        <div className={classes.lblprofile}><span>Booking Details</span></div> 
-                        <hr className={classes.hr} /> 
-                        <ValidatorForm ref="form"  onError={errors => console.log(errors)}>
-                                <Grid container style={{padding: '10px'}} spacing={{ xs: 3, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }} >
-                                <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
-                                        <TextValidator
-                                            id="outlined-basic"
-                                            variant="outlined"
-                                            label="Reservation ID"
-                                            size="small"
-                                            value={this.state.formData.reserveId}
-                                            onChange={(e) => {
-                                                let formData = this.state.formData
-                                                formData.reserveId = e.target.value
-                                                this.setState({ formData })
-                                            }}
-                                            style={{ width: '100%' }}
-                                            validators={['required',]}
+                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 12, md: 12 }} style={{ padding: '20px' }} >
+                        <Grid item lg={6} md={6} sm={12} xm={12}  >
+                            <div className={classes.profile}>
+                                <div className={classes.lblprofile}><span>Car Details</span></div>
+                                <hr className={classes.hr} />
+                                <Card className={classes.divs}>
+                                    <CardActionArea>
+                                        <CardMedia
+                                            component="img"
+                                            height="320"
+                                            imag src={this.state.carData.img}
+                                            alt="green iguana"
                                         />
-                                        {/* <Button variant="outlined"  onClick={() => {
-                                                this.loadIdData()
-                                                }}>+
-                                        </Button> */}
-                                     
-                                    </Grid>
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="div">
+                                                {this.state.carData.brand}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary" style={{display:'flex',flexDirection:'row',marginTop:'20px'}}>
+                                                <div style={{display:'flex',flexDirection:'column',width:'170px'}}>
+                                                    <span>Auto | Petrol</span>
+                                                    <hr className={classes.hrr} />
+                                                    <span>Passengers - </span>
+                                                    <hr className={classes.hrr} />
+                                                    <span>FreeKm/Day - </span>
+                                                    <hr className={classes.hrr} />
+                                                    <span>Price/ExtraKm - </span>
+                                                    <hr className={classes.hrr} />
+                                                    <span>Daily Rate - </span>
+                                                    <hr className={classes.hrr} />
+                                                    <span>Monthly Rate - </span>
+                                                    <hr className={classes.hrr} />
+                                                    <span>Status - </span>
+                                                    <hr className={classes.hrr} />
+                                                </div>
+                                                <div style={{display:'flex',flexDirection:'column',width:'80%'}}>
+                                                    <span>.</span>
+                                                    <hr className={classes.hrr} />
+                                                    <span>{this.state.carData.passengers}</span>
+                                                    <hr className={classes.hrr} />
+                                                    <span> {this.state.carData.freeKmDay}</span>
+                                                    <hr className={classes.hrr} />
+                                                    <span> {this.state.carData.priceExKm}</span>
+                                                    <hr className={classes.hrr} />
+                                                    <span> {this.state.carData.dailyRate}</span>
+                                                    <hr className={classes.hrr} />
+                                                    <span> {this.state.carData.monthlyRate}</span>
+                                                    <hr className={classes.hrr} />
+                                                    <span> Available</span>
+                                                    <hr className={classes.hrr} />
+                                                </div>
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </div>
+                        </Grid>
+                        <Grid item lg={6} md={6} sm={12} xm={12}  >
+                            <div className={classes.mybook}>
+                                <div className={classes.lblprofile}><span>Booking Details</span></div>
+                                <hr className={classes.hr} />
+                                <ValidatorForm ref="form" onError={errors => console.log(errors)}>
+                                    <Grid container style={{ padding: '20px', paddingTop: '30px' }} spacing={{ xs: 3, md: 4 }} columns={{ xs: 12, sm: 12, md: 12 }} >
+                                        <Grid item lg={6} md={6} sm={12} xm={12} >
+                                            <TextValidator
+                                                id="outlined-basic"
+                                                variant="outlined"
+                                                label="Reservation ID"
+                                                size="small"
+                                                value={this.state.formData.reserveId}
+                                                onChange={(e) => {
+                                                    let formData = this.state.formData
+                                                    formData.reserveId = e.target.value
+                                                    this.setState({ formData })
+                                                }}
+                                                style={{ width: '100%', fontWeight: 'bold', color: 'green' }}
+                                                validators={['required',]}
+                                            />
+                                        </Grid>
+                                        <Grid item lg={6} md={6} sm={12} xm={12} >
+                                            <TextValidator
+                                                id="outlined-basic"
+                                                variant="outlined"
+                                                label="Car ID"
+                                                placeholder="Car ID"
+                                                size="small"
+                                                value={this.state.carData.id}
+                                                onChange={(e) => {
+                                                    let formData = this.state.formData
+                                                    formData.car.regId = e.target.value
+                                                    this.setState({ formData })
+                                                }}
+                                                style={{ width: '100%', fontWeight: 'bold', color: 'red' }}
+                                                validators={['required',]}
+                                            />
+                                        </Grid>
+                                        <Grid item lg={6} md={6} sm={12} xm={12} >
 
-                                    <Grid item lg={6} md={6} sm={6} xm={6}  style={{ marginTop:'20px'}} >
-                                        {/* <TextValidator
-                                            id="outlined-basic"
-                                            variant="outlined"
-                                            label="Customer ID"
-                                            size="small"
-                                            //value={this.state.formData.customer.email}
-                                            // onChange={(e) => {
-                                            //     let formData = this.state.formData
-                                            //     formData.customerID.email = e.target.value
-                                            //     this.setState({ formData })
-                                            // }}
-                                            style={{ width: '100%' }}
-                                            validators={['required',]}
-                                        /> */}
-                                    </Grid>
-
-                                    <Grid item lg={6} md={6} sm={6} xm={6} >
-                                       
-                                        <Typography variant="subtitle1" style={{fontSize:'15px'}}>Pickup Date</Typography>
-                                        <TextValidator
-                                            id="outlined-basic"
-                                            variant="outlined"
-                                            placeholder="Pickup Date"
-                                            size="small"
-                                            type="date"
-                                            value={this.state.formData.pickUpDate}
-                                            onChange={(e) => {
-                                                let formData = this.state.formData
-                                                formData.pickUpDate = e.target.value
-                                                this.setState({ formData })
-                                            }}
-                                            style={{ width: '100%' }}
-                                            validators={['required',]}
-                                        />
-                                    </Grid>
-
-                                    <Grid item lg={6} md={6} sm={6} xm={6} >
-                                        <Typography variant="subtitle1" style={{fontSize:'15px'}}>Return Date</Typography>
-                                        <TextValidator
-                                            id="outlined-basic"
-                                            variant="outlined"
-                                            placeholder="Return Date"
-                                            size="small"
-                                            type="date"
-                                            value={this.state.formData.returnDate}
-                                            onChange={(e) => {
-                                                let formData = this.state.formData
-                                                formData.returnDate = e.target.value
-                                                this.setState({ formData })
-                                            }}
-                                            style={{ width: '100%' }}
-                                            validators={['required',]}
-                                        />
-                                    </Grid>
-
-                                    <Grid item lg={6} md={6} sm={6} xm={6} >
-                                        <TextValidator
-                                            id="outlined-basic"
-                                            variant="outlined"
-                                            label="PickUp Location"
-                                            size="small"
-                                            value={this.state.formData.pickUpLocation}
-                                            onChange={(e) => {
-                                                let formData = this.state.formData
-                                                formData.pickUpLocation = e.target.value
-                                                this.setState({ formData })
-                                            }}
-                                            style={{ width: '100%' }}
-                                            validators={['required',]}
-                                        />
-                                    </Grid>
-
-                                    <Grid item lg={6} md={6} sm={6} xm={6} >
-                                        <FormControl fullWidth>
-                                            <InputLabel id="demo-simple-select-label">Driver</InputLabel>
+                                            <Typography variant="subtitle1" style={{ fontSize: '15px' }}>Pickup Date</Typography>
+                                            <TextValidator
+                                                id="outlined-basic"
+                                                variant="outlined"
+                                                placeholder="Pickup Date"
+                                                size="small"
+                                                type="date"
+                                                value={this.state.formData.pickUpDate}
+                                                onChange={(e) => {
+                                                    let formData = this.state.formData
+                                                    formData.pickUpDate = e.target.value
+                                                    this.setState({ formData })
+                                                    console.log(formData.pickUpDate)
+                                                }}
+                                                style={{ width: '100%' }}
+                                                validators={['required',]}
+                                            />
+                                        </Grid>
+                                        <Grid item lg={6} md={6} sm={12} xm={12} >
+                                            <Typography variant="subtitle1" style={{ fontSize: '15px' }}>Return Date</Typography>
+                                            <TextValidator
+                                                id="outlined-basic"
+                                                variant="outlined"
+                                                placeholder="Return Date"
+                                                size="small"
+                                                type="date"
+                                                value={this.state.formData.returnDate}
+                                                onChange={(e) => {
+                                                    let formData = this.state.formData
+                                                    formData.returnDate = e.target.value
+                                                    this.setState({ formData })
+                                                    console.log(formData.returnDate)
+                                                }}
+                                                style={{ width: '100%' }}
+                                                validators={['required',]}
+                                            />
+                                        </Grid>
+                                        <Grid item lg={6} md={6} sm={12} xm={12} >
+                                            <TextValidator
+                                                id="outlined-basic"
+                                                variant="outlined"
+                                                label="PickUp Location"
+                                                size="small"
+                                                value={this.state.formData.pickUpLocation}
+                                                onChange={(e) => {
+                                                    let formData = this.state.formData
+                                                    formData.pickUpLocation = e.target.value
+                                                    this.setState({ formData })
+                                                }}
+                                                style={{ width: '100%' }}
+                                                validators={['required',]}
+                                            />
+                                        </Grid>
+                                        <Grid item lg={6} md={6} sm={12} xm={12} >
+                                            <FormControl fullWidth>
+                                                <InputLabel id="demo-simple-select-label">Driver</InputLabel>
                                                 <Select
                                                     labelId="demo-simple-select-label"
                                                     id="demo-simple-select"
@@ -303,48 +372,50 @@ class Booking extends Component{
                                                         this.setState({ formData })
                                                     }}
                                                 >
-                                                <MenuItem value={true}>Yes</MenuItem>
-                                                <MenuItem value={false}>No</MenuItem>
-                                            </Select>
-                                        </FormControl>
+                                                    <MenuItem value={true}>Yes</MenuItem>
+                                                    <MenuItem value={false}>No</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                        </Grid>
+
+                                        <Grid item lg={12} md={12} sm={12} xm={12} style={{ display: 'flex', justifyContent: "flex-end" }}  >
+                                            <Stack spacing={1} direction="row">
+                                                <Button
+                                                    variant="outlined"
+                                                    color="error"
+                                                    onClick={() => {
+                                                        this.cancelBook()
+                                                    }}>Cancel
+                                                </Button>
+                                                <Button
+                                                    variant="contained"
+                                                    type="submit"
+                                                    onClick={() => {
+                                                        this.submitReservation()
+                                                    }}>Book
+                                                </Button>
+                                            </Stack>
+                                        </Grid>
                                     </Grid>
-                                    
-                                    <Grid item lg={12} md={12} sm={12} xm={12}  style={{display: 'flex', justifyContent:"flex-end"}}  >
-                                        <Stack spacing={1} direction="row">
-                                            <Button variant="outlined" color="error">Cancel</Button>
-                                            <Button variant="contained"  onClick={() => {
-                                                this.submitReservation()
-                                                }} type="submit">Book</Button>
-                                            
-                                        </Stack>
-                                    </Grid>   
-                                </Grid>
-                            </ValidatorForm>
-                    </div>
+                                </ValidatorForm>
+                            </div>
+                        </Grid>
+                    </Grid>
                     <SnackBar
-                    open={this.state.alert}
-                    onClose={() => {
-                        this.setState({ alert: false })
-                    }}
-                    message={this.state.message}
-                    autoHideDuration={3000}
-                    severity={this.state.severity}
-                    variant="filled"
-                />
-                        
+                        open={this.state.alert}
+                        onClose={() => {
+                            this.setState({ alert: false })
+                        }}
+                        message={this.state.message}
+                        autoHideDuration={3000}
+                        severity={this.state.severity}
+                        variant="filled"
+                    />
                 </div>
-
-                <div className={classes.containerBottom}>
-                    <span className={classes.bottomSpan}>
-                        Copyright @ 2022 Easy Car Rental
-                    </span>
-                </div>
-    
-            </Fragment>  
+                <Bottom />
+            </Fragment>
         )
-
     }
-
 }
 
-export default withStyles(styleSheet)(Booking) 
+export default withStyles(styleSheet)(Booking)

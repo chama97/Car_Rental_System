@@ -18,8 +18,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import "./customer.css";
 
-class Customer extends Component{
+class Customer extends Component {
 
     constructor(props) {
         super(props);
@@ -36,7 +37,7 @@ class Customer extends Component{
             alert: false,
             message: '',
             severity: '',
-    
+
             data: [],
         }
     }
@@ -45,23 +46,23 @@ class Customer extends Component{
         let params = {
             email: email
         }
-         let res = await CustomerService.deleteCustomer(params);
-
-         if(res.status === 200) {
+        let res = await CustomerService.deleteCustomer(params);
+        if (res.status === 200) {
             this.setState({
                 alert: true,
                 message: res.data.message,
                 severity: 'success'
             });
             this.loadData();
-         } else {
+        } else {
             this.setState({
                 alert: true,
                 message: res.data.message,
                 severity: 'error'
             });
-         }
+        }
     };
+
 
     loadData = async () => {
         let res = await CustomerService.fetchCustomer();
@@ -73,98 +74,90 @@ class Customer extends Component{
         } else {
             console.log("fetching error: " + res)
         }
-
-        this.exampleForMap()
     };
+
 
     componentDidMount() {
         this.loadData();
     }
 
 
-    render(){
+    render() {
         let { classes } = this.props
-        return(
+
+        return (
             <Fragment>
-
                 <div className={classes.container}>
-
-                    <div className={classes.leftSide}>
+                    <div className="leftSide3">
                         <Sidebar />
                     </div>
-                    
-                    <div className={classes.center}>
-
+                    <div className="center3">
                         <div className={classes.appBar}>
                             <AdminNavbar />
                         </div>
-
                         <div className={classes.table}>
-                            <div className={classes.custable}>  
-                                <div className={classes.lblcustomer}><span>Customers</span></div> 
-                                <hr className={classes.hr} /> 
+                            <div className={classes.custable}>
+                                <div className={classes.lblcustomer}><span>Customers</span></div>
+                                <hr className={classes.hr} />
 
-                                <Stack className={classes.stack} spacing={2} direction="row">
-                                    <TextField id="filled-search" label="Search field" type="search" size="small" variant="outlined"/>
-                                    <Button variant="outlined">Search</Button>
-                                </Stack>  
+                                <div className={classes.stacks}>
+                                    <Stack className={classes.stack} spacing={2} direction="row">
+                                        <TextField id="filled-search" label="Search field" type="search" size="small" variant="outlined" />
+                                        <Button variant="outlined">Search</Button>
+                                    </Stack>
+                                </div>
 
                                 <Grid container style={{ height: '100%', width: '100%', padding: '15px' }}>
-                                <TableContainer component={Paper} sx={{maxHeight:'100%'}}>
-                                <Table sx={{ minWidth: 650 }} aria-label="customer table">
-                                <TableHead>
-                                <TableRow style={{backgroundImage: 'linear-gradient(to right top, #777277, #766e7a, #736a7e, #6c6783, #626589)'}}>
-                                    <TableCell align="left" style={{color:'white'}}> Email</TableCell>
-                                    <TableCell align="left" style={{color:'white'}}> Password</TableCell>
-                                    <TableCell align="left" style={{color:'white'}}> Name</TableCell>
-                                    <TableCell align="left" style={{color:'white'}}> NIC</TableCell>
-                                    <TableCell align="left" style={{color:'white'}}> License</TableCell>
-                                    <TableCell align="left" style={{color:'white'}}> Address</TableCell>
-                                    <TableCell align="left" style={{color:'white'}}> Contact</TableCell>
-                                    <TableCell align="left" style={{color:'white'}}>Action</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {
-                                    this.state.data.map((row) => (
-                                        <TableRow>
-                                            <TableCell align="left">{row.email}</TableCell>
-                                            <TableCell align="left">{row.password}</TableCell>
-                                            <TableCell align="left">{row.name}</TableCell>
-                                            <TableCell align="left">{row.nic}</TableCell>
-                                            <TableCell align="left">{row.license}</TableCell>
-                                            <TableCell align="left">{row.address}</TableCell>
-                                            <TableCell align="left">{row.contact}</TableCell>
-                                            <TableCell align="left">
-                                                <Tooltip title="Delete">
-                                                    <IconButton
-                                                        onClick={() => {
-                                                            this.deleteCustomer(row.email)
-                                                        }}
-                                                    >
-                                                        <DeleteIcon color="error" />
-                                                    </IconButton>
-                                                </Tooltip>
-                                            </TableCell>
-                                        </TableRow>
-                                    ))
-                                }
-                            </TableBody>
-                            </Table>
-                            </TableContainer> 
-                            </Grid>
-                       
+                                    <TableContainer component={Paper} sx={{ maxHeight: '100%' }}>
+                                        <Table sx={{ minWidth: 650 }} aria-label="customer table">
+                                            <TableHead>
+                                                <TableRow style={{ backgroundImage: 'linear-gradient(to right top, #777277, #766e7a, #736a7e, #6c6783, #626589)' }}>
+                                                    <TableCell align="left" style={{ color: 'white' }}> Email</TableCell>
+                                                    <TableCell align="left" style={{ color: 'white' }}> Password</TableCell>
+                                                    <TableCell align="left" style={{ color: 'white' }}> Name</TableCell>
+                                                    <TableCell align="left" style={{ color: 'white' }}> NIC</TableCell>
+                                                    <TableCell align="left" style={{ color: 'white' }}> License</TableCell>
+                                                    <TableCell align="left" style={{ color: 'white' }}> Address</TableCell>
+                                                    <TableCell align="left" style={{ color: 'white' }}> Contact</TableCell>
+                                                    <TableCell align="left" style={{ color: 'white' }}>Action</TableCell>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                {
+                                                    this.state.data.map((row) => (
+                                                        <TableRow>
+                                                            <TableCell align="left">{row.email}</TableCell>
+                                                            <TableCell align="left">{row.password}</TableCell>
+                                                            <TableCell align="left">{row.name}</TableCell>
+                                                            <TableCell align="left">{row.nic}</TableCell>
+                                                            <TableCell align="left">{row.license}</TableCell>
+                                                            <TableCell align="left">{row.address}</TableCell>
+                                                            <TableCell align="left">{row.contact}</TableCell>
+                                                            <TableCell align="left">
+                                                                <Tooltip title="Delete">
+                                                                    <IconButton
+                                                                        onClick={() => {
+                                                                            this.deleteCustomer(row.email)
+                                                                        }}
+                                                                    >
+                                                                        <DeleteIcon color="error" />
+                                                                    </IconButton>
+                                                                </Tooltip>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    ))
+                                                }
+                                            </TableBody>
+                                        </Table>
+                                    </TableContainer>
+                                </Grid>
                             </div>
-                        
                         </div>
-
                     </div>
-                    
                 </div>
-             
             </Fragment>
         )
     }
 }
 
-export default withStyles(styleSheet)(Customer) 
+export default withStyles(styleSheet)(Customer)

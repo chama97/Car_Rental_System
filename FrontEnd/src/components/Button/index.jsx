@@ -31,7 +31,7 @@ class SubmitButton extends Component {
         const {onClick, disabled} = this.props;
 
         if(disabled) return;
-         
+
         onClick && onClick({event});
     }
 
@@ -50,7 +50,6 @@ class SubmitButton extends Component {
             type,
             variant,
             disabled,
-            startIcon,
             endIcon,
             style,
         } = this.props;

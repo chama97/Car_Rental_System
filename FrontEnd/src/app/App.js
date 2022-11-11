@@ -16,9 +16,8 @@ import Generalcar from "../pages/sale/GeneralCars"
 import Luxurycar from "../pages/sale/LuxuryCars"
 import PremiumCar from "../pages/sale/PremiumCars"
 import Booking from "../pages/booking/index"
-import Booking2 from "../pages/booking/index2"
-import Booking3 from "../pages/booking/index3"
 import Report from "../pages/report"
+import Visit from "../pages/visit"
 
 function App() {
   return (
@@ -39,9 +38,8 @@ function App() {
           <Route path='luxurycar' element={<Luxurycar/>}/>
           <Route path='premiumCar' element={<PremiumCar/>}/>
           <Route path='booking' element={<Booking/>}/>
-          <Route path='booking2' element={<Booking2/>}/>
-          <Route path='booking3' element={<Booking3/>}/>
           <Route path='report' element={<Report/>}/>
+          <Route path='visit' element={<Visit/>}/>
       </Routes>
   );
 }
